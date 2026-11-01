@@ -1,0 +1,22 @@
+# CPU builds of torch keep the install ~1 GB instead of ~5 GB of CUDA libraries.
+# On a box with an NVIDIA GPU, drop the index line and install the CUDA build instead.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.1,<2.9
+torchaudio>=2.1,<2.9              # <2.9 also keeps the MMS forced aligner used for lyric timing
+
+numpy
+scipy
+librosa>=0.10
+soundfile
+cmudict
+fastapi
+uvicorn
+pydantic>=2
+
+demucs>=4.0.1                    # stage 1: stems (and DrumSep, which is a Demucs model)
+gdown>=5                         # fetches the DrumSep model from Google Drive
+faster-whisper>=1.1              # stage 3: lyrics (CPU int8)
+syncedlyrics>=1.0                # published lyrics lookup (LRCLIB etc.), idea from x-onset
+beat_this @ https://github.com/CPJKU/beat_this/archive/main.zip   # beats + downbeats
+# basic-pitch (note tracks) is installed separately by setup_ubuntu.sh because its
+# TensorFlow pin can fail; the worker simply skips note tracks if it's missing.

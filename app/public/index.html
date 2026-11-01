@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoSeq</title>
+<link rel="icon" id="favicon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --night: #121a2e; --panel: #1a2440; --raise: #223054; --line: #2a3656;
+    --text: #edf1f7; --muted: #8c99b0; --bulb: #f5b53f; --bulb-dim: #3b4766; --err: #e5604e;
+    --font: "Avenir Next", "Segoe UI Variable", "Segoe UI", Ubuntu, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--night); color: var(--text); font: 15px/1.5 var(--font); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--bulb); outline-offset: 2px; }
+  [hidden] { display: none !important; }
+
+  /* ---------- shell */
+  .shell { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: auto 1fr; height: 100vh; }
+  header.top { grid-column: 1 / -1; display: flex; align-items: center; gap: 22px; padding: 12px 22px; border-bottom: 1px solid var(--line); }
+  .brand { font-size: 1.15rem; font-weight: 600; letter-spacing: .01em; display: flex; align-items: center; gap: 10px; }
+  .brand i { width: 11px; height: 14px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: var(--bulb); box-shadow: 0 0 10px 2px rgba(245,181,63,.5); }
+  nav.tabs { display: flex; gap: 4px; }
+  nav.tabs button { background: none; border: 0; color: var(--muted); padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+  nav.tabs button[aria-current="true"] { color: var(--text); background: var(--panel); }
+  .showpick select { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 6px 10px; font-weight: 600; }
+  .status { margin-left: auto; font-size: .85rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--bulb); }
+  .status.bad { color: var(--err); } .status.bad::before { background: var(--err); }
+
+  /* ---------- buttons */
+  .ver { border: 1px solid var(--line); background: none; color: var(--muted); border-radius: 999px; padding: 4px 11px; font: inherit; font-size: .8rem; cursor: pointer; white-space: nowrap; }
+  .ver:hover { color: var(--text); }
+  .ver.new { background: var(--bulb); border-color: var(--bulb); color: #1b1407; font-weight: 600; }
+  .ver:disabled { cursor: progress; }
+  .btn { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 9px; padding: 8px 14px; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; }
+  .btn:hover { border-color: var(--bulb-dim); }
+  .btn.primary { background: var(--bulb); border-color: var(--bulb); color: #1b1407; font-weight: 600; }
+  .btn.primary:hover { filter: brightness(1.06); }
+  .btn.danger { color: var(--err); }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .link { background: none; border: 0; color: var(--text); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; }
+
+  /* ---------- library rail */
+  aside.rail { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+  .rail-head { padding: 16px; display: grid; gap: 10px; }
+  .search { width: 100%; background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 8px 11px; }
+  ul.songs { list-style: none; margin: 0; padding: 0 8px 16px; overflow: auto; flex: 1; }
+  ul.songs li { padding: 9px 10px; border-radius: 9px; cursor: pointer; display: grid; grid-template-columns: 10px 1fr; gap: 10px; align-items: center; }
+  ul.songs li:hover { background: var(--panel); }
+  ul.songs li[aria-selected="true"] { background: var(--raise); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bulb-dim); }
+  .dot.done { background: var(--bulb); }
+  .dot.running, .dot.queued { background: var(--bulb); animation: blink 1.2s infinite; }
+  .dot.error { background: var(--err); }
+  @keyframes blink { 50% { opacity: .3; } }
+  ul.songs li > div { min-width: 0; }
+  .songs .t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .file-btn input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .file-btn { position: relative; }
+  .songs .m { color: var(--muted); font-size: .8rem; }
+  .empty { color: var(--muted); }
+
+  /* ---------- workspace */
+  main { overflow: auto; min-height: 0; }
+  .work { max-width: 980px; padding: 28px 34px 60px; }
+  .work h1 { font-size: 1.9rem; font-weight: 600; line-height: 1.2; margin: 0 0 6px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); margin: 0 0 22px; }
+  .facts b { color: var(--text); font-weight: 600; }
+
+  /* the song map: the song's parts as coloured blocks */
+  .map { margin: 0 0 26px; }
+  .ribbon { display: flex; height: 44px; gap: 2px; }
+  .ribbon button { border: 0; padding: 0 6px; min-width: 0; cursor: pointer; color: rgba(255,255,255,.92); font-size: .78rem;
+    text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border-radius: 4px; opacity: .88; }
+  .ribbon button:hover { opacity: 1; }
+  .map p { margin: 6px 0 0; font-size: .82rem; color: var(--muted); }
+  .t-intro, .t-outro { background: #34416a; } .t-verse { background: #5a3f9c; } .t-prechorus { background: #2f7d55; }
+  .t-chorus { background: #c8611f; } .t-bridge { background: #93305f; } .t-break { background: #7a2a2a; } .t-off { background: #1a2036; }
+  .t-custom { background: #4a5a80; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+  .settings { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: end; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 16px; }
+  .field { display: grid; gap: 4px; }
+  .field > span { font-size: .82rem; color: var(--muted); }
+  select, input[type=text], input[type=number], input[type=search], textarea { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; }
+  textarea { width: 100%; min-height: 90px; resize: vertical; }
+  .fit { color: var(--muted); font-size: .9rem; max-width: 72ch; }
+  .fit b { color: var(--text); }
+  #fitLine { min-height: 3em; transition: opacity .2s; } #fitLine.stale { opacity: .55; }
+  #cueLine { min-height: 4.5em; }
+  .map { min-height: 70px; }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-left: 3px; }
+
+  details.more { margin-top: 26px; }
+  details.more > summary { cursor: pointer; color: var(--muted); list-style: none; }
+  details.more > summary::before { content: "▸ "; } details.more[open] > summary::before { content: "▾ "; }
+  .more-body { display: grid; gap: 16px; padding: 14px 0 0; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  pre.log { background: #0c1222; border-radius: 10px; padding: 12px; font-size: .78rem; line-height: 1.55; max-height: 300px; overflow: auto; white-space: pre-wrap; color: #c3cde0; margin: 0; }
+  .error { color: var(--err); }
+
+  /* progress while analyzing */
+  .bulbs { display: flex; gap: 28px; margin: 6px 0 22px; }
+  .bulbs div { display: grid; justify-items: center; gap: 6px; font-size: .85rem; color: var(--muted); }
+  .bulbs i { width: 18px; height: 23px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: var(--bulb-dim); }
+  .bulbs .on i { background: var(--bulb); box-shadow: 0 0 14px 3px rgba(245,181,63,.45); }
+  .bulbs .on { color: var(--text); }
+  .bulbs .now i { animation: blink 1.2s infinite; }
+  @media (prefers-reduced-motion: reduce) { .dot, .bulbs .now i { animation: none !important; } }
+
+  /* ---------- dialogs */
+  dialog { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 14px; padding: 22px; width: min(560px, 92vw); }
+  dialog::backdrop { background: rgba(5,8,16,.7); }
+  dialog h2 { margin: 0 0 14px; font-size: 1.2rem; font-weight: 600; }
+  .drop { display: block; border: 2px dashed var(--line); border-radius: 12px; padding: 28px; text-align: center; color: var(--muted); cursor: pointer; margin-bottom: 12px; position: relative; }
+  .drop.has { border-style: solid; border-color: var(--bulb); color: var(--text); }
+  .drop input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .check { display: flex; gap: 8px; align-items: center; color: var(--muted); margin: 10px 0; }
+
+  /* ---------- layout page */
+  .layout { max-width: 980px; padding: 28px 34px 60px; }
+  .layout h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 6px; }
+  .source { display: grid; gap: 10px; margin: 18px 0 26px; }
+  .source input[type=text] { width: min(460px, 100%); }
+  .roles { display: grid; }
+  .role { display: grid; grid-template-columns: 220px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .role h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+  .role p { margin: 2px 0 0; color: var(--muted); font-size: .85rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { display: inline-flex; gap: 6px; align-items: center; background: var(--raise); border-radius: 999px; padding: 3px 6px 3px 12px; font-size: .88rem; }
+  .tag button { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 4px; }
+  .tag button:hover { color: var(--text); }
+  .tags select { padding: 4px 8px; font-size: .88rem; }
+  @media (max-width: 860px) {
+    .shell { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; height: auto; }
+    aside.rail { border-right: 0; border-bottom: 1px solid var(--line); max-height: 40vh; }
+    .work, .layout { padding: 20px 16px 48px; }
+    .role { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---------- preview */
+  #pv { position: fixed; inset: 0; background: #05070c; z-index: 50; display: none; flex-direction: column; }
+  #pv.open { display: flex; }
+  #pv canvas { flex: 1; width: 100%; min-height: 0; cursor: grab; touch-action: none; }
+  #pv canvas:active { cursor: grabbing; }
+  #pv .bar { display: grid; grid-template-columns: auto auto 1fr auto; gap: 10px 16px; align-items: center; padding: 10px 16px; background: var(--night); border-top: 1px solid var(--line); }
+  #pv .time { font-variant-numeric: tabular-nums; min-width: 96px; color: var(--muted); }
+  #pv .seek { position: relative; height: 30px; }
+  #pv .strip { position: absolute; inset: 0 0 auto 0; height: 10px; display: flex; gap: 1px; border-radius: 3px; overflow: hidden; }
+  #pv .strip span { height: 100%; }
+  #pv .seek input { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; accent-color: var(--bulb); }
+  #pv .tools { display: flex; gap: 8px; align-items: center; }
+  #pv .tools label { display: flex; gap: 6px; align-items: center; color: var(--muted); font-size: .85rem; }
+  #pv .hint { grid-column: 1 / -1; color: var(--muted); font-size: .78rem; margin: -4px 0 0; }
+  #pv .seek { height: 40px; }
+  #pv .strip { height: 18px; gap: 2px; }
+  #pv .strip button { height: 100%; border: 0; padding: 0 4px; min-width: 0; cursor: pointer; font-size: .7rem; color: rgba(255,255,255,.9);
+    text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; opacity: .75; border-radius: 3px; }
+  #pv .strip button:hover { opacity: 1; }
+  #pv .strip button.now { opacity: 1; box-shadow: inset 0 0 0 2px #fff; }
+  /* lyrics, karaoke style, over the bottom of the preview */
+  #pvLyrics { position: absolute; left: 0; right: 0; bottom: 118px; text-align: center; pointer-events: none; padding: 0 24px; }
+  #pvLyrics .cur { font-size: clamp(1.2rem, 2.6vw, 2rem); font-weight: 600; line-height: 1.35; }
+  #pvLyrics .nxt { font-size: clamp(.9rem, 1.6vw, 1.15rem); color: var(--muted); margin-top: 6px; min-height: 1.4em; }
+  #pvLyrics .w { color: #6f7b96; pointer-events: auto; cursor: pointer; border-radius: 4px; padding: 0 2px; transition: color .08s; }
+  #pvLyrics .w.past { color: #c9d2e3; }
+  #pvLyrics .w.on { color: #1b1407; background: var(--bulb); }
+  #pvLyrics .lead { font-size: .8rem; color: var(--muted); letter-spacing: .02em; }
+  #pvLyrics .box { display: inline-block; background: rgba(5,7,12,.72); border-radius: 12px; padding: 10px 18px; max-width: min(1100px, 94vw); }
+  @media (max-width: 860px) { #pvLyrics { bottom: 170px; } }
+  @media (max-width: 860px) { #pv .bar { grid-template-columns: auto auto 1fr; } #pv .tools { grid-column: 1 / -1; flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <div class="brand"><i></i>AutoSeq</div>
+    <label class="showpick" title="Each show has its own songs, layout, roles, show folder and looks">
+      <select id="showSel" aria-label="Show"></select></label>
+    <nav class="tabs" aria-label="Pages">
+      <button data-view="songs" aria-current="true">Songs</button>
+      <button data-view="layout" aria-current="false">Show layout</button>
+    </nav>
+    <span class="status" id="health">Checking the analysis worker</span>
+    <button class="ver" id="ver" hidden></button>
+  </header>
+
+  <aside class="rail" id="rail">
+    <div class="rail-head">
+      <button class="btn primary" id="addSong">Add a song</button>
+      <input class="search" id="search" type="search" placeholder="Find a song" aria-label="Find a song">
+    </div>
+    <ul class="songs" id="songs" role="listbox" aria-label="Songs"></ul>
+  </aside>
+
+  <main id="main">
+    <section class="work" id="songsView"><p class="empty">Add a song, or pick one from the list.</p></section>
+    <section class="layout" id="layoutView" hidden></section>
+  </main>
+</div>
+
+<dialog id="addDlg">
+  <form method="dialog" id="addForm">
+    <h2>Add a song</h2>
+    <label class="drop" id="drop"><input type="file" id="file" accept="audio/*,video/mp4"><span id="dropText">Choose a song file or drop it here</span></label>
+    <label class="field"><span>Lyrics (optional; published lyrics are looked up when you leave this empty). Paste them straight from a lyrics site: [Verse]/[Chorus] headers and "You might also like" lists are ignored, and bleeped words (*** or ...) keep their time with the mouth closed.</span>
+      <textarea id="lyrics"></textarea></label>
+    <label class="check"><input type="checkbox" id="sep" checked> Separate the instruments first (slower, much better)</label>
+    <div class="row" style="justify-content:flex-end;margin-top:8px">
+      <button class="btn" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn primary" id="go" value="default" disabled>Analyze song</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="pv" role="dialog" aria-label="Show preview">
+  <canvas></canvas>
+  <div id="pvLyrics" aria-live="off"></div>
+  <audio preload="auto"></audio>
+  <div class="bar">
+    <button class="btn primary" id="pvPlay">Play</button>
+    <span class="time" id="pvTime">0:00 / 0:00</span>
+    <div class="seek"><div class="strip" id="pvStrip"></div><input type="range" id="pvSeek" min="0" max="1000" value="0" aria-label="Position"></div>
+    <div class="tools">
+      <label>Pixel size <input type="range" id="pvPx" min="0.25" max="5" step="0.25" value="1"></label>
+      <label><input type="checkbox" id="pvUnlit" checked> Unlit pixels</label>
+      <label title="Plays a shader from your show folder on the matrix, so you can see what it looks like">Try a shader
+        <select id="pvShader"><option value="">None</option></select></label>
+      <button class="btn" id="pvFit">Fit</button>
+      <button class="btn" id="pvIn" aria-label="Zoom in">+</button>
+      <button class="btn" id="pvOut" aria-label="Zoom out">−</button>
+      <button class="btn" id="pvClose">Close</button>
+    </div>
+    <p class="hint" id="pvHint"></p>
+    <label class="hint" style="margin:0"><input type="checkbox" id="pvShowLyrics" checked> Show the lyrics (click a word to hear it)</label>
+  </div>
+</div>
+
+<script src="shaders.js"></script>
+<script src="preview.js"></script>
+<script>
+// ---------------------------------------------------------------- current show
+// Every request to AutoSeq says which show it's for; the choice is remembered per browser.
+let SHOW = localStorage.getItem('autoseq.show') || 'halloween';
+const _fetch = window.fetch.bind(window);
+window.fetch = (u, o = {}) => (typeof u === 'string' && u.startsWith('/api'))
+  ? _fetch(u, { ...o, headers: { ...(o.headers || {}), 'X-Show': SHOW } }) : _fetch(u, o);
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmt = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+const api = async (url, opts) => { const r = await fetch(url, opts); const b = await r.json().catch(() => ({})); if (!r.ok) throw new Error(b.error || r.statusText); return b; };
+const json = (method, body) => ({ method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+
+let songs = [], selected = null, timer = null, L = null;
+let seqSeed = null, seqFor = null;
+
+// ---------------------------------------------------------------- show folder chosen in the browser
+// Chrome/Edge's folder access: the folder is read here in the browser. Its handle is kept in
+// IndexedDB so it's remembered between visits (Chrome asks once per visit, or never with
+// "Allow on every visit"). Needs a secure page (https or localhost); elsewhere a one-off
+// folder pick (webkitdirectory) is the fallback.
+const SF = { supported: 'showDirectoryPicker' in window, handle: null, name: '', state: '', files: null, index: null, note: '', noteBad: false };
+function resetFolder() { Object.assign(SF, { handle: null, name: '', state: '', files: null, index: null, shaderFiles: null, shaderRel: null, note: '', noteBad: false }); }
+const idb = (() => {
+  const open = () => new Promise((res, rej) => { const r = indexedDB.open('autoseq', 1); r.onupgradeneeded = () => r.result.createObjectStore('kv'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+  return {
+    get: async k => { const db = await open(); return new Promise(r => { const q = db.transaction('kv').objectStore('kv').get(k); q.onsuccess = () => r(q.result); q.onerror = () => r(null); }); },
+    set: async (k, v) => { const db = await open(); return new Promise(r => { const t = db.transaction('kv', 'readwrite'); t.objectStore('kv').put(v, k); t.oncomplete = r; t.onerror = r; }); },
+  };
+})();
+
+async function initShowFolder() {
+  if (!SF.supported) return;
+  let h = await idb.get(`showFolder:${SHOW}`).catch(() => null);
+  if (!h && SHOW === 'halloween') h = await idb.get('showFolder').catch(() => null);   // remembered before shows existed
+  if (!h) return;
+  SF.handle = h; SF.name = h.name;
+  SF.state = await h.queryPermission({ mode: 'read' });
+  if (SF.state === 'granted') { await syncLayoutFromFolder(); reportShaders().catch(() => {}); }
+}
+async function pickShowFolder() {
+  if (!SF.supported) {                                   // one-off pick: read the files for this visit only
+    const input = Object.assign(document.createElement('input'), { type: 'file', webkitdirectory: true, multiple: true });
+    input.onchange = async () => {
+      const files = [...input.files];
+      SF.files = new Map(files.filter(f => /\.(png|jpe?g|gif|bmp|webp)$/i.test(f.name)).map(f => [f.name.toLowerCase(), f]));
+      SF.shaderFiles = new Map(files.filter(f => /\.fs$/i.test(f.name)).map(f => [f.name.toLowerCase(), f]));
+      SF.shaderRel = new Map(files.filter(f => /\.fs$/i.test(f.name)).map(f => [f.name.toLowerCase(), f.webkitRelativePath.split('/').slice(1).join('/')]));
+      reportShaders();
+      SF.name = files[0]?.webkitRelativePath.split('/')[0] || 'show folder';
+      const xml = files.find(f => f.webkitRelativePath.split('/').length === 2 && f.name === 'xlights_rgbeffects.xml');
+      if (xml) await sendLayout(xml); else { SF.note = 'No xlights_rgbeffects.xml at the top of that folder. Pick the folder xLights calls your show folder.'; SF.noteBad = true; }
+      renderLayout();
+    };
+    input.click();
+    return;
+  }
+  try {
+    const h = await showDirectoryPicker({ id: 'xlights-show', mode: 'readwrite' });
+    SF.handle = h; SF.name = h.name; SF.index = null; SF.state = 'granted';
+    await idb.set(`showFolder:${SHOW}`, h);
+    SF.shaderFiles = null;
+    await syncLayoutFromFolder(true);
+    await reportShaders().catch(() => {});
+  } catch (err) { if (err.name !== 'AbortError') { SF.note = err.message; SF.noteBad = true; } }
+  renderLayout();
+}
+async function reconnectShowFolder() {
+  SF.state = await SF.handle.requestPermission({ mode: 'readwrite' });
+  if (SF.state === 'granted') { await syncLayoutFromFolder(true); await reportShaders().catch(() => {}); }
+  renderLayout(); if (selected) open(selected);
+}
+// re-send the layout whenever xLights has saved it since last time
+async function syncLayoutFromFolder(force) {
+  try {
+    const fh = await SF.handle.getFileHandle('xlights_rgbeffects.xml');
+    const f = await fh.getFile();
+    const last = await idb.get(`layoutStamp:${SHOW}`);
+    if (force || last !== `${SF.name}:${f.lastModified}`) {
+      await sendLayout(f);
+      await idb.set(`layoutStamp:${SHOW}`, `${SF.name}:${f.lastModified}`);
+    }
+    SF.note = `Layout read from ${SF.name}, saved in xLights ${new Date(f.lastModified).toLocaleString()}.`; SF.noteBad = false;
+  } catch {
+    SF.note = `No xlights_rgbeffects.xml in ${SF.name}. Pick the folder xLights calls your show folder.`; SF.noteBad = true;
+  }
+}
+async function sendLayout(file) {
+  const fd = new FormData(); fd.append('layout', file);
+  L = await api('/api/layout', { method: 'POST', body: fd });
+}
+// singing-face pictures: find each saved picture by file name inside the chosen folder
+async function folderImageIndex() {
+  if (SF.files) return SF.files;
+  if (!SF.handle || SF.state !== 'granted') return null;
+  if (SF.index) return SF.index;
+  const idx = new Map();
+  const walk = async (dir, depth) => {
+    if (depth > 6 || idx.size > 40000) return;
+    for await (const [name, h] of dir.entries()) {
+      if (name.startsWith('.')) continue;
+      if (h.kind === 'directory') await walk(h, depth + 1);
+      else if (/\.(png|jpe?g|gif|bmp|webp)$/i.test(name) && !idx.has(name.toLowerCase())) idx.set(name.toLowerCase(), h);
+    }
+  };
+  await walk(SF.handle, 0);
+  return (SF.index = idx);
+}
+// .fs shader files anywhere in the show folder, by file name
+async function folderShaderIndex() {
+  if (SF.shaderFiles) return SF.shaderFiles;
+  if (!SF.handle || SF.state !== 'granted') return null;
+  const idx = new Map();
+  SF.shaderRel = new Map();
+  const path = [];
+  const walkIn = async (dir, depth) => {
+    if (depth > 6 || idx.size > 5000) return;
+    for await (const [name, h] of dir.entries()) {
+      if (name.startsWith('.')) continue;
+      if (h.kind === 'directory') { path.push(name); await walkIn(h, depth + 1); path.pop(); }
+      else if (/\.fs$/i.test(name) && !idx.has(name.toLowerCase())) { idx.set(name.toLowerCase(), h); SF.shaderRel.set(name.toLowerCase(), [...path, name].join('/')); }
+    }
+  };
+  await walkIn(SF.handle, 0);
+  return (SF.shaderFiles = idx);
+}
+const readFile = async h => (h.getFile ? await h.getFile() : h).text();
+// Tell AutoSeq which shaders the show folder has, and which it can use: shaders that
+// need an image or audio input, or several passes, are listed but never picked.
+async function reportShaders() {
+  const idx = await folderShaderIndex();
+  if (!idx) return;
+  const list = [];
+  for (const [n, h] of idx) {
+    let meta = {};
+    try { meta = ISFShader.parseHeader(await readFile(h)).meta; } catch { /* unreadable header: still listed */ }
+    const inputs = meta.INPUTS || [];
+    const needsInput = inputs.some(i => ['image', 'audio', 'audioFFT'].includes(i.TYPE));
+    const passes = (meta.PASSES || []).length;
+    // run it briefly at a small size to see how much of the picture it actually lights:
+    // shaders that are mostly black would leave props dark, and ones that don't compile are skipped
+    let light, compiles = true;
+    if (!needsInput && passes <= 1) {
+      try {
+        const r = new ISFShader.ShaderRunner(await readFile(h), 48, 27);
+        let litPx = 0, total = 0;
+        for (const t of [0.5, 2, 4, 7]) {
+          const px = r.render(t);
+          for (let o = 0; o < px.length; o += 4) { total++; if (Math.max(px[o], px[o + 1], px[o + 2]) > 40) litPx++; }
+        }
+        light = +(litPx / total).toFixed(2);
+        r.gl.getExtension('WEBGL_lose_context')?.loseContext();
+      } catch { compiles = false; }
+    }
+    list.push({ file: SF.shaderRel?.get(n) || `Shaders/${h.name || n}`, name: (h.name || n).replace(/\.fs$/i, ''),
+      usable: !needsInput && passes <= 1 && compiles, light,
+      why: needsInput ? 'needs an image or audio input' : passes > 1 ? 'uses several passes' : !compiles ? "doesn't compile" : '' });
+  }
+  const r = await api('/api/shaders', json('PUT', { shaders: list })).catch(() => null);
+  if (r && L) { L.shaderCount = r.count; L.shaderUsable = r.usable; }
+}
+
+// sources for every shader the plan uses, read from the folder
+async function shadersFromFolder(effects) {
+  const want = [...new Set(effects.filter(e => e.effect === 'Shader')
+    .map(e => String(e.settings.E_0FILEPICKERCTRL_IFS || e.settings.E_FILEPICKERCTRL_IFS || '').split(/[\\/]/).pop().toLowerCase()).filter(Boolean))];
+  if (!want.length) return {};
+  const idx = await folderShaderIndex();
+  const out = {};
+  for (const n of want) if (idx?.get(n)) out[n] = await readFile(idx.get(n));
+  return out;
+}
+
+async function facesFromFolder(faces) {
+  const need = Object.entries(faces).filter(([, f]) => !Object.keys(f.mouths).length);
+  if (!need.length) return null;
+  const idx = await folderImageIndex();
+  if (!idx) return null;
+  const out = {};
+  for (const [el, f] of need) {
+    out[el] = {};
+    for (const [ph, saved] of Object.entries(f.saved || {})) {
+      const hit = idx.get(saved.split(/[\\/]/).pop().toLowerCase());
+      if (!hit) continue;
+      const file = hit.getFile ? await hit.getFile() : hit;
+      out[el][ph] = URL.createObjectURL(file);
+    }
+  }
+  return out;
+}
+async function saveSeqToFolder(btn) {
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    if ((await SF.handle.queryPermission({ mode: 'readwrite' })) !== 'granted' &&
+        (await SF.handle.requestPermission({ mode: 'readwrite' })) !== 'granted') throw new Error('Chrome did not allow writing to the show folder.');
+    const r = await fetch(`/api/songs/${selected}/xsq?${seqQuery()}`);
+    if (!r.ok) throw new Error((await r.json()).error);
+    const name = (r.headers.get('Content-Disposition') || '').match(/filename="([^"]+)"/)?.[1] || 'sequence.xsq';
+    const fh = await SF.handle.getFileHandle(name, { create: true });
+    const w = await fh.createWritable(); await w.write(await r.blob()); await w.close();
+    btn.textContent = `Saved ${name}`;
+    setTimeout(() => { btn.textContent = 'Save sequence to show folder'; btn.disabled = false; }, 4000);
+  } catch (err) { alert(err.message); btn.textContent = 'Save sequence to show folder'; btn.disabled = false; }
+}
+
+// ---------------------------------------------------------------- tabs
+document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav.tabs button').forEach(x => x.setAttribute('aria-current', x === b));
+  const songsTab = b.dataset.view === 'songs';
+  $('songsView').hidden = !songsTab; $('rail').hidden = !songsTab; $('layoutView').hidden = songsTab;
+  document.querySelector('.shell').style.gridTemplateColumns = songsTab ? '' : '1fr';
+  if (!songsTab) loadLayout();
+});
+
+// ---------------------------------------------------------------- add a song
+let file = null;
+function pick(f) {
+  file = f; $('go').disabled = !f;
+  $('drop').classList.toggle('has', !!f);
+  $('dropText').textContent = f ? f.name : 'Choose a song file or drop it here';
+}
+$('addSong').onclick = () => { pick(null); $('file').value = ''; $('addDlg').showModal(); };
+$('file').onchange = e => pick(e.target.files[0]);
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  if (!e.dataTransfer.files[0]) return;
+  if (!$('addDlg').open) $('addDlg').showModal();
+  pick(e.dataTransfer.files[0]);
+});
+$('addForm').addEventListener('submit', async e => {
+  if (e.submitter?.value === 'cancel' || !file) return;
+  e.preventDefault();
+  $('go').disabled = true; $('go').textContent = 'Uploading…';
+  const fd = new FormData();
+  fd.append('audio', file); fd.append('lyrics', $('lyrics').value); fd.append('separate', $('sep').checked);
+  try {
+    const s = await api('/api/songs', { method: 'POST', body: fd });
+    $('addDlg').close(); $('lyrics').value = '';
+    Tab.prev.set(s.id, 'queued');
+    await loadList(); open(s.id);
+  } catch (err) { alert(`Upload failed: ${err.message}`); }
+  $('go').textContent = 'Analyze song'; $('go').disabled = !file;
+});
+
+// ---------------------------------------------------------------- library
+async function loadList() { songs = await api('/api/songs'); drawList(); }
+function drawList() {
+  const q = $('search').value.trim().toLowerCase();
+  const shown = songs.filter(s => !q || s.title.toLowerCase().includes(q));
+  $('songs').innerHTML = shown.length ? shown.map(s => `
+    <li role="option" tabindex="0" data-id="${s.id}" aria-selected="${s.id === selected}">
+      <span class="dot ${s.status}"></span>
+      <div><div class="t">${esc(s.title)}</div>
+      <div class="m">${s.status === 'done' && s.summary ? `${s.summary.bpm} BPM, ${esc(s.summary.key)}`
+        : s.status === 'error' ? 'Stopped with an error' : 'Analyzing'}</div></div>
+    </li>`).join('') : `<li class="empty" style="cursor:default;display:block">${songs.length ? 'No song matches.' : 'No songs yet.'}</li>`;
+}
+$('search').oninput = drawList;
+$('songs').onclick = e => { const li = e.target.closest('li[data-id]'); if (li) open(li.dataset.id); };
+$('songs').onkeydown = e => { if (e.key === 'Enter') $('songs').onclick(e); };
+
+// ---------------------------------------------------------------- song workspace
+async function open(id) {
+  selected = id; clearTimeout(timer); shapeKey = null;
+  drawList();
+  try { render(await api(`/api/songs/${id}`)); } catch { $('songsView').innerHTML = '<p class="empty">That song is gone.</p>'; }
+}
+
+const STAGES = ['separate', 'transcribe', 'lyrics', 'done'];
+// The page is built once per song (and again only when its shape changes: analyzing ↔
+// done, error). While a song analyzes, polling only updates the bits that change (the
+// bulbs, the facts line, the log), so nothing above you jumps around.
+let shapeKey = null;
+const mapCache = new Map(), fitCache = new Map();
+function render(s) {
+  const busy = s.status === 'queued' || s.status === 'running';
+  const key = `${s.id}|${busy}|${!!s.result_dir}|${s.status === 'error'}|${!!L?.layout}`;
+  if (key === shapeKey && $('songsView').querySelector('h1')) { patch(s); schedule(s); return; }
+  shapeKey = key;
+  const sum = s.summary;
+  const moreOpen = $('more')?.open;
+  if (seqFor !== s.id) { seqSeed = null; seqFor = s.id; }
+
+  $('songsView').innerHTML = `
+    <h1>${esc(s.title)}</h1>
+    <p class="facts" id="facts"></p>
+    ${busy || s.status === 'error' ? `<div class="bulbs" id="bulbs">${['Separate', 'Transcribe', 'Lyrics', 'Ready'].map(n => `<div><i></i>${n}</div>`).join('')}</div>` : ''}
+    <p class="error" id="err" ${s.status === 'error' ? '' : 'hidden'}></p>
+    ${sum && s.result_dir ? `<div class="map" id="map">${mapCache.get(s.id)?.html || '<div class="ribbon"></div><p>&nbsp;</p>'}</div>${seqHtml()}` : ''}
+    <details class="more" id="more" ${moreOpen || s.status === 'error' ? 'open' : ''}>
+      <summary>Files, re-runs and log</summary>
+      <div class="more-body">
+        ${s.result_dir ? `<div class="row"><a class="btn" href="/api/songs/${s.id}/xtiming">Download timing tracks (.xtiming)</a>
+          <a class="btn" href="/api/songs/${s.id}/analysis">Download analysis</a></div>` : ''}
+        ${s.result_dir ? `<div class="field"><span>Lyric timing from somewhere else (an .xtiming lyric track from Autolyrics, or one you fixed in xLights) replaces AutoSeq's own word timing for this song.</span>
+          <div class="row" id="lyrTrackRow"><label class="btn file-btn">Use a lyric timing track<input type="file" id="lyrTrack" accept=".xtiming,.xml"></label>
+          <span id="lyrTrackInfo" class="empty"></span></div></div>` : ''}
+        ${busy ? '' : `<label class="field"><span>Correct lyrics (optional). Paste them as they are; headers are ignored and *** or ... marks a bleeped word.</span><textarea id="relyrics">${esc(s.lyrics || '')}</textarea></label>
+          <div class="row">${s.result_dir ? '<button class="btn" id="rerunLyrics">Redo lyrics only</button>' : ''}
+          <button class="btn" id="rerunFull">Re-run everything</button>
+          <span id="copyTo"></span>
+          <button class="btn danger" id="del">Delete song</button></div>`}
+        <pre class="log" id="log"></pre>
+      </div>
+    </details>`;
+  patch(s);
+  if (sum && s.result_dir) {
+    if (fitCache.has(s.id) && $('fitLine')) { $('fitLine').innerHTML = fitCache.get(s.id).fit; $('cueLine').innerHTML = fitCache.get(s.id).cues; }
+    drawMap(s); loadFit();
+  }
+
+  const rerun = mode => async () => {
+    try { render(await api(`/api/songs/${s.id}/rerun`, json('POST', { lyrics: $('relyrics').value, mode }))); loadList(); }
+    catch (err) { alert(err.message); }
+  };
+  if ($('rerunLyrics')) $('rerunLyrics').onclick = rerun('lyrics');
+  if ($('lyrTrack')) $('lyrTrack').onchange = async e => {
+    const fd = new FormData(); fd.append('track', e.target.files[0]);
+    try { showLyricTrack(await api(`/api/songs/${s.id}/lyrics-track`, { method: 'POST', body: fd })); loadFit(); }
+    catch (err) { alert(err.message); }
+    e.target.value = '';
+  };
+  if ($('rerunFull')) $('rerunFull').onclick = rerun('full');
+  if ($('copyTo') && s.status === 'done') {
+    const others = SHOWS.filter(x => x.id !== SHOW);
+    $('copyTo').innerHTML = others.map(x => `<button class="btn" data-copy="${x.id}">Also use in ${esc(x.name)}</button>`).join(' ');
+    $('copyTo').onclick = async e => {
+      const b = e.target.closest('[data-copy]'); if (!b) return;
+      await api(`/api/songs/${s.id}/copy`, json('POST', { to: b.dataset.copy }));
+      b.textContent = `Added to ${SHOWS.find(x => x.id === b.dataset.copy).name}`; b.disabled = true;
+    };
+  }
+  if ($('del')) $('del').onclick = async () => {
+    if (!confirm(`Delete "${s.title}" and its analysis?`)) return;
+    await fetch(`/api/songs/${s.id}`, { method: 'DELETE' });
+    selected = null; shapeKey = null; $('songsView').innerHTML = '<p class="empty">Deleted.</p>'; loadList();
+  };
+  schedule(s);
+}
+
+// update only what changes while analyzing
+function patch(s) {
+  const busy = s.status === 'queued' || s.status === 'running', sum = s.summary;
+  const facts = sum ? `<span><b>${sum.bpm}</b> BPM</span><span>${esc(sum.key)}</span><span>${esc(sum.tempoBand)} tempo</span>
+      <span>${fmt(sum.duration)}</span><span>${sum.words} words</span>${busy ? '<span>Re-running…</span>' : ''}`
+    : busy ? `<span>Analyzing (${s.pct || 0}%). You can leave this page; it keeps going.</span>` : '';
+  if ($('facts').innerHTML !== facts) $('facts').innerHTML = facts;
+  const at = s.status === 'done' ? 3 : STAGES.indexOf(s.stage);
+  document.querySelectorAll('#bulbs > div').forEach((d, i) => {
+    d.classList.toggle('on', at >= 0 && i <= at);
+    d.classList.toggle('now', busy && i === at);
+  });
+  if (s.status === 'error') { $('err').hidden = false; $('err').textContent = s.error || 'Analysis stopped.'; }
+  const log = $('log'), text = (s.log || []).join('\n') || 'No log yet.';
+  if (log.textContent !== text) {
+    const atBottom = log.scrollTop + log.clientHeight >= log.scrollHeight - 10;
+    log.textContent = text;
+    if (atBottom) log.scrollTop = log.scrollHeight;
+  }
+}
+
+function schedule(s) {
+  clearTimeout(timer);
+  if (!(s.status === 'queued' || s.status === 'running')) return;
+  timer = setTimeout(async () => {
+    if (selected !== s.id) return;
+    const next = await api(`/api/songs/${s.id}`).catch(() => null);
+    if (!next) return schedule(s);
+    if (next.status !== s.status) { mapCache.delete(s.id); fitCache.delete(s.id); loadList(); }
+    render(next);
+  }, 1500);
+}
+
+// the song map: the parts of the song as coloured blocks; click one to preview from there
+async function drawMap(s) {
+  const cached = mapCache.get(s.id);
+  if (!cached || cached.dir !== s.result_dir || cached.updated !== s.updated_at) {
+    const a = await api(`/api/songs/${s.id}/analysis`).catch(() => null);
+    if (!a) return;
+    const secs = (a.sections || []).filter(x => x.end > x.start);
+    const name = t => ({ prechorus: 'pre-chorus', off: 'end' }[t] || t);
+    mapCache.set(s.id, { dir: s.result_dir, updated: s.updated_at, html: `<div class="ribbon">${secs.map(x =>
+      `<button class="t-${esc(x.type)}" style="flex:${(x.end - x.start).toFixed(2)}" data-t="${x.start}" title="${esc(name(x.type))} at ${fmt(x.start)}">${esc(name(x.type))}</button>`).join('')}</div>
+      <p>${L?.layout ? 'Click a part to preview your house from there.' : '&nbsp;'}</p>` });
+  }
+  if (!$('map')) return;
+  const html = mapCache.get(s.id).html;
+  if ($('map').innerHTML !== html) $('map').innerHTML = html;
+  $('map').onclick = e => { const b = e.target.closest('button[data-t]'); if (b && L?.layout) openPreview(+b.dataset.t); };
+}
+
+// ---------------------------------------------------------------- sequence settings + fit
+function seqHtml() {
+  if (!L?.layout) return `<p class="empty">To build a light show, add your layout on the <button class="link" id="goLayout">Show layout</button> page.</p>`;
+  const faces = faceOptions(L.face);
+  return `
+    <div class="actions">
+      <button class="btn primary" id="openPreview">Preview on my house</button>
+      ${SF.handle && SF.state === 'granted' ? '<button class="btn" id="saveSeq">Save sequence to show folder</button>' : ''}
+      <a class="btn" id="dlSeq" href="#">Download sequence (.xsq)</a>
+      <button class="btn" id="anotherIdea">Another idea</button>
+    </div>
+    <div class="settings">
+      <label class="field"><span>Look</span><select id="songTheme">${themeOptions(L.theme)}</select></label>
+      ${faces ? `<label class="field"><span>Singing face</span><select id="songFace">${faces}</select></label>` : ''}
+      <label class="check" style="margin:0 0 6px"><input type="checkbox" id="cuesOn" checked> React to words in the lyrics</label>
+      <label class="field" title="If everything in xLights is early or late by the same amount, your song file there starts at a slightly different point. Positive = later.">
+        <span>Timing nudge (ms)</span><input type="number" id="nudge" step="10" value="0" style="width:110px"></label>
+    </div>
+    <p class="fit" id="fitLine">Checking how well it fits the music…</p>
+    <div class="fit" id="cueLine"></div>
+    <p class="fit" id="folderStatus"></p>
+    <div class="fit" id="checks"></div>`;
+}
+document.addEventListener('click', e => {
+  if (e.target.id === 'goLayout') document.querySelector('nav.tabs button[data-view=layout]').click();
+  if (e.target.id === 'anotherIdea') { seqSeed = (seqSeed ?? 0) + 1; loadFit(); }
+  if (e.target.id === 'openPreview') openPreview(0);
+  if (e.target.id === 'dlSeq') { e.preventDefault(); location.href = `/api/songs/${selected}/xsq?${seqQuery()}&show=${SHOW}`; }
+  if (e.target.id === 'saveSeq') saveSeqToFolder(e.target);
+});
+function seqQuery() {
+  const qs = new URLSearchParams();
+  if ($('songFace')?.value) qs.set('face', $('songFace').value);
+  if ($('songTheme')?.value) qs.set('theme', $('songTheme').value);
+  if (seqSeed !== null) qs.set('seed', seqSeed);
+  if ($('cuesOn') && !$('cuesOn').checked) qs.set('cues', '0');
+  return qs;
+}
+// ---------------------------------------------------------------- check the show
+// The same review done by hand on finished sequences: play the planned show through the
+// preview's renderer and look for stretches where nothing outside is lit, and check
+// every lyric line is placed at a speed someone could actually sing. Each problem links
+// straight to that moment in the preview.
+let checkKey = null;
+async function checkShow() {
+  const box = $('checks');
+  if (!box || !selected) return;
+  const key = `${selected}|${seqQuery()}`;
+  if (key === checkKey && box.dataset.done) return;
+  checkKey = key; delete box.dataset.done;
+  box.innerHTML = '<p style="margin:10px 0 0">Checking the show for dark spots and lyric timing…</p>';
+  try {
+    const data = await api(`/api/songs/${selected}/plan?${seqQuery()}`);
+    if (SF.state === 'granted' || SF.files) data.shaderSources = await shadersFromFolder(data.effects || []).catch(() => ({}));
+    const indoor = new Set(L?.indoor || []);
+    const outdoor = new Set(data.geometry.models.map(m => m.name).filter(n => !indoor.has(n)));
+    const off = (data.sections || []).find(x => x.type === 'off');
+    const songEnd = off ? off.start : data.duration;
+    const firstSound = Math.min(...[(data.words || [])[0]?.start, (data.sections || [])[0]?.start].filter(x => x != null), 9999);
+    const series = await AutoSeqPreview.measure(data, { outdoor, step: 0.25,
+      onProgress: f => { if (checkKey === key) box.firstElementChild.textContent = `Checking the show for dark spots and lyric timing… ${Math.round(f * 100)}%`; } });
+    if (checkKey !== key) return;
+    const issues = [];
+    // dark outside: under 8% of outdoor pixels lit for at least 0.75 s, while the song plays
+    for (let i = 0; i < series.length;) {
+      if (series[i][1] >= 0.08 || series[i][0] < firstSound || series[i][0] >= songEnd - 0.5) { i++; continue; }
+      let j = i; while (j < series.length && series[j][1] < 0.08 && series[j][0] < songEnd - 0.5) j++;
+      const a = series[i][0], b = series[Math.min(j, series.length - 1)][0];
+      if (b - a >= 0.75) issues.push({ t: a, text: `Dark outside ${fmt(a)}–${fmt(b)} (${(b - a).toFixed(1)} s)` });
+      i = j;
+    }
+    // lyric lines nobody could sing
+    const syl = w => Math.max(1, (w.match(/[aeiouy]+/gi) || []).length);
+    const words = data.words || [];
+    let k = 0;
+    for (const ln of data.phrases || []) {
+      const n = ln.text.split(/\s+/).filter(Boolean).length, ws = words.slice(k, k + n); k += n;
+      if (!ws.length) continue;
+      const dur = Math.max(0.05, ws[ws.length - 1].end - ws[0].start);
+      const rate = ws.filter(w => w.text !== '*').reduce((a, w) => a + syl(w.text), 0) / dur;
+      const long = ws.find(w => w.end - w.start > 4 && w.text !== '*');
+      if (rate > 14) issues.push({ t: ws[0].start, text: `Lyric line at ${fmt(ws[0].start)} is crammed (${Math.round(rate)} syllables a second)` });
+      else if (long) issues.push({ t: long.start, text: `“${long.text}” at ${fmt(long.start)} is held ${(long.end - long.start).toFixed(1)} s` });
+    }
+    issues.sort((x, y) => x.t - y.t);
+    const lit = series.filter(p => p[0] >= firstSound && p[0] < songEnd).map(p => p[1]);
+    const avg = lit.reduce((a, b) => a + b, 0) / Math.max(1, lit.length);
+    box.innerHTML = `<p style="margin:10px 0 4px"><b style="color:var(--text)">Check:</b> on average ${Math.round(avg * 100)}% of the outdoor display is lit. ` +
+      (issues.length ? `${issues.length} thing${issues.length === 1 ? '' : 's'} to look at:` : 'No dark spots, and every lyric line is at a singable speed.') + '</p>' +
+      (issues.length ? '<ul style="margin:0;padding-left:18px">' + issues.slice(0, 20).map(x =>
+        `<li>${esc(x.text)} <button class="link" data-check-t="${x.t}">preview</button></li>`).join('') + '</ul>' : '');
+    box.dataset.done = '1';
+    box.onclick = e => { const b = e.target.closest('[data-check-t]'); if (b) openPreview(Math.max(0, +b.dataset.checkT - 2)); };
+  } catch (err) { box.textContent = `Couldn't check the show: ${err.message}`; }
+}
+
+function showLyricTrack(info) {
+  const el = $('lyrTrackInfo');
+  if (!el) return;
+  el.innerHTML = info?.imported
+    ? `Using <b style="color:var(--text)">${esc(info.file)}</b> (${info.words} words, ${info.phonemes} mouth shapes). <button class="link" id="lyrTrackOff">Go back to AutoSeq's timing</button>`
+    : 'Using AutoSeq\'s own lyric timing.';
+  if ($('lyrTrackOff')) $('lyrTrackOff').onclick = async () => { showLyricTrack(await api(`/api/songs/${selected}/lyrics-track`, { method: 'DELETE' })); loadFit(); };
+}
+
+async function loadFit() {
+  const el = $('fitLine');
+  if (!el || !selected) return;
+  el.classList.add('stale');
+  try {
+    const f = await api(`/api/songs/${selected}/fit?${seqQuery()}`);
+    seqSeed = f.seed;
+    showLyricTrack(f.lyricTrack);
+    if ($('nudge') && document.activeElement !== $('nudge')) $('nudge').value = f.offsetMs || 0;
+    const pct = x => Math.round(x * 100) + '%';
+    el.innerHTML = `<b>Fits the music ${f.score}/100</b> (idea ${f.seed + 1}). Brightness follows the loudness (r ${f.loudnessR}),
+      ${pct(f.hitsShown)} of drum beats show, choruses are ${f.chorusVsVerse[0] >= f.chorusVsVerse[1] ? 'brighter' : 'darker'} than verses,
+      ${f.lifts} build-up${f.lifts === 1 ? '' : 's'} and ${f.accents} vocal hits.` +
+      (f.gridRepaired ? ` The beat grid was repaired in ${f.gridRepaired} places.` : '') +
+      (f.shadersUsed?.length ? ` Shaders on the matrix: ${f.shadersUsed.map(esc).join(', ')}.` : '') +
+      (f.cover ? ` Cover colours ${f.cover.map(c => `<span class="swatch" title="${c}" style="background:${c}"></span>`).join('')}` : '');
+    const t = f.tiers || {};
+    const KIND = { color: 'colour', fire: 'fire', strobe: 'lightning flash', moon: 'moonlight', burst: 'burst', ghost: 'ghostly twinkle', dark: 'blackout', bright: 'bright flash',
+      redgreen: 'red & green swap', snow: 'falling snow', star: 'gold starburst', tree: 'green trees + ornaments', cane: 'candy-cane stripes',
+      jingle: 'sleigh-bell sparkle', hearth: 'fireplace glow', gift: 'present pop', joy: 'joyful flash', hush: 'soft silent-night glow' };
+    $('cueLine').innerHTML = `<p style="margin:10px 0 4px">Pace: ${t.high || 0} intense bars, ${(t.mid || 0) + (t.calm || 0)} normal, ${t.low || 0} quiet. ` +
+      `Hand patterns: ${(f.handPatterns || []).join(', ') || 'none'}.</p>` +
+      (f.cues?.length ? `<p style="margin:4px 0">Words the lights act out: ` + f.cues.map(c =>
+        `<span title="${fmt(c.t)}">“${esc(c.word)}” ${c.color ? `<span class="swatch" style="background:${c.color}"></span>` : `(${KIND[c.kind] || c.kind})`}</span>`).join(', ') + '</p>'
+        : '<p style="margin:4px 0">No colour or effect words found in the lyrics.</p>');
+    el.classList.remove('stale');
+    fitCache.set(selected, { fit: el.innerHTML, cues: $('cueLine').innerHTML });
+    drawFolderStatus();
+    checkShow();
+  } catch (err) { el.textContent = err.message; el.classList.remove('stale'); }
+}
+document.addEventListener('change', async e => {
+  if (e.target.id === 'nudge') {
+    await api(`/api/songs/${selected}/offset`, json('PUT', { offsetMs: Number(e.target.value) || 0 }));
+    loadFit();
+  }
+  if (e.target.id === 'songTheme' || e.target.id === 'songFace' || e.target.id === 'cuesOn') { seqSeed = null; loadFit(); }
+});
+
+// ---------------------------------------------------------------- show layout page
+async function loadLayout() { L = await api('/api/layout'); renderLayout(); }
+function faceModels() {
+  const names = new Set(L.roles.vocals || []);
+  return L.layout.models.filter(m => m.faces.length && (names.has(m.name) || L.layout.groups.some(g => names.has(g.name) && g.members.includes(m.name))));
+}
+function faceOptions(selectedFace) {
+  const faces = [...new Set(faceModels().flatMap(m => m.faces))];
+  if (!faces.length) return '';
+  return `<option value="none" ${selectedFace === 'none' ? 'selected' : ''}>None (no singing face)</option>` +
+    faces.map(f => `<option ${f === selectedFace ? 'selected' : ''}>${esc(f)}</option>`).join('');
+}
+function themeOptions(sel) {
+  return `<option value="auto" ${sel === 'auto' || !sel ? 'selected' : ''}>Halloween, a theme per part</option>` +
+    `<option value="christmas" ${sel === 'christmas' ? 'selected' : ''}>Christmas, a theme per part</option>` +
+    `<option value="cover" ${sel === 'cover' ? 'selected' : ''}>From the album cover</option>` +
+    (L.themes || []).map(t => `<option ${t.name === sel ? 'selected' : ''}>${esc(t.name)}</option>`).join('');
+}
+async function saveLayout(body) {
+  try { L = await api('/api/layout/roles', json('PUT', body)); } catch (err) { alert(err.message); }
+  renderLayout();
+}
+
+function renderLayout() {
+  const lay = L?.layout;
+  const names = lay ? [...lay.groups.filter(g => g.members.length).map(g => g.name), ...lay.models.map(m => m.name)] : [];
+  const isGroup = n => lay.groups.some(g => g.name === n);
+  $('layoutView').innerHTML = `
+    <h1>Show layout</h1>
+    <p class="empty">${lay ? `${lay.models.length} props and ${lay.groups.length} groups from xLights ${esc(lay.version)}.` : 'AutoSeq needs your xLights layout to build shows for your props.'}</p>
+    <div class="source">
+      <div class="row">
+        <button class="btn primary" id="pickFolder">${SF.name ? 'Choose a different show folder' : 'Choose show folder'}</button>
+        ${SF.name ? `<span>Using <b>${esc(SF.name)}</b>${SF.state === 'prompt' ? ' (click Reconnect to read it again)' : ''}</span>
+          ${SF.state === 'prompt' ? '<button class="btn" id="reconnect">Reconnect</button>' : ''}` : ''}
+      </div>
+      <p class="empty" style="margin:0">${SF.supported
+        ? 'Pick your xLights show folder. Chrome lets AutoSeq read your layout and singing-face pictures from it, and save sequences straight into it. Nothing is uploaded except the layout.'
+        : 'This browser can only read a folder once per visit here. To have AutoSeq remember your show folder and save sequences into it, open AutoSeq over https (or from localhost) in Chrome or Edge.'}</p>
+      ${SF.note ? `<p class="${SF.noteBad ? 'error' : 'empty'}" style="margin:0">${esc(SF.note)}</p>` : ''}
+      <details><summary class="empty" style="cursor:pointer">Other ways to give AutoSeq the layout</summary>
+        <div class="source" style="margin:12px 0 0">
+          <label class="field"><span>Show folder mounted on this server (for when the browser can't reach it)</span>
+            <div class="row"><input type="text" id="showDir" value="${esc(L?.showDir || '')}" placeholder="/mnt/lightshows/Halloween Light Show">
+            <button class="btn" id="showDirGo">Use this folder</button></div></label>
+          ${L?.showError ? `<p class="error">${esc(L.showError)}</p>` : ''}
+          <div class="row"><label class="btn file-btn">Upload xlights_rgbeffects.xml<input type="file" id="layoutFile" accept=".xml"></label></div>
+        </div>
+      </details>
+    </div>
+    ${lay ? `
+    <p class="row" style="margin:0 0 6px"><button class="btn" id="suggestRoles">Suggest roles again</button>
+      <span class="empty">Replaces the roles below with AutoSeq's suggestions for this layout (trees, floods, rows of matching props...).</span></p>
+    <div class="roles">${L.roleDefs.map(r => `
+      <div class="role"><div><h3>${esc(r.label)}</h3><p>${esc(r.hint)}</p></div>
+        <div class="tags" data-role="${r.key}">
+          ${(L.roles[r.key] || []).map(n => `<span class="tag">${esc(n)}${isGroup(n) ? ' (group)' : ''}<button aria-label="Remove ${esc(n)}" data-remove="${esc(n)}">×</button></span>`).join('')}
+          <select aria-label="Add a prop to ${esc(r.label)}"><option value="">Add…</option>
+            ${names.filter(n => !(L.roles[r.key] || []).includes(n)).map(n => `<option>${esc(n)}</option>`).join('')}</select>
+        </div></div>`).join('')}
+    </div>
+    <div class="role"><div><h3>Inside the house</h3><p>These props aren't part of the outdoor show. AutoSeq still lights them if they have roles, but makes sure there's always something on outside, and they don't count toward the fit score.</p></div>
+      <div class="tags" id="indoorTags">
+        ${(L.indoor || []).map(n => `<span class="tag">${esc(n)}<button aria-label="Remove ${esc(n)}" data-remove-indoor="${esc(n)}">×</button></span>`).join('')}
+        <select aria-label="Add an indoor prop"><option value="">Add…</option>
+          ${lay.models.map(m => m.name).filter(n => !(L.indoor || []).includes(n)).map(n => `<option>${esc(n)}</option>`).join('')}</select>
+      </div></div>
+    <div class="settings" style="border-bottom:0">
+      <label class="field"><span>Default singing face</span><select id="faceSel">${faceOptions(L.face)}</select></label>
+      <label class="field"><span>Default look</span><select id="themeSel">${themeOptions(L.theme)}</select></label>
+      <label class="field"><span>Your shaders on the matrix ${L.shaderCount ? `(${L.shaderUsable} of ${L.shaderCount} usable)` : '(none found yet)'}</span>
+        <select id="shaderAmt">${['never', 'sometimes', 'often'].map(v => `<option ${v === L.shaderAmount ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
+      <label class="field"><span>Where your songs are on the xLights computer</span>
+        <input type="text" id="mediaDir" value="${esc(L.mediaDir)}" placeholder="/Users/will/Documents/Light Shows/Halloween Light Show/Audio" style="width:min(460px,80vw)"></label>
+    </div>` : ''}`;
+
+  $('showDirGo').onclick = () => saveLayout({ showDir: $('showDir').value });
+  if ($('suggestRoles')) $('suggestRoles').onclick = async () => {
+    if (!confirm('Replace this show\'s roles with the suggested ones?')) return;
+    L = await api('/api/layout/suggest', { method: 'POST' }); renderLayout();
+  };
+  $('pickFolder').onclick = pickShowFolder;
+  if ($('reconnect')) $('reconnect').onclick = reconnectShowFolder;
+  $('layoutFile').onchange = async e => {
+    const fd = new FormData(); fd.append('layout', e.target.files[0]);
+    try { L = await api('/api/layout', { method: 'POST', body: fd }); renderLayout(); } catch (err) { alert(err.message); }
+  };
+  if (!lay) return;
+  document.querySelectorAll('.tags').forEach(box => {
+    const role = box.dataset.role;
+    box.querySelector('select').onchange = e => { if (e.target.value) saveLayout({ roles: { ...L.roles, [role]: [...(L.roles[role] || []), e.target.value] } }); };
+    box.querySelectorAll('[data-remove]').forEach(b => b.onclick = () =>
+      saveLayout({ roles: { ...L.roles, [role]: (L.roles[role] || []).filter(n => n !== b.dataset.remove) } }));
+  });
+  $('faceSel').onchange = e => saveLayout({ face: e.target.value || null });
+  $('indoorTags').querySelector('select').onchange = e => { if (e.target.value) saveLayout({ indoor: [...(L.indoor || []), e.target.value] }); };
+  $('indoorTags').querySelectorAll('[data-remove-indoor]').forEach(b => b.onclick = () =>
+    saveLayout({ indoor: (L.indoor || []).filter(n => n !== b.dataset.removeIndoor) }));
+  $('themeSel').onchange = e => saveLayout({ theme: e.target.value });
+  $('shaderAmt').onchange = e => saveLayout({ shaderAmount: e.target.value });
+  $('mediaDir').onchange = e => saveLayout({ mediaDir: e.target.value });
+}
+
+// ---------------------------------------------------------------- preview
+let pv = null, seeking = false, lyr = null;
+$('pvStrip').addEventListener('click', e => {               // click a part of the song to jump there
+  const b = e.target.closest('button[data-t]');
+  if (b && pv) { pv.audio.currentTime = +b.dataset.t; if (pv.audio.paused) pv.audio.play().catch(() => {}); }
+});
+$('pvShader').onchange = async () => {
+  if (!pv) return;
+  const n = $('pvShader').value;
+  if (!n) { pv.testShader = null; return; }
+  const idx = await folderShaderIndex();
+  const source = await readFile(idx.get(n));
+  pv.testShader = { source, runners: new Map(), speed: 1 };
+  setTimeout(() => {                                   // after a frame, report a shader that wouldn't compile
+    if (pv?.testShader?.error) $('pvHint').textContent = `That shader didn't compile in the browser: ${pv.testShader.error.split('\n')[0]}`;
+  }, 400);
+};
+$('pvShowLyrics').onchange = () => { $('pvLyrics').hidden = !$('pvShowLyrics').checked; };
+
+// Karaoke lyrics: the line being sung with each word lighting up as its timing says it
+// should be sung, and the next line underneath. Click a word to jump to just before it.
+function makeLyrics(data) {
+  const words = data.words || [], lines = data.phrases || [];
+  const box = $('pvLyrics');
+  if (!words.length) { box.innerHTML = '<div class="box"><span class="lead">No lyrics for this song.</span></div>'; return null; }
+  // each line takes its own words, in order (a line of 4 words owns the next 4 words);
+  // only if the counts don't add up are words grouped by time instead
+  const byLine = lines.map(() => []);
+  const counts = lines.map(l => l.text.split(/\s+/).filter(Boolean).length);
+  if (counts.reduce((a, b) => a + b, 0) === words.length) {
+    let i = 0;
+    counts.forEach((n, k) => { for (let c = 0; c < n; c++) byLine[k].push(i++); });
+  } else {
+    words.forEach((w, i) => {
+      let k = lines.findIndex(l => w.start >= l.start - 0.4 && w.start < l.end + 0.05);
+      if (k < 0) k = lines.reduce((best, l, j) => (Math.abs(l.start - w.start) < Math.abs(lines[best].start - w.start) ? j : best), 0);
+      byLine[k].push(i);
+    });
+  }
+  // a line is shown from its first word to its last word
+  lines.forEach((l, k) => { const ix = byLine[k]; if (ix.length) { l.start = Math.min(l.start, words[ix[0]].start); l.end = Math.max(l.end, words[ix[ix.length - 1]].end); } });
+  let shownLine = -2, lastWord = -2;
+  // the line to show: the one being sung (shown from 1 s before it starts until 2 s after
+  // it ends), or the next one when it starts within 2.5 s
+  const lineAt = t => {
+    let k = -1;
+    for (let j = lines.length - 1; j >= 0; j--) if (t >= lines[j].start - 1) { k = j; break; }
+    if (k >= 0 && t <= lines[k].end + 2) return k;
+    if (lines[k + 1] && t >= lines[k + 1].start - 2.5) return k + 1;
+    return -1;
+  };
+  const draw = k => {
+    if (k < 0) { box.innerHTML = ''; return; }
+    const cur = byLine[k].map(i => `<span class="w" data-i="${i}" title="${fmt(words[i].start)}.${String(Math.round((words[i].start % 1) * 100)).padStart(2, '0')}">${esc(words[i].text)}</span>`).join(' ');
+    const nxt = lines[k + 1] ? esc(lines[k + 1].text) : '';
+    box.innerHTML = `<div class="box"><div class="cur">${cur}</div><div class="nxt">${nxt}</div></div>`;
+  };
+  box.onclick = e => {
+    const w = e.target.closest('.w');
+    if (w && pv) { pv.audio.currentTime = Math.max(0, words[+w.dataset.i].start - 1); if (pv.audio.paused) pv.audio.play().catch(() => {}); }
+  };
+  return {
+    update(t) {
+      const k = lineAt(t);
+      if (k !== shownLine) { draw(k); shownLine = k; lastWord = -2; }
+      if (k < 0) return;
+      let on = -1;
+      for (const i of byLine[k]) if (t >= words[i].start && t < words[i].end) on = i;
+      if (on === lastWord) return;
+      lastWord = on;
+      box.querySelectorAll('.w').forEach(el => {
+        const i = +el.dataset.i;
+        el.classList.toggle('on', i === on);
+        el.classList.toggle('past', i !== on && t >= words[i].end);
+      });
+    },
+  };
+}
+// Chrome often hands back a remembered folder as "ask again" after a reload. Asking has
+// to happen during a click, so the Preview button (and the Reconnect link) do it first.
+async function ensureFolder() {
+  if (!SF.handle) return false;
+  try {
+    SF.state = await SF.handle.queryPermission({ mode: 'read' });
+    if (SF.state !== 'granted') SF.state = await SF.handle.requestPermission({ mode: 'readwrite' });
+  } catch { /* not allowed outside a click: stays 'prompt' */ }
+  if (SF.state === 'granted') { SF.index = SF.index || null; }
+  drawFolderStatus();
+  return SF.state === 'granted';
+}
+function drawFolderStatus() {
+  const el = $('folderStatus');
+  if (!el) return;
+  if (!SF.handle && !SF.files) { el.innerHTML = 'No show folder chosen: singing faces and shaders show as stand-ins. <button class="link" id="goLayout2">Choose it</button>'; }
+  else if (SF.files || SF.state === 'granted') { el.textContent = `Show folder: ${SF.name}, connected.`; }
+  else { el.innerHTML = `Show folder: ${esc(SF.name)}. Chrome needs your OK again to read it. <button class="link" id="folderOk">Reconnect</button>`; }
+  if ($('folderOk')) $('folderOk').onclick = async () => { await ensureFolder(); loadFit(); };
+  if ($('goLayout2')) $('goLayout2').onclick = () => document.querySelector('nav.tabs button[data-view=layout]').click();
+}
+
+async function openPreview(from = 0) {
+  await ensureFolder();
+  const btn = $('openPreview');
+  if (btn) { btn.disabled = true; btn.textContent = 'Loading…'; }
+  try {
+    const data = await api(`/api/songs/${selected}/plan?${seqQuery()}`);
+    data.folderFaces = await facesFromFolder(data.faces || {});
+    data.shaderSources = await shadersFromFolder(data.effects || []).catch(() => ({}));
+    $('pv').classList.add('open');
+    pv = new AutoSeqPreview($('pv'), data, `/api/songs/${selected}/audio`);
+    pv.pixelScale = +$('pvPx').value; pv.showUnlit = $('pvUnlit').checked;
+    const faces = Object.values(data.faces || {});
+    const haveFolder = data.showDir || SF.files || SF.handle;
+    const missing = Object.entries(data.faces || {}).filter(([el, f]) => !Object.keys(f.mouths).length && !Object.keys(data.folderFaces?.[el] || {}).length);
+    $('pvHint').textContent = 'Wheel moves around, Ctrl + wheel zooms, drag to pan, space plays, Esc closes.' +
+      (!haveFolder && faces.length ? ' Choose your show folder on the Show layout page to see your real singing faces.' : '') +
+      (haveFolder && missing.length ? ` Pictures for ${missing.map(([, f]) => f.name).join(', ')} weren't found in the show folder.` : '');
+    const secName = t => ({ prechorus: 'pre-chorus', off: 'end' }[t] || t);
+    $('pvStrip').innerHTML = data.sections.filter(x => x.end > x.start).map(x =>
+      `<button class="t-${esc(x.type)}" data-t="${x.start}" title="${esc(secName(x.type))} at ${fmt(x.start)}" style="flex:${(x.end - x.start).toFixed(2)}">${esc(secName(x.type))}</button>`).join('');
+    lyr = makeLyrics(data);
+    pv.audio.currentTime = from;
+    pv.onFrame = t => {
+      $('pvTime').textContent = `${fmt(t)} / ${fmt(data.duration)}`;
+      if (!seeking) $('pvSeek').value = Math.round(t / data.duration * 1000);
+      lyr && lyr.update(t);
+      document.querySelectorAll('#pvStrip button').forEach(b => {
+        const st = +b.dataset.t, nx = b.nextElementSibling ? +b.nextElementSibling.dataset.t : Infinity;
+        b.classList.toggle('now', t >= st && t < nx);
+      });
+    };
+    folderShaderIndex().then(idx => {
+      const names = idx ? [...idx.keys()].sort() : [];
+      $('pvShader').innerHTML = names.length
+        ? '<option value="">None</option>' + names.map(n => `<option value="${esc(n)}">${esc(n.replace(/\.fs$/i, ''))}</option>`).join('')
+        : `<option value="">${SF.handle || SF.files ? 'No .fs files in the show folder' : 'Choose your show folder first'}</option>`;
+    }).catch(() => {});
+    pv.audio.onplay = () => $('pvPlay').textContent = 'Pause';
+    pv.audio.onpause = () => $('pvPlay').textContent = 'Play';
+    if (from) pv.audio.play().catch(() => {});
+  } catch (err) { alert(`Preview failed: ${err.message}`); }
+  if (btn) { btn.disabled = false; btn.textContent = 'Preview on my house'; }
+}
+$('pvSeek').addEventListener('input', () => { seeking = true; if (pv) pv.audio.currentTime = $('pvSeek').value / 1000 * pv.dur; });
+$('pvSeek').addEventListener('change', () => { seeking = false; });
+$('pvPlay').onclick = () => pv && (pv.audio.paused ? pv.audio.play() : pv.audio.pause());
+$('pvPx').oninput = () => pv && (pv.pixelScale = +$('pvPx').value);
+$('pvUnlit').onchange = () => pv && (pv.showUnlit = $('pvUnlit').checked);
+$('pvFit').onclick = () => pv && pv.fit();
+const zoomBtn = f => { if (pv) pv.zoomAt(f, pv.canvas.width / 2, pv.canvas.height / 2); };
+$('pvIn').onclick = () => zoomBtn(1.25);
+$('pvOut').onclick = () => zoomBtn(0.8);
+function closePreview() { if (!pv) return; pv.audio.pause(); pv.audio.removeAttribute('src'); $('pv').classList.remove('open'); pv = null; lyr = null; $('pvLyrics').innerHTML = ''; }
+$('pvClose').onclick = closePreview;
+document.addEventListener('keydown', e => {
+  if (!pv || (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName) && e.target.type !== 'range')) return;
+  if (e.key === 'Escape') closePreview();
+  if (e.key === ' ') { e.preventDefault(); $('pvPlay').click(); }
+});
+
+// ---------------------------------------------------------------- tab status (favicon + title)
+// The tab shows what's happening even when you're in another tab: the bulb pulses with a
+// progress ring while a song is analyzing, gets a green dot when one finishes, and a red
+// dot if one stops with an error. The dot clears when you come back to the tab.
+const Tab = { state: 'idle', pct: 0, label: '', frame: 0, unseen: null, prev: new Map() };
+const iconCanvas = Object.assign(document.createElement('canvas'), { width: 64, height: 64 });
+function drawIcon() {
+  const g = iconCanvas.getContext('2d');
+  g.clearRect(0, 0, 64, 64);
+  g.fillStyle = '#121a2e'; g.beginPath(); g.roundRect(0, 0, 64, 64, 14); g.fill();
+  const working = Tab.state === 'working';
+  const lit = !working || Tab.frame % 2 === 0;
+  if (working) {                                         // progress ring
+    g.lineWidth = 6; g.lineCap = 'round';
+    g.strokeStyle = '#2a3656'; g.beginPath(); g.arc(32, 34, 26, 0, Math.PI * 2); g.stroke();
+    g.strokeStyle = '#f5b53f'; g.beginPath(); g.arc(32, 34, 26, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.max(0.04, Tab.pct / 100)); g.stroke();
+  }
+  const sc = working ? 0.72 : 1;                          // the bulb (smaller inside the ring)
+  g.save(); g.translate(32, 34); g.scale(sc, sc); g.translate(-32, -34);
+  g.fillStyle = '#5b6785'; g.fillRect(27, 8, 10, 9);
+  g.fillStyle = lit ? '#f5b53f' : '#7a6230';
+  if (lit) { g.shadowColor = 'rgba(245,181,63,.8)'; g.shadowBlur = 10; }
+  g.beginPath(); g.moveTo(32, 15); g.bezierCurveTo(21, 15, 15, 24, 15, 33); g.bezierCurveTo(15, 43, 23, 54, 32, 56);
+  g.bezierCurveTo(41, 54, 49, 43, 49, 33); g.bezierCurveTo(49, 24, 43, 15, 32, 15); g.fill();
+  g.restore();
+  const dot = Tab.unseen === 'error' ? '#e5604e' : Tab.unseen === 'done' ? '#3ccf6e' : null;
+  if (dot) { g.fillStyle = '#121a2e'; g.beginPath(); g.arc(50, 50, 13, 0, 7); g.fill(); g.fillStyle = dot; g.beginPath(); g.arc(50, 50, 10, 0, 7); g.fill(); }
+  $('favicon').href = iconCanvas.toDataURL('image/png');
+}
+function setTitle() {
+  const STAGE = { queued: 'Waiting', separate: 'Separating', transcribe: 'Finding beats', lyrics: 'Lyrics', export: 'Finishing' };
+  document.title = Tab.state === 'working' ? `${Tab.pct}% ${STAGE[Tab.stage] || 'Analyzing'}: ${Tab.label} – AutoSeq`
+    : Tab.unseen === 'done' ? `Done: ${Tab.label} – AutoSeq`
+    : Tab.unseen === 'error' ? `Stopped: ${Tab.label} – AutoSeq` : `AutoSeq – ${(SHOWS.find(x => x.id === SHOW) || {}).name || ''}`;
+}
+async function tabStatus() {
+  try {
+    const list = await api('/api/songs');
+    const active = list.filter(s => s.status === 'queued' || s.status === 'running');
+    for (const s of list) {                               // anything that just finished or failed?
+      const was = Tab.prev.get(s.id);
+      if ((was === 'running' || was === 'queued') && (s.status === 'done' || s.status === 'error')) {
+        Tab.unseen = document.hasFocus() ? null : (s.status === 'error' ? 'error' : (Tab.unseen === 'error' ? 'error' : 'done'));
+        Tab.label = s.title;
+        if (s.status !== was) { songs = list; drawList(); }
+      }
+      Tab.prev.set(s.id, s.status);
+    }
+    if (active.length) {
+      const s = active.find(x => x.status === 'running') || active[0];
+      Tab.state = 'working'; Tab.pct = s.pct || 0; Tab.stage = s.status === 'queued' ? 'queued' : s.stage; Tab.label = s.title;
+      if (JSON.stringify(songs.map(x => x.status)) !== JSON.stringify(list.map(x => x.status))) { songs = list; drawList(); }
+    } else Tab.state = 'idle';
+  } catch { /* server unreachable: leave the icon as it is */ }
+  drawIcon(); setTitle();
+  setTimeout(tabStatus, Tab.state === 'working' ? 2000 : 10000);
+}
+setInterval(() => { if (Tab.state === 'working') { Tab.frame++; drawIcon(); } }, 700);
+window.addEventListener('focus', async () => {
+  if (Tab.unseen) { Tab.unseen = null; drawIcon(); setTitle(); }
+  if (SF.handle) { try { SF.state = await SF.handle.queryPermission({ mode: 'read' }); } catch {} drawFolderStatus(); }
+});
+tabStatus();
+
+// ---------------------------------------------------------------- worker status
+async function health() {
+  try {
+    const h = await api('/api/health');
+    $('health').className = 'status' + (h.worker?.ok ? '' : ' bad');
+    $('health').textContent = h.worker?.ok ? 'Analysis worker ready' : 'Analysis worker not running';
+  } catch { $('health').className = 'status bad'; $('health').textContent = 'Lost the server'; }
+}
+
+// ---------------------------------------------------------------- updates from GitHub
+// The version chip in the header; it turns into an Update button when a new release is out.
+let UPD = null;
+async function checkUpdate(force) {
+  const b = $('ver');
+  try { UPD = await api('/api/update' + (force ? '?force=1' : '')); } catch { return; }
+  b.hidden = false; b.disabled = false;
+  if (!UPD.ok && UPD.reason === 'not-git') { b.hidden = true; return; }
+  if (UPD.behind) {
+    b.className = 'ver new'; b.textContent = `Update to ${UPD.latest}`;
+    b.title = UPD.changes?.length ? 'What’s new:\n• ' + UPD.changes.slice(0, 12).join('\n• ') : `Installed: ${UPD.installed}`;
+  } else {
+    b.className = 'ver'; b.textContent = UPD.installed || 'dev';
+    b.title = UPD.ok ? 'Up to date. Click to check again.' : UPD.message;
+  }
+}
+$('ver').onclick = async () => {
+  const b = $('ver');
+  if (!UPD?.behind) { b.textContent = 'Checking…'; return checkUpdate(true); }
+  const list = UPD.changes?.length ? '\n\nWhat’s new:\n• ' + UPD.changes.slice(0, 12).join('\n• ') : '';
+  if (!confirm(`Install ${UPD.latest}? AutoSeq restarts, which takes a few seconds. Songs and settings aren’t touched.${list}`)) return;
+  const r = await api('/api/update', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ target: 'latest' }) }).catch(e => ({ message: e.message }));
+  if (!r.started) { alert(r.message || 'The update didn’t start.'); return; }
+  b.disabled = true; b.textContent = `Installing ${UPD.latest}…`;
+  const from = UPD.installed, t0 = Date.now();
+  const poll = async () => {
+    const v = await api('/api/version').catch(() => null);
+    if (v && v.installed && v.installed !== from) { location.reload(); return; }
+    if (Date.now() - t0 > 4 * 60 * 1000) {
+      const log = await fetch('/api/update/log?lines=15').then(x => x.text()).catch(() => '');
+      b.disabled = false; b.textContent = 'Update stuck';
+      alert('The update hasn’t finished after 4 minutes. The end of data/update.log:\n\n' + log.slice(-1500));
+      return;
+    }
+    setTimeout(poll, 2000);
+  };
+  setTimeout(poll, 3000);
+};
+checkUpdate();
+setInterval(() => checkUpdate(), 60 * 60 * 1000);
+
+let SHOWS = [];
+async function loadShows() {
+  SHOWS = await api('/api/shows').catch(() => []);
+  if (!SHOWS.some(x => x.id === SHOW) && SHOWS[0]) SHOW = SHOWS[0].id;
+  $('showSel').innerHTML = SHOWS.map(x => `<option value="${x.id}" ${x.id === SHOW ? 'selected' : ''}>${esc(x.name)} show</option>`).join('') +
+    '<option value="__new">New show…</option>';
+  document.title = `AutoSeq – ${SHOWS.find(x => x.id === SHOW)?.name || ''}`;
+}
+async function switchShow(id) {
+  SHOW = id; localStorage.setItem('autoseq.show', id);
+  selected = null; shapeKey = null; resetFolder();
+  $('songsView').innerHTML = '<p class="empty">Add a song, or pick one from the list.</p>';
+  await loadShows();
+  L = await api('/api/layout').catch(() => null);
+  await initShowFolder().catch(() => {});
+  loadList();
+  if (!$('layoutView').hidden) renderLayout();
+}
+$('showSel').onchange = async e => {
+  if (e.target.value !== '__new') return switchShow(e.target.value);
+  const name = prompt('Name for the new show (for example "Easter" or "Fourth of July"):');
+  if (!name) { e.target.value = SHOW; return; }
+  const kind = /christmas|xmas|holiday/i.test(name) ? 'christmas' : /halloween/i.test(name) ? 'halloween' : 'other';
+  const made = await api('/api/shows', json('POST', { name, kind }));
+  switchShow(made.id);
+};
+loadShows().then(() => api('/api/layout')).then(async x => { L = x; await initShowFolder().catch(() => {}); if (selected) open(selected); }).catch(() => {});
+loadList(); health(); setInterval(health, 15000);
+</script>
+</body>
+</html>
