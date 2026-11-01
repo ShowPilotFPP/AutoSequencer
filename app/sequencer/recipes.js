@@ -567,6 +567,25 @@ function build(analysis, layout, roles, opts = {}) {
     out.familyBars = famBars;
   }
 
+  // ---------------------------------------------------------- x-onset engine (default)
+  // The props are sequenced the way derwin12's x-onset does it (see xonset.js): power
+  // groups, a theme per section, active tiers by mood, a rotation plan, corpus recipes
+  // and its accents. Singing faces, lyric words and whole-display shaders stay ours.
+  if ((opts.engine || 'xonset') === 'xonset') {
+    const CLASSIC = new Set(['background', 'bars', 'kick', 'snare', 'toms', 'crash', 'matrix', 'family', 'land', 'build', 'kick-ambient', 'snare-ambient']);
+    const keep = out.filter(e => !CLASSIC.has(e.role));
+    out.length = 0; out.push(...keep);
+    breaths.length = 0;                                  // x-onset has no held breath before a lift
+    const indoorX = new Set(opts.indoor || []);
+    const models = layout.models.filter(m => !indoorX.has(m.name) && m.wired !== false);
+    const fixed = opts.theme && !['auto', 'christmas', 'cover'].includes(opts.theme) ? opts.theme : null;
+    const anchorCols = opts.theme === 'cover' && opts.cover?.length >= 2 ? opts.cover : fixed ? lib.colors(lib.themeFor('chorus', fixed)).all : look.colors;
+    const xr = require('./xonset').build({ a, layout, models, sections, bars, beats, beatLen, seed, show: lookShow, anchor: anchorCols, forceTheme: fixed });
+    out.push(...xr.effects);
+    out.xonset = xr.meta;
+    out.lifts = 0; out.accents = 0; out.handPatterns = [];
+  }
+
   // ---------------------------------------------------------- lyric cues
   // the house acts out words in the lyrics: colours, fire, lightning, the moon...
   const cues = opts.lyricCues === false ? [] : findCues(a.words, a.phrases, beatLen, { show: opts.showKind });

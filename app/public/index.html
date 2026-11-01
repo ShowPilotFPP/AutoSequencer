@@ -93,6 +93,10 @@
   #fitLine { min-height: 3em; transition: opacity .2s; } #fitLine.stale { opacity: .55; }
   #cueLine { min-height: 4.5em; }
   .map { min-height: 70px; }
+  table.how { border-collapse: collapse; font-size: .85rem; width: 100%; }
+  table.how td, table.how th { text-align: left; vertical-align: top; padding: 6px 10px 6px 0; border-top: 1px solid var(--line); }
+  #howBox summary { cursor: pointer; margin: 10px 0 4px; }
+  .muted { color: var(--muted); }
   .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-left: 3px; }
 
   details.more { margin-top: 26px; }
@@ -648,6 +652,8 @@ function seqHtml() {
     </div>
     <div class="settings">
       <label class="field"><span>Look</span><select id="songTheme">${themeOptions(L.theme)}</select></label>
+      <label class="field" title="x-onset sequences the way derwin12's xlights-autosequencer does: power groups, a theme per part, a rotation plan. Classic is AutoSeq's original beat-driven sequencer.">
+        <span>Sequencer</span><select id="songEngine"><option value="xonset">x-onset style</option><option value="classic">AutoSeq classic</option></select></label>
       ${faces ? `<label class="field"><span>Singing face</span><select id="songFace">${faces}</select></label>` : ''}
       <label class="check" style="margin:0 0 6px"><input type="checkbox" id="cuesOn" checked> React to words in the lyrics</label>
       <label class="field" title="If everything in xLights is early or late by the same amount, your song file there starts at a slightly different point. Positive = later.">
@@ -655,6 +661,7 @@ function seqHtml() {
     </div>
     <p class="fit" id="fitLine">Checking how well it fits the music…</p>
     <div class="fit" id="cueLine"></div>
+    <details class="fit" id="howBox" hidden><summary>How this song is sequenced</summary><div id="howBody"></div></details>
     <p class="fit" id="folderStatus"></p>
     <div class="fit" id="checks"></div>`;
 }
@@ -669,10 +676,26 @@ function seqQuery() {
   const qs = new URLSearchParams();
   if ($('songFace')?.value) qs.set('face', $('songFace').value);
   if ($('songTheme')?.value) qs.set('theme', $('songTheme').value);
+  if ($('songEngine')?.value) qs.set('engine', $('songEngine').value);
   if (seqSeed !== null) qs.set('seed', seqSeed);
   if ($('cuesOn') && !$('cuesOn').checked) qs.set('cues', '0');
   return qs;
 }
+// ---------------------------------------------------------------- how it's sequenced (x-onset)
+// Part by part: energy, mood, theme, which layers play, and what each group of props does.
+const TIER_NAME = { 1: 'whole-house wash', 2: 'left/right call and answer', 4: 'beat chase', 6: 'each kind of prop', 8: 'hero props' };
+const groupLabel = n => n.replace(/^0\d_/, '').replace(/^(PROP|HERO)_/, '').replace(/_/g, ' ').replace(/^BASE All$/, 'Whole house').replace(/^GEO$/, 'Left/right').replace(/^BEAT$/, 'Beat chase');
+function renderHow(x) {
+  const box = $('howBox'); if (!box) return;
+  if (!x || !x.sections?.length) { box.hidden = true; return; }
+  box.hidden = false;
+  const rows = x.sections.map(s => `<tr><td>${fmt(s.start)}</td><td><b>${esc(s.label)}</b><br><span class="muted">energy ${s.energy}, ${esc(s.mood)}</span></td>
+    <td>${esc(s.theme)}<br><span class="muted">${s.tiers.map(t => TIER_NAME[t]).filter(Boolean).join(', ')}</span></td>
+    <td>${Object.entries(s.plays || {}).map(([g, v]) => `<div><b>${esc(groupLabel(g))}</b>: ${esc(v)}</div>`).join('')}</td></tr>`).join('');
+  $('howBody').innerHTML = `<p class="muted" style="margin:6px 0">Power groups from your layout: ${x.groups.map(esc).join(', ')}.</p>
+    <div style="overflow-x:auto"><table class="how"><thead><tr><th>At</th><th>Part</th><th>Theme and layers</th><th>What plays</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
 // ---------------------------------------------------------------- check the show
 // The same review done by hand on finished sequences: play the planned show through the
 // preview's renderer and look for stretches where nothing outside is lit, and check
@@ -752,7 +775,7 @@ async function loadFit() {
     const pct = x => Math.round(x * 100) + '%';
     const lk = f.look || {};
     const swatches = (lk.colors || []).map(c => `<span class="swatch" title="${c}" style="background:${c}"></span>`).join('');
-    el.innerHTML = (lk.generated ? `<span class="lookline"><b>Look: ${esc(lk.name)}</b> ${swatches} with ${(lk.core || []).map(x => esc(x.toLowerCase())).join(', ')}` +
+    el.innerHTML = (lk.generated ? `<span class="lookline"><b>Look: ${esc(lk.name)}</b> ${swatches} ${f.xonset ? '' : `with ${(lk.core || []).map(x => esc(x.toLowerCase())).join(', ')}`}` +
       `${f.savedSeed === f.seed ? ' (saved)' : ''}. </span><br>` : '') +
       `<b>Fits the music ${f.score}/100</b>. Brightness follows the loudness (r ${f.loudnessR}),
       ${pct(f.hitsShown)} of drum beats show, choruses are ${f.chorusVsVerse[0] >= f.chorusVsVerse[1] ? 'brighter' : 'darker'} than verses,
@@ -770,6 +793,7 @@ async function loadFit() {
         `<span title="${fmt(c.t)}">“${esc(c.word)}” ${c.color ? `<span class="swatch" style="background:${c.color}"></span>` : `(${KIND[c.kind] || c.kind})`}</span>`).join(', ') + '</p>'
         : '<p style="margin:4px 0">No colour or effect words found in the lyrics.</p>');
     el.classList.remove('stale');
+    renderHow(f.xonset);
     fitCache.set(selected, { fit: el.innerHTML, cues: $('cueLine').innerHTML });
     drawFolderStatus();
     checkShow();
@@ -780,7 +804,7 @@ document.addEventListener('change', async e => {
     await api(`/api/songs/${selected}/offset`, json('PUT', { offsetMs: Number(e.target.value) || 0 }));
     loadFit();
   }
-  if (e.target.id === 'songTheme' || e.target.id === 'songFace' || e.target.id === 'cuesOn') { seqSeed = null; loadFit(); }
+  if (e.target.id === 'songTheme' || e.target.id === 'songFace' || e.target.id === 'cuesOn' || e.target.id === 'songEngine') { seqSeed = null; loadFit(); }
 });
 
 // ---------------------------------------------------------------- show layout page

@@ -455,7 +455,7 @@ function planFor(s, query, cover, { useOffset = true } = {}) {
   if (useOffset && offsetMs) analysis = grid.shift(analysis, offsetMs / 1000);
   const { build } = sequencer().recipes;
   const { score } = sequencer().fit;
-  const opts = { face: query.face || face, theme: query.theme || theme, cover, lyricCues: query.cues !== '0', showKind: showKind(),
+  const opts = { face: query.face || face, theme: query.theme || theme, cover, lyricCues: query.cues !== '0', engine: query.engine || 'xonset', showKind: showKind(),
     shaders: getSetting('shaders', []), shaderAmount: getSetting('shaderAmount', 'sometimes'),
     indoor: indoorList(layout) };
   // idea 1 unless another one is asked for ("Another idea" steps through them)
@@ -485,7 +485,7 @@ app.get('/api/songs/:id/fit', async (req, res) => {
   const { seed, fit, effects } = planFor(s, req.query, cover);
   const a = JSON.parse(fs.readFileSync(path.join(s.result_dir, 'analysis.json'), 'utf8'));
   const repaired = require('./sequencer/grid').repair(a).changed;
-  res.json({ seed, look: effects.look, savedSeed: getSetting(`look:${s.id}`, null), ...fit, lifts: effects.lifts, accents: effects.accents, cover,
+  res.json({ seed, look: effects.look, xonset: effects.xonset || null, savedSeed: getSetting(`look:${s.id}`, null), ...fit, lifts: effects.lifts, accents: effects.accents, cover,
     cues: effects.cues || [], handPatterns: effects.handPatterns || [], tiers: effects.tiers, lyricTrack: lyricInfo(s),
     shadersUsed: effects.shadersUsed || [],
     offsetMs: getSetting(`offset:${s.id}`, 0), gridRepaired: repaired });
@@ -498,10 +498,10 @@ app.get('/api/songs/:id/plan', async (req, res) => {
   if (!s) return;
   // the preview plays the uploaded song itself, so no nudge here
   const plan = planFor(s, req.query, await coverFor(s), { useOffset: false });
-  const { PRIORITY } = sequencer();
+  const { rankOf } = sequencer();
   const { geometry } = require('./sequencer/geometry');
   const effects = plan.effects.map(e => ({
-    el: e.el, layer: PRIORITY.indexOf(e.role) < 0 ? 99 : PRIORITY.indexOf(e.role), start: e.start, end: e.end,
+    el: e.el, layer: rankOf(e.role), start: e.start, end: e.end,
     effect: e.effect, colors: e.colors, brightness: e.brightness,
     settings: Object.fromEntries(Object.entries(e.settings).map(([k, v]) => [k, String(v)])),
   }));

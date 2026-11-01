@@ -61,6 +61,18 @@ const MOVES = {
   matrix: ['burst', 'pinwheel', 'spiral', 'climb', 'rain', 'ring'],
 };
 
+// How each job is done. A look picks its own way for each, so two songs don't flash the
+// floods the same way, hit the hands with the same effect or sweep the roofline alike.
+const STYLES = {
+  kick: ['split', 'together', 'roundrobin', 'pingpong', 'colorswap'],   // how the floods share the kick
+  hit: ['flash', 'ring', 'star', 'spin', 'sparkle', 'flash'],            // the effect a hit uses on props bigger than a flood
+  hands: ['oddeven', 'halves', 'pairs', 'centre', 'all', 'walk', 'chase', 'pingpong', 'chase8', 'single'],
+  sweep: ['chase', 'bars', 'meteor', 'wave', 'centre', 'curtain', 'spiral'],
+  crash: ['white', 'color', 'strobe', 'ring', 'sparkle'],
+  land: ['white', 'color', 'ring', 'strobe'],
+  toms: ['step', 'bounce', 'all'],
+};
+
 // Section types lean on different built-in themes for their presets (colours come from the scheme)
 const MOOD_THEMES = {
   halloween: { calm: ['Haunted Pulse', 'Violet Night', 'Graveyard Fog', 'The Void', 'Stellar Wind'],
@@ -115,6 +127,15 @@ function makeLook({ seed = 0, show = 'halloween', themeByName }) {
   const pool = CORE_POOL.concat(kind === 'christmas' ? XMAS_EXTRA : []).filter(e => !(NOT_FOR[kind] || []).includes(e));
   const core = shuffle(pool, r).slice(0, 6);
   const moves = Object.fromEntries(Object.entries(MOVES).map(([k, list]) => [k, shuffle(list, r).slice(0, 2)]));
+  const styles = {
+    kick: STYLES.kick[Math.floor(r() * STYLES.kick.length)],
+    hit: shuffle([...new Set(STYLES.hit)], r).slice(0, 2),            // [main, accent]
+    hands: shuffle(STYLES.hands, r),                                   // order this look walks through hand patterns
+    sweep: shuffle(STYLES.sweep, r).slice(0, 2),
+    crash: STYLES.crash[Math.floor(r() * STYLES.crash.length)],
+    land: STYLES.land[Math.floor(r() * STYLES.land.length)],
+    toms: STYLES.toms[Math.floor(r() * STYLES.toms.length)],
+  };
   const moodThemes = MOOD_THEMES[kind];
   const borrowed = Object.fromEntries(Object.entries(moodThemes).map(([m, list]) => [m, list[Math.floor(r() * list.length)]]));
   const themes = {};
@@ -124,7 +145,7 @@ function makeLook({ seed = 0, show = 'halloween', themeByName }) {
     const t = themeByName.get(borrowed[MOOD_OF[type]]) || {};
     themes[type] = { name, palette: [a, ...rest], accent: [b], variants: t.variants || [], core, generated: true, winter: kind === 'christmas' };
   }
-  return { name, colors, core, moves, themes, seed, describe: `${name}: ${core.slice(0, 4).join(', ').toLowerCase()}…` };
+  return { name, colors, core, moves, styles, themes, seed, describe: `${name}: ${core.slice(0, 4).join(', ').toLowerCase()}…` };
 }
 
 module.exports = { makeLook, songSeed, SCHEMES };

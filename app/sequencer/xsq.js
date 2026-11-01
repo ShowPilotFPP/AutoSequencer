@@ -6,11 +6,16 @@ const { build } = require('./recipes');
 const DEFAULTS = require('./library/defaults.json').defaults;
 
 // Top layer first. A prop that plays several roles gets one layer per role in this order.
-const PRIORITY = ['lyric-top', 'lyric', 'canvas', 'land', 'build', 'crash', 'vocals', 'matrix-lyric', 'toms', 'snare', 'kick', 'family', 'bars', 'matrix', 'background', 'gapfill', 'snare-ambient', 'kick-ambient'];
+const PRIORITY = ['lyric-top', 'lyric', 'canvas', 'land', 'build', 'crash', 'vocals', 'matrix-lyric',
+  'x-crash', 'x-accent', 'x-flood', 'x-hero', 'x-prop', 'x-beat', 'x-geo', 'x-house-front', 'x-base-1', 'x-base-0', 'x-house-back',
+  'toms', 'snare', 'kick', 'family', 'bars', 'matrix', 'background', 'gapfill', 'snare-ambient', 'kick-ambient'];
+// numbered roles (x-house-front-0, -1...) sit at their family's place, in order
+const rankOf = role => { const i = PRIORITY.indexOf(role); if (i >= 0) return i;
+  const m = /^(.*)-(\d+)$/.exec(role || ''); const j = m ? PRIORITY.indexOf(m[1]) : -1; return j >= 0 ? j + Number(m[2]) / 100 : 99; };
 
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-function paletteString(colors, brightness) {
+function paletteString(colors, brightness, sparkles) {
   const parts = [];
   for (let i = 1; i <= 8; i++) {
     const c = colors[i - 1];
@@ -18,6 +23,7 @@ function paletteString(colors, brightness) {
     if (c) parts.push(`C_CHECKBOX_Palette${i}=1`);
   }
   if (brightness !== 100) parts.push(`C_SLIDER_Brightness=${brightness}`);
+  if (sparkles) parts.push(`C_SLIDER_SparkleFrequency=${sparkles}`);   // x-onset's sparkle on the wash
   return parts.join(',');
 }
 
@@ -121,12 +127,12 @@ function writeXsq({ analysis, layout, roles, mediaFile, title, frameMs = 25, fac
     if (!roleMap) {
       elementXml.push('      <EffectLayer/>');
     } else {
-      const order = [...roleMap.keys()].sort((x, y) => PRIORITY.indexOf(x) - PRIORITY.indexOf(y));
+      const order = [...roleMap.keys()].sort((x, y) => rankOf(x) - rankOf(y));
       for (const role of order) {
         elementXml.push('      <EffectLayer>');
         for (const { s, e, it } of clean(roleMap.get(role), frameMs)) {
           const r = ref(effectIdx, effectDB, settingsString(it.effect, it.settings));
-          const p = ref(paletteIdx, palettes, paletteString(it.colors, it.brightness));
+          const p = ref(paletteIdx, palettes, paletteString(it.colors, it.brightness, it.sparkles));
           elementXml.push(`        <Effect ref="${r}" name="${esc(it.effect)}" startTime="${s}" endTime="${e}" palette="${p}"/>`);
           count++;
         }
@@ -183,4 +189,4 @@ function writeXsq({ analysis, layout, roles, mediaFile, title, frameMs = 25, fac
   return { xml, stats: { effects: count, palettes: palettes.length, settings: effectDB.length, timings: timings.length } };
 }
 
-module.exports = { writeXsq, PRIORITY };
+module.exports = { writeXsq, PRIORITY, rankOf };

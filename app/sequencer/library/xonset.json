@@ -1,0 +1,1885 @@
+{
+"source": "derwin12/xlights-autosequencer (MIT)",
+"themes": [
+{
+"name": "Stellar Wind",
+"mood": "ethereal",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Butterfly Medium Fast",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Medium Thin",
+"blend_mode": "Additive"
+},
+{
+"variant": "Ripple Fast Medium",
+"blend_mode": "Additive",
+"effect_pool": [
+"Ripple Circle",
+"Ripple Star",
+"Spirals 3D Slow Spin"
+]
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Wave Dual Medium",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Spirals Directed Medium",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Classic Reverse",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Lines",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#1A0A4E",
+"#2E1B80",
+"#4B32A6",
+"#6B4EC8"
+],
+"accent_palette": [
+"#FFFFFF",
+"#B8E8FF",
+"#40E0D0",
+"#E066FF",
+"#FFD700"
+]
+},
+{
+"name": "Aurora",
+"mood": "ethereal",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+},
+{
+"variant": "Pinwheel 4-Arm Twist",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Wave Dual Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Plasma Drift",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#00CC66",
+"#00EEBB",
+"#22AADD",
+"#0A8A6A"
+],
+"accent_palette": [
+"#FF3388",
+"#FF6B9D",
+"#CC2266",
+"#FF1A75"
+]
+},
+{
+"name": "Bio-Lume",
+"mood": "ethereal",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Plasma Pulse",
+"blend_mode": "Normal"
+},
+{
+"variant": "Ripple Medium Thick",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Liquid Flow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Tendril Medium",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#002244",
+"#004466",
+"#006655",
+"#003355"
+],
+"accent_palette": [
+"#FF4466",
+"#FF6B88",
+"#FF2244",
+"#CC3355"
+]
+},
+{
+"name": "Inferno",
+"mood": "aggressive",
+"occasion": "general",
+"genre": "rock",
+"layers": [
+{
+"variant": "Fire Tall",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Full Fast",
+"blend_mode": "Additive",
+"effect_pool": [
+"Fire Medium",
+"Fire Music-Reactive",
+"Meteors Intense Explode",
+"Shockwave Center"
+]
+},
+{
+"variant": "Strobe Triple Fast",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Meteors Fast Dense",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Plasma Storm",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF2200",
+"#CC3300",
+"#FF5500",
+"#AA1100"
+],
+"accent_palette": [
+"#00CCFF",
+"#0088FF",
+"#00EEFF",
+"#2266FF"
+]
+},
+{
+"name": "Molten Metal",
+"mood": "aggressive",
+"occasion": "general",
+"genre": "rock",
+"layers": [
+{
+"variant": "Fire High",
+"blend_mode": "Normal"
+},
+{
+"variant": "Fan 6-Blade Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Liquid Surge",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Bars Up Quad",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FFD700",
+"#FF8C00",
+"#CC6600",
+"#E6A800"
+],
+"accent_palette": [
+"#4466CC",
+"#6688EE",
+"#2244AA",
+"#8899DD"
+]
+},
+{
+"name": "Tracer Fire",
+"mood": "aggressive",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Meteors Long Trail",
+"blend_mode": "Normal"
+},
+{
+"variant": "Strobe Triple Intense",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Chase Fast Multi",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Bars Right Dual",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF0000",
+"#FF4400",
+"#FFCC00",
+"#FF8800"
+],
+"accent_palette": [
+"#00FF44",
+"#44FF00",
+"#00CC33",
+"#88FF22"
+]
+},
+{
+"name": "The Void",
+"mood": "dark",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Plasma Gentle",
+"blend_mode": "Normal"
+},
+{
+"variant": "Spirals Dense Slow",
+"blend_mode": "Subtractive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Butterfly Sparse Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Moebius",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Geometric Reverse",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#0A0022",
+"#110033",
+"#1A0044",
+"#080018"
+],
+"accent_palette": [
+"#EEEEFF",
+"#E0EAFF",
+"#D8E8FF",
+"#C0DCFF",
+"#B8D4FF"
+]
+},
+{
+"name": "Glitch City",
+"mood": "dark",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Bars Up Dense",
+"blend_mode": "Normal"
+},
+{
+"variant": "Strobe Dual Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Marquee Thin Fast",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Chase Multi Dense",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#00FF44",
+"#00CC33",
+"#003311",
+"#00AA22"
+],
+"accent_palette": [
+"#FF00FF",
+"#FF33AA",
+"#CC00CC",
+"#FF66DD"
+]
+},
+{
+"name": "The Kraken",
+"mood": "dark",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Liquid Current",
+"blend_mode": "Normal"
+},
+{
+"variant": "Spirals Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Plasma Dense Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Wave Triple Slow",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#003322",
+"#004455",
+"#002244",
+"#005544"
+],
+"accent_palette": [
+"#FFAA00",
+"#FFD700",
+"#CC8800",
+"#FFB833"
+]
+},
+{
+"name": "Cyber Grid",
+"mood": "structural",
+"occasion": "general",
+"genre": "pop",
+"layers": [
+{
+"variant": "Plasma Grid",
+"blend_mode": "Normal"
+},
+{
+"variant": "Pinwheel 6-Arm Medium",
+"blend_mode": "Additive",
+"effect_pool": [
+"Bars Single 3D Half-Cycle",
+"Bars Quad 3D Vertical",
+"Chase Left-Right Medium"
+]
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Pinwheel 6-Arm Twist",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Fan 4-Blade Slow",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#00FFFF",
+"#0088FF",
+"#004488",
+"#00BBDD"
+],
+"accent_palette": [
+"#FF4400",
+"#FF6633",
+"#CC3300",
+"#FF8855"
+]
+},
+{
+"name": "Scanning Beam",
+"mood": "structural",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Bars Left Single",
+"blend_mode": "Normal"
+},
+{
+"variant": "Chase Medium Quad",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Wave Single Fast",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Spirals Directed Medium",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FFFFFF",
+"#4488FF",
+"#88BBFF",
+"#CCDDFF"
+],
+"accent_palette": [
+"#00CC44",
+"#22FF66",
+"#009933",
+"#44DD77"
+]
+},
+{
+"name": "The Zipper",
+"mood": "structural",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Plasma Weave",
+"blend_mode": "Normal"
+},
+{
+"variant": "Chase Trio Fast",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Liquid Flow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF2200",
+"#0088FF",
+"#FFCC00",
+"#00FF66"
+],
+"accent_palette": [
+"#FF00CC",
+"#FF8800",
+"#8800FF",
+"#00FFCC"
+]
+},
+{
+"name": "Winter Wonderland",
+"mood": "ethereal",
+"occasion": "christmas",
+"genre": "any",
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Small Thin",
+"blend_mode": "Additive"
+},
+{
+"variant": "Ripple Medium Thin",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Butterfly Dense Medium",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Wave Dual Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Lines",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Classic Reverse",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#88CCFF",
+"#AADDFF",
+"#CCE5FF",
+"#6699CC"
+],
+"accent_palette": [
+"#FFD700",
+"#FFAA33",
+"#CC8800",
+"#FFE066"
+],
+"background_accent_variant": "Snowflakes Driving Few"
+},
+{
+"name": "Candy Cane Chase",
+"mood": "structural",
+"occasion": "christmas",
+"genre": "pop",
+"layers": [
+{
+"variant": "Chase Slow Quad",
+"blend_mode": "Normal"
+},
+{
+"variant": "Marquee Thick Slow",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Bars Right Quad",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Spirals Fast Dense",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF0000",
+"#CC0000",
+"#FFFFFF",
+"#FF3333"
+],
+"accent_palette": [
+"#00AA00",
+"#FFD700",
+"#008800",
+"#CCAA00"
+],
+"background_accent_variant": "Snowflakes Driving Few"
+},
+{
+"name": "Warm Glow",
+"mood": "ethereal",
+"occasion": "christmas",
+"genre": "classical",
+"layers": [
+{
+"variant": "Fire Low",
+"blend_mode": "Normal"
+},
+{
+"variant": "Ripple Slow Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Plasma Gentle",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FFAA33",
+"#FFD700",
+"#CC8800",
+"#FFE088"
+],
+"accent_palette": [
+"#006633",
+"#228844",
+"#004422",
+"#33AA66"
+],
+"background_accent_variant": "Snowflakes Driving Few"
+},
+{
+"name": "North Star",
+"mood": "structural",
+"occasion": "christmas",
+"genre": "any",
+"layers": [
+{
+"variant": "Pinwheel 8-Arm Slow",
+"blend_mode": "Normal"
+},
+{
+"variant": "Ripple Fast Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Fan 8-Blade",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Fan 6-Blade Slow",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FFD700",
+"#FFFFFF",
+"#FFEE88",
+"#FFB800"
+],
+"accent_palette": [
+"#1A1A88",
+"#3333CC",
+"#0A0A66",
+"#4444AA"
+],
+"background_accent_variant": "Snowflakes Driving Few"
+},
+{
+"name": "Festive Flash",
+"mood": "aggressive",
+"occasion": "christmas",
+"genre": "rock",
+"layers": [
+{
+"variant": "Shockwave Medium Fast",
+"blend_mode": "Normal"
+},
+{
+"variant": "Strobe Dual Fast",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Meteors Fast Flash",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Fireworks Default",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF0000",
+"#00CC00",
+"#CC0000",
+"#009900"
+],
+"accent_palette": [
+"#FFD700",
+"#FFAA00",
+"#00CC00",
+"#009900"
+]
+},
+{
+"name": "Silent Night",
+"mood": "ethereal",
+"occasion": "christmas",
+"genre": "classical",
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+},
+{
+"variant": "Ripple Slow Thin",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Plasma Ethereal",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Sparse Medium",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Lines",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Moebius",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#1A1A66",
+"#2B2288",
+"#0F0F44",
+"#3D33AA"
+],
+"accent_palette": [
+"#FFD700",
+"#FFAA33",
+"#CC8800",
+"#FFE066"
+],
+"background_accent_variant": "Snowflakes Driving Few"
+},
+{
+"name": "Haunted Pulse",
+"mood": "dark",
+"occasion": "halloween",
+"genre": "any",
+"layers": [
+{
+"variant": "Plasma Drift",
+"blend_mode": "Normal"
+},
+{
+"variant": "Strobe Single Slow",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Liquid Drift",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Fire Ember",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#440066",
+"#660099",
+"#220044",
+"#550088"
+],
+"accent_palette": [
+"#00FF44",
+"#44FF00",
+"#00CC33",
+"#88FF66"
+]
+},
+{
+"name": "Jack-o-Lantern",
+"mood": "aggressive",
+"occasion": "halloween",
+"genre": "rock",
+"layers": [
+{
+"variant": "Fire Intense",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Large Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Meteors Long Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Plasma Surge",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF6600",
+"#FF4400",
+"#CC5500",
+"#FF8800"
+],
+"accent_palette": [
+"#8800CC",
+"#AA22FF",
+"#6600AA",
+"#CC66FF"
+]
+},
+{
+"name": "Graveyard Fog",
+"mood": "dark",
+"occasion": "halloween",
+"genre": "any",
+"layers": [
+{
+"variant": "Liquid Creep",
+"blend_mode": "Normal"
+},
+{
+"variant": "Spirals Sparse Slow",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Plasma Ethereal",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#444444",
+"#334433",
+"#2A2A2A",
+"#3D4D3D"
+],
+"accent_palette": [
+"#88CCFF",
+"#AAEEFF",
+"#66AADD",
+"#CCDDFF"
+]
+},
+{
+"name": "Candy Cane",
+"mood": "structural",
+"occasion": "christmas",
+"genre": "any",
+"layers": [
+{
+"variant": "Spirals 3D Sharp",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Full Fast",
+"blend_mode": "Additive",
+"stem": "drums"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Bars Right Dual",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Full Fast",
+"blend_mode": "Additive",
+"stem": "drums"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Pinwheel 4-Arm Twist",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Medium Fast",
+"blend_mode": "Additive",
+"stem": "drums"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Fan 3-Blade",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Medium Fast",
+"blend_mode": "Additive",
+"stem": "drums"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Chase Right-Left Subtle",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Spirals 3D Blend Fast Spin",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF0000",
+"#FFFFFF",
+"#CC0000",
+"#F0F0F0"
+],
+"accent_palette": [
+"#00CC44",
+"#33DD66",
+"#009933",
+"#88EEAA"
+]
+},
+{
+"name": "White Heat",
+"mood": "aggressive",
+"occasion": "general",
+"genre": "pop",
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shockwave Medium Thin",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Plasma Classic Fast",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Chase Fast Multi",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF00FF",
+"#B000B0",
+"#FFFFFF",
+"#4B004B"
+],
+"accent_palette": [
+"#FFFFFF",
+"#FF00FF"
+]
+},
+{
+"name": "Ice Crystal",
+"mood": "ethereal",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Color Wash Vertical Fade",
+"blend_mode": "Normal"
+},
+{
+"variant": "Twinkle Gentle",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Wave Dual Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Plasma Ethereal",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#0000FF",
+"#007DFB",
+"#FFFFFF",
+"#001A66"
+],
+"accent_palette": [
+"#FFFFFF",
+"#00FFFF"
+]
+},
+{
+"name": "Violet Night",
+"mood": "dark",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Color Wash Flat",
+"blend_mode": "Normal"
+},
+{
+"variant": "Spirals 3D Slow Spin",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Plasma Dense Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Wave Triple Slow",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#8000FF",
+"#4B0082",
+"#2A004B",
+"#FFFFFF"
+],
+"accent_palette": [
+"#FFFFFF",
+"#8000FF"
+]
+},
+{
+"name": "Scarlet Ribbon",
+"mood": "structural",
+"occasion": "christmas",
+"genre": "any",
+"layers": [
+{
+"variant": "Color Wash Smooth",
+"blend_mode": "Normal"
+},
+{
+"variant": "Chase Left-Right Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Marquee Thick Slow",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Chase To Middle Full",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FF0000",
+"#B00000",
+"#FFFFFF",
+"#4B0000"
+],
+"accent_palette": [
+"#FFFFFF",
+"#FF0000"
+],
+"background_accent_variant": "Snowflakes Driving Few"
+},
+{
+"name": "Solar Gold",
+"mood": "aggressive",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Color Wash Circular",
+"blend_mode": "Normal"
+},
+{
+"variant": "Pinwheel 6-Arm Medium",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Fan 6-Blade Medium",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Butterfly Geometric",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#FFFF00",
+"#FFB400",
+"#FFFFFF",
+"#7A5A00"
+],
+"accent_palette": [
+"#FFFFFF",
+"#FFFF00"
+]
+},
+{
+"name": "Ember White",
+"mood": "structural",
+"occasion": "general",
+"genre": "any",
+"layers": [
+{
+"variant": "Color Wash Horizontal Fade",
+"blend_mode": "Normal"
+},
+{
+"variant": "Shimmer Subtle",
+"blend_mode": "Additive"
+}
+],
+"alternates": [
+{
+"layers": [
+{
+"variant": "Fire Ember",
+"blend_mode": "Normal"
+}
+]
+},
+{
+"layers": [
+{
+"variant": "Twinkle Medium",
+"blend_mode": "Normal"
+}
+]
+}
+],
+"palette": [
+"#D76B00",
+"#FF6600",
+"#FFF3E8",
+"#5A2D00"
+],
+"accent_palette": [
+"#FFFFFF",
+"#FF6600"
+]
+}
+],
+"effects": {
+"On": {
+"duration_type": "section",
+"duration_behavior": "sustained",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Off": {
+"duration_type": "section",
+"duration_behavior": "sustained",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Color Wash": {
+"duration_type": "section",
+"duration_behavior": "sustained",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Fill": {
+"duration_type": "section",
+"duration_behavior": "sustained",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "good",
+"radial": "possible"
+}
+},
+"Shimmer": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Strobe": {
+"duration_type": "trigger",
+"duration_behavior": "accent",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Twinkle": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Bars": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "good",
+"radial": "possible"
+}
+},
+"Butterfly": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "possible",
+"vertical": "good",
+"tree": "good",
+"radial": "good"
+}
+},
+"Circles": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "possible",
+"vertical": "possible",
+"tree": "good",
+"radial": "ideal"
+}
+},
+"Curtain": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "good",
+"tree": "good",
+"radial": "possible"
+}
+},
+"Fan": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "not_recommended",
+"vertical": "possible",
+"tree": "ideal",
+"radial": "ideal"
+}
+},
+"Marquee": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "good",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "good",
+"tree": "good",
+"radial": "possible"
+}
+},
+"Pinwheel": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "not_recommended",
+"vertical": "possible",
+"tree": "ideal",
+"radial": "ideal"
+}
+},
+"Plasma": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "possible",
+"vertical": "good",
+"tree": "good",
+"radial": "good"
+}
+},
+"Ripple": {
+"duration_type": "beat",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "good",
+"tree": "ideal",
+"radial": "ideal"
+}
+},
+"Shape": {
+"duration_type": "beat",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "possible",
+"vertical": "possible",
+"tree": "good",
+"radial": "good"
+}
+},
+"Shockwave": {
+"duration_type": "trigger",
+"duration_behavior": "accent",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "good",
+"tree": "ideal",
+"radial": "ideal"
+}
+},
+"Spirals": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "ideal"
+}
+},
+"Wave": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "good",
+"radial": "good"
+}
+},
+"Fire": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "not_recommended",
+"arch": "possible",
+"vertical": "not_recommended",
+"tree": "good",
+"radial": "good"
+}
+},
+"Fireworks": {
+"duration_type": "trigger",
+"duration_behavior": "accent",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "possible",
+"vertical": "good",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Liquid": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "possible",
+"vertical": "good",
+"tree": "good",
+"radial": "good"
+}
+},
+"Meteors": {
+"duration_type": "section",
+"min_duration_ms": 2000,
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Snowflakes": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "ideal",
+"radial": "good"
+}
+},
+"Tree": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "not_recommended",
+"vertical": "good",
+"tree": "ideal",
+"radial": "possible"
+}
+},
+"Tendril": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "good",
+"tree": "good",
+"radial": "good"
+}
+},
+"Single Strand": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "possible",
+"outline": "ideal",
+"arch": "ideal",
+"vertical": "ideal",
+"tree": "good",
+"radial": "possible"
+}
+},
+"Morph": {
+"duration_type": "bar",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "good",
+"tree": "good",
+"radial": "possible"
+}
+},
+"Warp": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "good",
+"tree": "good",
+"radial": "possible"
+}
+},
+"Music": {
+"duration_type": "section",
+"duration_behavior": "sustained",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "good",
+"radial": "good"
+}
+},
+"VU Meter": {
+"duration_type": "section",
+"duration_behavior": "sustained",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "good",
+"vertical": "ideal",
+"tree": "good",
+"radial": "good"
+}
+},
+"Text": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "not_recommended",
+"arch": "not_recommended",
+"vertical": "possible",
+"tree": "good",
+"radial": "not_recommended"
+}
+},
+"Pictures": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "not_recommended",
+"arch": "not_recommended",
+"vertical": "possible",
+"tree": "good",
+"radial": "not_recommended"
+}
+},
+"Video": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "not_recommended",
+"arch": "not_recommended",
+"vertical": "not_recommended",
+"tree": "not_recommended",
+"radial": "not_recommended"
+}
+},
+"Shader": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "good",
+"arch": "possible",
+"vertical": "possible",
+"tree": "good",
+"radial": "good"
+}
+},
+"Kaleidoscope": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "not_recommended",
+"vertical": "possible",
+"tree": "good",
+"radial": "ideal"
+}
+},
+"Lightning": {
+"duration_type": "trigger",
+"duration_behavior": "accent",
+"prop_suitability": {
+"matrix": "good",
+"outline": "ideal",
+"arch": "good",
+"vertical": "ideal",
+"tree": "good",
+"radial": "not_recommended"
+}
+},
+"Garlands": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "possible",
+"outline": "good",
+"arch": "good",
+"vertical": "good",
+"tree": "ideal",
+"radial": "possible"
+}
+},
+"Galaxy": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "possible",
+"arch": "not_recommended",
+"vertical": "possible",
+"tree": "good",
+"radial": "ideal"
+}
+},
+"Faces": {
+"duration_type": "section",
+"prop_suitability": {
+"matrix": "ideal",
+"outline": "not_recommended",
+"arch": "not_recommended",
+"vertical": "not_recommended",
+"tree": "ideal",
+"radial": "not_recommended"
+}
+}
+}
+}
