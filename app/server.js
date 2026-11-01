@@ -459,7 +459,9 @@ function planFor(s, query, cover, { useOffset = true } = {}) {
     shaders: getSetting('shaders', []), shaderAmount: getSetting('shaderAmount', 'sometimes'),
     indoor: indoorList(layout) };
   // idea 1 unless another one is asked for ("Another idea" steps through them)
-  const seeds = [query.seed !== undefined && query.seed !== '' ? Number(query.seed) || 0 : 0];
+  // each song starts on its own look (or the one last saved for it); "Another idea" asks for the next
+  const { songSeed } = require('./sequencer/look');
+  const seeds = [query.seed !== undefined && query.seed !== '' ? Number(query.seed) || 0 : getSetting(`look:${s.id}`, songSeed(s.id))];
   let best = null;
   for (const seed of seeds) {
     const effects = build(analysis, layout, roles, { ...opts, seed });
@@ -483,7 +485,7 @@ app.get('/api/songs/:id/fit', async (req, res) => {
   const { seed, fit, effects } = planFor(s, req.query, cover);
   const a = JSON.parse(fs.readFileSync(path.join(s.result_dir, 'analysis.json'), 'utf8'));
   const repaired = require('./sequencer/grid').repair(a).changed;
-  res.json({ seed, ...fit, lifts: effects.lifts, accents: effects.accents, cover,
+  res.json({ seed, look: effects.look, savedSeed: getSetting(`look:${s.id}`, null), ...fit, lifts: effects.lifts, accents: effects.accents, cover,
     cues: effects.cues || [], handPatterns: effects.handPatterns || [], tiers: effects.tiers, lyricTrack: lyricInfo(s),
     shadersUsed: effects.shadersUsed || [],
     offsetMs: getSetting(`offset:${s.id}`, 0), gridRepaired: repaired });
@@ -562,7 +564,8 @@ app.get('/api/songs/:id/xsq', async (req, res) => {
     analysis: plan.analysis, layout: plan.layout, roles: plan.roles, mediaFile, title: s.title,
     effects: plan.effects, frameMs: Number(process.env.AUTOSEQ_FRAME_MS || 25),
   });
-  console.log(`xsq for ${s.title}: seed ${plan.seed}, fit ${plan.fit.score}`, stats);
+  setSetting(`look:${s.id}`, plan.seed);              // the look you save is the one the song keeps
+  console.log(`xsq for ${s.title}: look ${plan.effects.look?.name} (seed ${plan.seed}), fit ${plan.fit.score}`, stats);
   res.setHeader('Content-Type', 'application/xml');
   res.setHeader('Content-Disposition', `attachment; filename="${s.title.replace(/[\\/:*?"<>|]+/g, '_')}.xsq"`);
   res.send(xml);

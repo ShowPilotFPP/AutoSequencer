@@ -644,7 +644,7 @@ function seqHtml() {
       <button class="btn primary" id="openPreview">Preview on my house</button>
       ${SF.handle && SF.state === 'granted' ? '<button class="btn" id="saveSeq">Save sequence to show folder</button>' : ''}
       <a class="btn" id="dlSeq" href="#">Download sequence (.xsq)</a>
-      <button class="btn" id="anotherIdea">Another idea</button>
+      <button class="btn" id="anotherIdea" title="New colours, different signature effects and moves. The look you save or download is remembered for the song.">Try another look</button>
     </div>
     <div class="settings">
       <label class="field"><span>Look</span><select id="songTheme">${themeOptions(L.theme)}</select></label>
@@ -750,7 +750,11 @@ async function loadFit() {
     showLyricTrack(f.lyricTrack);
     if ($('nudge') && document.activeElement !== $('nudge')) $('nudge').value = f.offsetMs || 0;
     const pct = x => Math.round(x * 100) + '%';
-    el.innerHTML = `<b>Fits the music ${f.score}/100</b> (idea ${f.seed + 1}). Brightness follows the loudness (r ${f.loudnessR}),
+    const lk = f.look || {};
+    const swatches = (lk.colors || []).map(c => `<span class="swatch" title="${c}" style="background:${c}"></span>`).join('');
+    el.innerHTML = (lk.generated ? `<span class="lookline"><b>Look: ${esc(lk.name)}</b> ${swatches} with ${(lk.core || []).map(x => esc(x.toLowerCase())).join(', ')}` +
+      `${f.savedSeed === f.seed ? ' (saved)' : ''}. </span><br>` : '') +
+      `<b>Fits the music ${f.score}/100</b>. Brightness follows the loudness (r ${f.loudnessR}),
       ${pct(f.hitsShown)} of drum beats show, choruses are ${f.chorusVsVerse[0] >= f.chorusVsVerse[1] ? 'brighter' : 'darker'} than verses,
       ${f.lifts} build-up${f.lifts === 1 ? '' : 's'} and ${f.accents} vocal hits.` +
       (f.gridRepaired ? ` The beat grid was repaired in ${f.gridRepaired} places.` : '') +
@@ -792,10 +796,12 @@ function faceOptions(selectedFace) {
     faces.map(f => `<option ${f === selectedFace ? 'selected' : ''}>${esc(f)}</option>`).join('');
 }
 function themeOptions(sel) {
-  return `<option value="auto" ${sel === 'auto' || !sel ? 'selected' : ''}>Halloween, a theme per part</option>` +
-    `<option value="christmas" ${sel === 'christmas' ? 'selected' : ''}>Christmas, a theme per part</option>` +
+  const xmas = SHOWS.find(x => x.id === SHOW)?.kind === 'christmas';
+  return `<option value="auto" ${sel === 'auto' || !sel || (xmas && sel === 'christmas') ? 'selected' : ''}>Automatic: a new look for every song</option>` +
+    (xmas ? '' : `<option value="christmas" ${sel === 'christmas' ? 'selected' : ''}>Automatic, Christmas colours</option>`) +
     `<option value="cover" ${sel === 'cover' ? 'selected' : ''}>From the album cover</option>` +
-    (L.themes || []).map(t => `<option ${t.name === sel ? 'selected' : ''}>${esc(t.name)}</option>`).join('');
+    `<optgroup label="One theme for the whole song">` +
+    (L.themes || []).map(t => `<option ${t.name === sel ? 'selected' : ''}>${esc(t.name)}</option>`).join('') + '</optgroup>';
 }
 async function saveLayout(body) {
   try { L = await api('/api/layout/roles', json('PUT', body)); } catch (err) { alert(err.message); }

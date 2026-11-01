@@ -37,7 +37,9 @@ const AUTO_XMAS = {
   bridge: 'Winter Wonderland', break: 'Candy Cane Chase', outro: 'Silent Night', custom: 'Festive Flash',
 };
 
-function themeFor(sectionType, choice, cover) {
+function themeFor(sectionType, choice, cover, look) {
+  // the song's own generated look (the default): colours and signature effects picked per song
+  if (look && (!choice || choice === 'auto' || choice === 'christmas')) return look.themes[sectionType] || look.themes.custom;
   if (choice === 'christmas') return themeByName.get(AUTO_XMAS[sectionType] || AUTO_XMAS.custom);
   if (choice === 'cover' && cover && cover.length >= 2) {
     const [a, b] = (COVER_ORDER[sectionType] || COVER_ORDER.custom).map(i => cover[i % cover.length]);
@@ -93,11 +95,12 @@ function pick({ model, tier, section, theme, role = 'background', seed = 0, excl
     if (fit !== 'ideal' && fit !== 'good' && !(only && only.includes(v.effect))) continue;
     if (v.scope === 'group') continue;
     // snow belongs to winter themes only (Winter Wonderland, Silent Night...), not Halloween
-    if (v.effect === 'Snowflakes' && !/winter|snow|silent|christmas|frost|north|warm glow|festive|candy/i.test(theme?.name || '')) continue;
+    if (v.effect === 'Snowflakes' && !theme?.winter && !/winter|snow|silent|christmas|frost|north|warm glow|festive|candy/i.test(theme?.name || '')) continue;
     let score = fit === 'ideal' ? 2 : 1;
     if (v.energy === energy) score += 3; else if ((ADJ[energy] || []).includes(v.energy)) score += 1; else continue;
     if (v.sections.includes(sec)) score += 2;
     if (fromTheme.has(v.name)) score += 3;
+    if (theme?.core?.includes(v.effect)) score += 4;          // this song's signature effects
     if (role === 'background' && (v.tier === 'background' || v.tier === 'mid')) score += 1;
     if (tier === 'low' && v.speed === 'slow') score += 1;
     if (tier === 'high' && v.speed === 'fast') score += 1;
@@ -133,4 +136,4 @@ function pace(effect, settings, factor) {
 
 const themeNames = () => themes.map(t => ({ name: t.name, mood: t.mood }));
 
-module.exports = { pick, themeFor, colors, themeNames, propClass, pace, AUTO };
+module.exports = { pick, themeFor, colors, themeNames, propClass, pace, AUTO, themeByName };

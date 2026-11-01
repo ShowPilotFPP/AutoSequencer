@@ -13,6 +13,7 @@
 const { expand } = require('./layout');
 const lib = require('./library');
 const { findCues } = require('./cues');
+const { makeLook } = require('./look');
 
 const C = {
   orange: '#FF5A00', purple: '#7B00FF', green: '#3CFF00', red: '#D00000',
@@ -37,8 +38,11 @@ function build(analysis, layout, roles, opts = {}) {
   sections.forEach(s => { s.n = occurrence[s.type] = (occurrence[s.type] || 0) + 1; });
   const sectionAt = t => sections.find(s => t >= s.start && t < s.end);
   // colours come from the section's theme (x-onset themes, boosted to full brightness)
-  const themeOf = s => lib.themeFor(s?.type || 'custom', opts.theme, opts.cover);
   const seed = opts.seed || 0;
+  // the song's look: its own colour scheme, signature effects and chorus moves (see look.js)
+  const lookShow = opts.theme === 'christmas' ? 'christmas' : (opts.showKind || 'halloween');
+  const look = makeLook({ seed, show: lookShow, themeByName: lib.themeByName });
+  const themeOf = s => lib.themeFor(s?.type || 'custom', opts.theme, opts.cover, look);
   // how bright the between-hit glow is: the "try a few" pass compares these and keeps
   // whichever fits the music best (from full glow down to dark between hits in quiet bars)
   const GLOW = [[42, 30], [35, 15], [28, 0], [45, 20]][seed % 4];
@@ -406,12 +410,12 @@ function build(analysis, layout, roles, opts = {}) {
       const start = run[0].start, end = run[run.length - 1].end;
       if (tier === 'high' || (tier === 'mid' && s.type === 'chorus')) {
         const marks = (tier === 'high' ? beats : downbeats).filter(t => t >= start - 0.02 && t < end);
-        marks.forEach((t, i) =>
-          push(m.name, 'matrix', t, marks[i + 1] ?? end, 'Shockwave', {
-            E_SLIDER_Shockwave_Start_Radius: 1, E_SLIDER_Shockwave_End_Radius: 100,
-            E_SLIDER_Shockwave_Start_Width: 5, E_SLIDER_Shockwave_End_Width: 20,
-            E_SLIDER_Shockwave_CenterX: 50, E_SLIDER_Shockwave_CenterY: 50, E_CHECKBOX_Shockwave_Blend_Edges: 1,
-          }, [i % 2 ? c2 : c1, C.white], 100));
+        // the look decides the matrix's beat move (a ring, a spin, a climb...), alternating by section
+        const alt = (s.n + seed) % 2 === 1;
+        marks.forEach((t, i) => {
+          const fx = familyMove('matrix', alt, i, Math.floor(i / 4) % 2 === 1, look.moves);
+          push(m.name, 'matrix', t, marks[i + 1] ?? end, fx.effect, fx.settings, [i % 2 ? c2 : c1, C.white], 100);
+        });
       } else if (useShader(m, run)) {               // one of your own shaders from the show folder
         const sh = nextShader();
         push(m.name, 'matrix', start, end, 'Shader', {
@@ -552,12 +556,13 @@ function build(analysis, layout, roles, opts = {}) {
           const end = Math.min(nb, t1);
           const color = vivid[(off + Math.floor(i / 4)) % vivid.length];
           const flip = Math.floor(i / 4) % 2 === 1;           // expand ↔ collapse, left ↔ right every 4 beats
-          const fx = familyMove(key, alt, i, flip);
+          const fx = familyMove(key, alt, i, flip, look.moves);
           push2(members, 'family', t, end, fx.effect, fx.settings, [color], brightnessOf(sec[0]));
         });
       }
       famBars += sec.length;
     }
+    out.look = { name: look.name, colors: look.colors, core: look.core, generated: !!themeOf(sections[0]).generated };
     out.families = families.map(([k, l]) => `${k} (${l.length})`);
     out.familyBars = famBars;
   }
@@ -1033,23 +1038,34 @@ function splitBySpans(start, end, spans) {
 
 // What a family of matching props does on each beat of a big moment (from x-onset's
 // corpus recipes, mined from professional sequences). i = beat index, flip = every 4 beats.
-function familyMove(key, alt, i, flip) {
-  const burst = { effect: 'Shockwave', settings: { E_SLIDER_Shockwave_CenterX: 50, E_SLIDER_Shockwave_CenterY: 50,
-    E_SLIDER_Shockwave_Start_Radius: flip ? 100 : 1, E_SLIDER_Shockwave_End_Radius: flip ? 1 : 100,
-    E_SLIDER_Shockwave_Start_Width: flip ? 35 : 5, E_SLIDER_Shockwave_End_Width: flip ? 5 : 35, E_CHECKBOX_Shockwave_Blend_Edges: 1 } };
-  const chase = { effect: 'Single Strand', settings: { E_CHOICE_Chase_Type1: (i % 2) ^ flip ? 'Right-Left' : 'Left-Right',
-    E_CHOICE_Fade_Type: 'From Head', E_SLIDER_Color_Mix1: 25, E_SLIDER_Number_Chases: 1, E_TEXTCTRL_Chase_Rotations: '1.0' } };
-  const spiral = { effect: 'Spirals', settings: { E_SLIDER_Spirals_Count: 2, E_SLIDER_Spirals_Rotation: flip ? -20 : 20,
-    E_SLIDER_Spirals_Thickness: 60, E_CHECKBOX_Spirals_3D: 1, E_CHECKBOX_Spirals_Blend: 1, E_TEXTCTRL_Spirals_Movement: '1.0',
-    B_CHOICE_BufferTransform: i % 2 ? 'Flip Horizontal' : 'None' } };
-  const pinwheel = { effect: 'Pinwheel', settings: { E_SLIDER_Pinwheel_Arms: 5, E_SLIDER_Pinwheel_Twist: 60, E_SLIDER_Pinwheel_Thickness: 50,
-    E_SLIDER_Pinwheel_Speed: 22, E_CHOICE_Pinwheel_3D: 'Sweep', E_CHECKBOX_Pinwheel_Rotation: flip ? 0 : 1 } };
-  switch (key) {
-    case 'tree': return alt ? spiral : burst;
-    case 'star': return alt ? pinwheel : burst;
-    case 'arch': case 'cane': case 'icicle': return alt ? burst : chase;
-    default: return alt ? chase : burst;
-  }
+function familyMove(key, alt, i, flip, moves) {
+  const M = {
+    burst: { effect: 'Shockwave', settings: { E_SLIDER_Shockwave_CenterX: 50, E_SLIDER_Shockwave_CenterY: 50,
+      E_SLIDER_Shockwave_Start_Radius: flip ? 100 : 1, E_SLIDER_Shockwave_End_Radius: flip ? 1 : 100,
+      E_SLIDER_Shockwave_Start_Width: flip ? 35 : 5, E_SLIDER_Shockwave_End_Width: flip ? 5 : 35, E_CHECKBOX_Shockwave_Blend_Edges: 1 } },
+    chase: { effect: 'Single Strand', settings: { E_CHOICE_Chase_Type1: (i % 2) ^ flip ? 'Right-Left' : 'Left-Right',
+      E_CHOICE_Fade_Type: 'From Head', E_SLIDER_Color_Mix1: 25, E_SLIDER_Number_Chases: 1, E_TEXTCTRL_Chase_Rotations: '1.0' } },
+    bounce: { effect: 'Single Strand', settings: { E_CHOICE_Chase_Type1: flip ? 'To Middle' : 'From Middle',
+      E_CHOICE_Fade_Type: 'Head and Tail', E_SLIDER_Color_Mix1: 30, E_SLIDER_Number_Chases: 1, E_TEXTCTRL_Chase_Rotations: '1.0' } },
+    spiral: { effect: 'Spirals', settings: { E_SLIDER_Spirals_Count: 2, E_SLIDER_Spirals_Rotation: flip ? -20 : 20,
+      E_SLIDER_Spirals_Thickness: 60, E_CHECKBOX_Spirals_3D: 1, E_CHECKBOX_Spirals_Blend: 1, E_TEXTCTRL_Spirals_Movement: '1.0',
+      B_CHOICE_BufferTransform: i % 2 ? 'Flip Horizontal' : 'None' } },
+    pinwheel: { effect: 'Pinwheel', settings: { E_SLIDER_Pinwheel_Arms: key === 'tree' ? 4 : 5, E_SLIDER_Pinwheel_Twist: 60,
+      E_SLIDER_Pinwheel_Thickness: 50, E_SLIDER_Pinwheel_Speed: 22, E_CHOICE_Pinwheel_3D: 'Sweep', E_CHECKBOX_Pinwheel_Rotation: flip ? 0 : 1 } },
+    climb: { effect: 'Bars', settings: { E_SLIDER_Bars_BarCount: 2, E_CHOICE_Bars_Direction: flip ? 'down' : 'up', E_SLIDER_Bars_Cycles: 1,
+      E_CHECKBOX_Bars_Highlight: 1 } },
+    bars: { effect: 'Bars', settings: { E_SLIDER_Bars_BarCount: 3, E_CHOICE_Bars_Direction: flip ? 'Right' : 'Left', E_SLIDER_Bars_Cycles: 1 } },
+    rain: { effect: 'Meteors', settings: { E_SLIDER_Meteors_Count: 14, E_SLIDER_Meteors_Length: 30, E_SLIDER_Meteors_Speed: 25,
+      E_CHOICE_Meteors_Effect: flip ? 'Up' : 'Down', E_CHOICE_Meteors_Type: 'Palette' } },
+    ripple: { effect: 'Ripple', settings: { E_CHOICE_Ripple_Object_To_Draw: 'Star', E_CHOICE_Ripple_Movement: flip ? 'Implode' : 'Explode',
+      E_SLIDER_Ripple_Thickness: 3, E_TEXTCTRL_Ripple_Cycles: '1.0' } },
+    twinkle: { effect: 'Twinkle', settings: { E_SLIDER_Twinkle_Count: 60, E_SLIDER_Twinkle_Steps: 6 } },
+    ring: { effect: 'Ripple', settings: { E_CHOICE_Ripple_Object_To_Draw: 'Circle', E_CHOICE_Ripple_Movement: flip ? 'Implode' : 'Explode',
+      E_SLIDER_Ripple_Thickness: 6, E_TEXTCTRL_Ripple_Cycles: '1.0' } },
+  };
+  const group = key === 'tree' || key === 'matrix' ? key : key === 'star' ? 'star' : 'line';
+  const pair = (moves && moves[group]) || { tree: ['burst', 'spiral'], star: ['burst', 'pinwheel'], line: ['chase', 'burst'], matrix: ['burst', 'ring'] }[group];
+  return M[pair[alt ? 1 : 0]] || M.burst;
 }
 
 // x-onset's "vivid mask" colours: saturated colours pushed bright, at least 25° apart.
