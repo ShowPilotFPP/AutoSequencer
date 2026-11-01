@@ -5,7 +5,7 @@
 #
 # 1. Makes a deploy key for this server (read-only access to just this one repo).
 # 2. Waits while you add it on GitHub: repo Settings > Deploy keys > Add deploy key.
-# 3. Turns /opt/autoseq into a checkout of the newest release. Your data/ folder
+# 3. Turns /opt/autoseq into a checkout of the latest version (main). Your data/ folder
 #    (songs, settings, analysis), the Python venv, node_modules and bin/ are left alone.
 #
 # After this, updates are the Update button in AutoSeq's header, or: /opt/autoseq/scripts/update.sh
@@ -48,8 +48,7 @@ git config advice.detachedHead false
 
 # a copy that was unzipped by hand: files in the way of the checkout are replaced by the repo's
 git fetch -q --tags --force origin
-TARGET="$(git tag -l 'v*' --sort=-v:refname | head -n1)"
-[ -n "$TARGET" ] || TARGET="origin/main"
+TARGET="origin/main"
 echo "Switching $DIR to $TARGET"
 git checkout -q --force --detach "$TARGET"
 chmod +x scripts/*.sh

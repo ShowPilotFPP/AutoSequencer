@@ -1116,7 +1116,7 @@ async function health() {
 }
 
 // ---------------------------------------------------------------- updates from GitHub
-// The version chip in the header; it turns into an Update button when a new release is out.
+// The version chip in the header; it turns into an Update button when main on GitHub has something new.
 let UPD = null;
 async function checkUpdate(force) {
   const b = $('ver');
@@ -1124,7 +1124,8 @@ async function checkUpdate(force) {
   b.hidden = false; b.disabled = false;
   if (!UPD.ok && UPD.reason === 'not-git') { b.hidden = true; return; }
   if (UPD.behind) {
-    b.className = 'ver new'; b.textContent = `Update to ${UPD.latest}`;
+    const n = UPD.changes?.length || 0;
+    b.className = 'ver new'; b.textContent = n ? `Update available (${n} change${n === 1 ? '' : 's'})` : 'Update available';
     b.title = UPD.changes?.length ? 'What’s new:\n• ' + UPD.changes.slice(0, 12).join('\n• ') : `Installed: ${UPD.installed}`;
   } else {
     b.className = 'ver'; b.textContent = UPD.installed || 'dev';
@@ -1135,10 +1136,10 @@ $('ver').onclick = async () => {
   const b = $('ver');
   if (!UPD?.behind) { b.textContent = 'Checking…'; return checkUpdate(true); }
   const list = UPD.changes?.length ? '\n\nWhat’s new:\n• ' + UPD.changes.slice(0, 12).join('\n• ') : '';
-  if (!confirm(`Install ${UPD.latest}? AutoSeq restarts, which takes a few seconds. Songs and settings aren’t touched.${list}`)) return;
+  if (!confirm(`Install the update? AutoSeq restarts, which takes a few seconds. Songs and settings aren’t touched.${list}`)) return;
   const r = await api('/api/update', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ target: 'latest' }) }).catch(e => ({ message: e.message }));
   if (!r.started) { alert(r.message || 'The update didn’t start.'); return; }
-  b.disabled = true; b.textContent = `Installing ${UPD.latest}…`;
+  b.disabled = true; b.textContent = 'Installing the update…';
   const from = UPD.installed, t0 = Date.now();
   const poll = async () => {
     const v = await api('/api/version').catch(() => null);

@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# AutoSeq updater: bring this install up to the newest release on GitHub.
+# AutoSeq updater: bring this install up to the latest version on GitHub.
 #
-#   scripts/update.sh            newest release tag (v1.2.3)
-#   scripts/update.sh v1.0.4     a specific release (to roll back)
-#   scripts/update.sh main       the latest commit on main, released or not
+#   scripts/update.sh            the latest commit on main (what the Update button does)
+#   scripts/update.sh v1.0.0     a tagged version, or any commit id (to roll back)
 #
 # Your songs, settings and analysis live in data/ (not in git), so they're never touched.
 # Only what changed gets rebuilt: Node packages when app/package*.json changed, Python
@@ -20,12 +19,7 @@ echo "=== $(date '+%F %T') update starting"
 
 git fetch --quiet --tags --force --prune origin
 TARGET="${1:-latest}"
-if [ "$TARGET" = "latest" ]; then
-  TARGET="$(git tag -l 'v*' --sort=-v:refname | head -n1)"
-  [ -n "$TARGET" ] || TARGET="origin/main"
-elif [ "$TARGET" = "main" ]; then
-  TARGET="origin/main"
-fi
+if [ "$TARGET" = "latest" ] || [ "$TARGET" = "main" ]; then TARGET="origin/main"; fi
 
 OLD="$(git rev-parse HEAD 2>/dev/null || echo none)"
 NEW="$(git rev-parse "$TARGET^{commit}")"

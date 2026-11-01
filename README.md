@@ -17,7 +17,7 @@ bash setup_ubuntu.sh
 
 The script installs ffmpeg, Node 22 and PM2 (if they're missing), and a Python 3.11 virtualenv for the worker via `uv`, so the system Python is untouched. It also installs CPU-only PyTorch, Demucs, the DrumSep drum-split model, beat_this, faster-whisper, basic-pitch, and Rhubarb Lip Sync, then starts both processes under PM2 and runs `pm2 save`.
 
-**Updating:** the version chip in AutoSeq's header turns into an **Update to vX.Y.Z** button when a new release is on GitHub. Click it and AutoSeq installs the release and restarts itself in a few seconds. From a shell it's `/opt/autoseq/scripts/update.sh`, or `scripts/update.sh v1.0.3` to go back to an older release. Only what changed gets rebuilt: Node packages, Python packages, or the worker. `data/`, `bin/` and `worker/.venv/` are never touched. The log is in `data/update.log`.
+**Updating:** the version chip in AutoSeq's header turns into an **Update available** button when `main` on GitHub has something new (hover it to see what changed). Click it and AutoSeq installs the update and restarts itself in a few seconds. From a shell it's `/opt/autoseq/scripts/update.sh`, or `scripts/update.sh <tag or commit>` to go back to an older version. Only what changed gets rebuilt: Node packages, Python packages, or the worker. `data/`, `bin/` and `worker/.venv/` are never touched. The log is in `data/update.log`.
 
 **Linking an existing install to GitHub (once):** the repo is private, so the server reaches it with a read-only deploy key. On the server, as root:
 
@@ -26,9 +26,9 @@ The script installs ffmpeg, Node 22 and PM2 (if they're missing), and a Python 3
 sudo bash /opt/autoseq/setup-github.sh
 ```
 
-It makes the key, prints it with the link to GitHub's *Settings > Deploy keys* page, waits while you add it, then turns `/opt/autoseq` into a checkout of the newest release and restarts. Your songs and settings stay where they are.
+It makes the key, prints it with the link to GitHub's *Settings > Deploy keys* page, waits while you add it, then turns `/opt/autoseq` into a checkout of `main` and restarts. Your songs and settings stay where they are.
 
-**Making a release:** commit to `main`, then tag it (`git tag -a v1.0.1 -m "what changed" && git push --tags`). Installs only pick up tags, so `main` can hold work in progress.
+**Shipping a change:** changes arrive as pull requests; merging one into `main` is what makes it show up as an update. Tag a commit (`v1.1.0`) whenever you want a named version to roll back to.
 
 Then open `http://<container-ip>:3075`. To expose it like your other apps, point a Cloudflare Tunnel at `localhost:3075`. The worker only listens on 127.0.0.1.
 
