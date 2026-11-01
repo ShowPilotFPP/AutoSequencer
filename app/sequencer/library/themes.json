@@ -1,0 +1,664 @@
+{
+ "source": "derwin12/xlights-autosequencer (MIT)",
+ "themes": [
+  {
+   "name": "Stellar Wind",
+   "mood": "ethereal",
+   "intent": "Deep space and slow, infinite movement \u2014 shooting stars over shifting nebula gas",
+   "palette": [
+    "#1A0A4E",
+    "#2E1B80",
+    "#4B32A6",
+    "#6B4EC8"
+   ],
+   "accent": [
+    "#FFFFFF",
+    "#B8E8FF",
+    "#40E0D0",
+    "#E066FF",
+    "#FFD700"
+   ],
+   "variants": [
+    "Butterfly Classic Reverse",
+    "Butterfly Lines",
+    "Butterfly Medium Fast",
+    "Ripple Circle",
+    "Ripple Fast Medium",
+    "Ripple Star",
+    "Shockwave Medium Thin",
+    "Spirals 3D Slow Spin",
+    "Spirals Directed Medium",
+    "Wave Dual Medium"
+   ]
+  },
+  {
+   "name": "Aurora",
+   "mood": "ethereal",
+   "intent": "Shimmering, vertical curtains of the Northern Lights that breathe with the music",
+   "palette": [
+    "#00CC66",
+    "#00EEBB",
+    "#22AADD",
+    "#0A8A6A"
+   ],
+   "accent": [
+    "#FF3388",
+    "#FF6B9D",
+    "#CC2266",
+    "#FF1A75"
+   ],
+   "variants": [
+    "Color Wash Smooth",
+    "Pinwheel 4-Arm Twist",
+    "Plasma Drift",
+    "Wave Dual Slow"
+   ]
+  },
+  {
+   "name": "Bio-Lume",
+   "mood": "ethereal",
+   "intent": "Pulsing deep-sea creatures or glowing forests \u2014 organic, living movement",
+   "palette": [
+    "#002244",
+    "#004466",
+    "#006655",
+    "#003355"
+   ],
+   "accent": [
+    "#FF4466",
+    "#FF6B88",
+    "#FF2244",
+    "#CC3355"
+   ],
+   "variants": [
+    "Liquid Flow",
+    "Plasma Pulse",
+    "Ripple Medium Thick",
+    "Tendril Medium"
+   ]
+  },
+  {
+   "name": "Inferno",
+   "mood": "aggressive",
+   "intent": "Raw power \u2014 house looks like it is on fire and exploding",
+   "palette": [
+    "#FF2200",
+    "#CC3300",
+    "#FF5500",
+    "#AA1100"
+   ],
+   "accent": [
+    "#00CCFF",
+    "#0088FF",
+    "#00EEFF",
+    "#2266FF"
+   ],
+   "variants": [
+    "Fire Medium",
+    "Fire Music-Reactive",
+    "Fire Tall",
+    "Meteors Fast Dense",
+    "Meteors Intense Explode",
+    "Plasma Storm",
+    "Shockwave Center",
+    "Shockwave Full Fast",
+    "Strobe Triple Fast"
+   ]
+  },
+  {
+   "name": "Molten Metal",
+   "mood": "aggressive",
+   "intent": "High-contrast, glowing-hot textures that feel heavy and industrial",
+   "palette": [
+    "#FFD700",
+    "#FF8C00",
+    "#CC6600",
+    "#E6A800"
+   ],
+   "accent": [
+    "#4466CC",
+    "#6688EE",
+    "#2244AA",
+    "#8899DD"
+   ],
+   "variants": [
+    "Bars Up Quad",
+    "Fan 6-Blade Medium",
+    "Fire High",
+    "Liquid Surge"
+   ]
+  },
+  {
+   "name": "Tracer Fire",
+   "mood": "aggressive",
+   "intent": "Sharp, fast, directional bullets of light \u2014 combat aesthetic",
+   "palette": [
+    "#FF0000",
+    "#FF4400",
+    "#FFCC00",
+    "#FF8800"
+   ],
+   "accent": [
+    "#00FF44",
+    "#44FF00",
+    "#00CC33",
+    "#88FF22"
+   ],
+   "variants": [
+    "Bars Right Dual",
+    "Chase Fast Multi",
+    "Meteors Long Trail",
+    "Strobe Triple Intense"
+   ]
+  },
+  {
+   "name": "The Void",
+   "mood": "dark",
+   "intent": "Negative space where lights feel like they are disappearing into a black hole",
+   "palette": [
+    "#0A0022",
+    "#110033",
+    "#1A0044",
+    "#080018"
+   ],
+   "accent": [
+    "#EEEEFF",
+    "#E0EAFF",
+    "#D8E8FF",
+    "#C0DCFF",
+    "#B8D4FF"
+   ],
+   "variants": [
+    "Butterfly Geometric Reverse",
+    "Butterfly Moebius",
+    "Butterfly Sparse Slow",
+    "Color Wash Smooth",
+    "Plasma Gentle",
+    "Spirals Dense Slow"
+   ]
+  },
+  {
+   "name": "Glitch City",
+   "mood": "dark",
+   "intent": "Broken, stuttering aesthetic like a malfunctioning computer",
+   "palette": [
+    "#00FF44",
+    "#00CC33",
+    "#003311",
+    "#00AA22"
+   ],
+   "accent": [
+    "#FF00FF",
+    "#FF33AA",
+    "#CC00CC",
+    "#FF66DD"
+   ],
+   "variants": [
+    "Bars Up Dense",
+    "Chase Multi Dense",
+    "Marquee Thin Fast",
+    "Strobe Dual Medium"
+   ]
+  },
+  {
+   "name": "The Kraken",
+   "mood": "dark",
+   "intent": "Organic, writhing movement that feels claustrophobic \u2014 tentacles in the deep",
+   "palette": [
+    "#003322",
+    "#004455",
+    "#002244",
+    "#005544"
+   ],
+   "accent": [
+    "#FFAA00",
+    "#FFD700",
+    "#CC8800",
+    "#FFB833"
+   ],
+   "variants": [
+    "Liquid Current",
+    "Plasma Dense Slow",
+    "Spirals Medium",
+    "Wave Triple Slow"
+   ]
+  },
+  {
+   "name": "Cyber Grid",
+   "mood": "structural",
+   "intent": "Precise, mathematical beauty \u2014 Tron-inspired symmetry",
+   "palette": [
+    "#00FFFF",
+    "#0088FF",
+    "#004488",
+    "#00BBDD"
+   ],
+   "accent": [
+    "#FF4400",
+    "#FF6633",
+    "#CC3300",
+    "#FF8855"
+   ],
+   "variants": [
+    "Bars Quad 3D Vertical",
+    "Bars Single 3D Half-Cycle",
+    "Chase Left-Right Medium",
+    "Fan 4-Blade Slow",
+    "Pinwheel 6-Arm Medium",
+    "Pinwheel 6-Arm Twist",
+    "Plasma Grid"
+   ]
+  },
+  {
+   "name": "Scanning Beam",
+   "mood": "structural",
+   "intent": "Sweeping searchlight effect that defines the house shape",
+   "palette": [
+    "#FFFFFF",
+    "#4488FF",
+    "#88BBFF",
+    "#CCDDFF"
+   ],
+   "accent": [
+    "#00CC44",
+    "#22FF66",
+    "#009933",
+    "#44DD77"
+   ],
+   "variants": [
+    "Bars Left Single",
+    "Chase Medium Quad",
+    "Spirals Directed Medium",
+    "Wave Single Fast"
+   ]
+  },
+  {
+   "name": "The Zipper",
+   "mood": "structural",
+   "intent": "Interlocked movement across props \u2014 morphs that zip back and forth",
+   "palette": [
+    "#FF2200",
+    "#0088FF",
+    "#FFCC00",
+    "#00FF66"
+   ],
+   "accent": [
+    "#FF00CC",
+    "#FF8800",
+    "#8800FF",
+    "#00FFCC"
+   ],
+   "variants": [
+    "Chase Trio Fast",
+    "Color Wash Smooth",
+    "Liquid Flow",
+    "Plasma Weave"
+   ]
+  },
+  {
+   "name": "Winter Wonderland",
+   "mood": "ethereal",
+   "intent": "Gentle snowfall over twinkling cool blue lights \u2014 peaceful winter scene",
+   "palette": [
+    "#88CCFF",
+    "#AADDFF",
+    "#CCE5FF",
+    "#6699CC"
+   ],
+   "accent": [
+    "#FFD700",
+    "#FFAA33",
+    "#CC8800",
+    "#FFE066"
+   ],
+   "variants": [
+    "Butterfly Classic Reverse",
+    "Butterfly Dense Medium",
+    "Butterfly Lines",
+    "Color Wash Smooth",
+    "Ripple Medium Thin",
+    "Shockwave Small Thin",
+    "Wave Dual Slow"
+   ]
+  },
+  {
+   "name": "Candy Cane Chase",
+   "mood": "structural",
+   "intent": "Classic candy cane stripes chasing along the roofline \u2014 fun and festive",
+   "palette": [
+    "#FF0000",
+    "#CC0000",
+    "#FFFFFF",
+    "#FF3333"
+   ],
+   "accent": [
+    "#00AA00",
+    "#FFD700",
+    "#008800",
+    "#CCAA00"
+   ],
+   "variants": [
+    "Bars Right Quad",
+    "Chase Slow Quad",
+    "Marquee Thick Slow",
+    "Spirals Fast Dense"
+   ]
+  },
+  {
+   "name": "Warm Glow",
+   "mood": "ethereal",
+   "intent": "Slow golden fire with warm twinkle \u2014 cozy fireplace warmth on a cold night",
+   "palette": [
+    "#FFAA33",
+    "#FFD700",
+    "#CC8800",
+    "#FFE088"
+   ],
+   "accent": [
+    "#006633",
+    "#228844",
+    "#004422",
+    "#33AA66"
+   ],
+   "variants": [
+    "Color Wash Smooth",
+    "Fire Low",
+    "Plasma Gentle",
+    "Ripple Slow Medium"
+   ]
+  },
+  {
+   "name": "North Star",
+   "mood": "structural",
+   "intent": "Radiant star burst with expanding ripples \u2014 guiding light of the season",
+   "palette": [
+    "#FFD700",
+    "#FFFFFF",
+    "#FFEE88",
+    "#FFB800"
+   ],
+   "accent": [
+    "#1A1A88",
+    "#3333CC",
+    "#0A0A66",
+    "#4444AA"
+   ],
+   "variants": [
+    "Fan 6-Blade Slow",
+    "Fan 8-Blade",
+    "Pinwheel 8-Arm Slow",
+    "Ripple Fast Medium"
+   ]
+  },
+  {
+   "name": "Festive Flash",
+   "mood": "aggressive",
+   "intent": "High-energy holiday hype \u2014 shockwaves and strobes in classic Christmas colors",
+   "palette": [
+    "#FF0000",
+    "#00CC00",
+    "#CC0000",
+    "#009900"
+   ],
+   "accent": [
+    "#FFD700",
+    "#FFAA00",
+    "#00CC00",
+    "#009900"
+   ],
+   "variants": [
+    "Fireworks Default",
+    "Meteors Fast Flash",
+    "Shockwave Medium Fast",
+    "Strobe Dual Fast"
+   ]
+  },
+  {
+   "name": "Silent Night",
+   "mood": "ethereal",
+   "intent": "Slow, peaceful color wash with gentle snowfall \u2014 contemplative holiday stillness",
+   "palette": [
+    "#1A1A66",
+    "#2B2288",
+    "#0F0F44",
+    "#3D33AA"
+   ],
+   "accent": [
+    "#FFD700",
+    "#FFAA33",
+    "#CC8800",
+    "#FFE066"
+   ],
+   "variants": [
+    "Butterfly Lines",
+    "Butterfly Moebius",
+    "Butterfly Sparse Medium",
+    "Color Wash Smooth",
+    "Plasma Ethereal",
+    "Ripple Slow Thin"
+   ]
+  },
+  {
+   "name": "Haunted Pulse",
+   "mood": "dark",
+   "intent": "Eerie purple plasma with unsettling slow strobe flickers \u2014 haunted house ambiance",
+   "palette": [
+    "#440066",
+    "#660099",
+    "#220044",
+    "#550088"
+   ],
+   "accent": [
+    "#00FF44",
+    "#44FF00",
+    "#00CC33",
+    "#88FF66"
+   ],
+   "variants": [
+    "Fire Ember",
+    "Liquid Drift",
+    "Plasma Drift",
+    "Strobe Single Slow"
+   ]
+  },
+  {
+   "name": "Jack-o-Lantern",
+   "mood": "aggressive",
+   "intent": "Blazing orange fire with explosive shockwaves \u2014 carved pumpkin brought to life",
+   "palette": [
+    "#FF6600",
+    "#FF4400",
+    "#CC5500",
+    "#FF8800"
+   ],
+   "accent": [
+    "#8800CC",
+    "#AA22FF",
+    "#6600AA",
+    "#CC66FF"
+   ],
+   "variants": [
+    "Fire Intense",
+    "Meteors Long Slow",
+    "Plasma Surge",
+    "Shockwave Large Medium"
+   ]
+  },
+  {
+   "name": "Graveyard Fog",
+   "mood": "dark",
+   "intent": "Low creeping fog with tendrils reaching through the darkness \u2014 graveyard at midnight",
+   "palette": [
+    "#444444",
+    "#334433",
+    "#2A2A2A",
+    "#3D4D3D"
+   ],
+   "accent": [
+    "#88CCFF",
+    "#AAEEFF",
+    "#66AADD",
+    "#CCDDFF"
+   ],
+   "variants": [
+    "Color Wash Smooth",
+    "Liquid Creep",
+    "Plasma Ethereal",
+    "Spirals Sparse Slow"
+   ]
+  },
+  {
+   "name": "Candy Cane",
+   "mood": "structural",
+   "intent": "Classic candy cane red-and-white stripes in motion \u2014 spinning spirals, sweeping bars, and pinwheels with green shockwave accents on drum hits",
+   "palette": [
+    "#FF0000",
+    "#FFFFFF",
+    "#CC0000",
+    "#F0F0F0"
+   ],
+   "accent": [
+    "#00CC44",
+    "#33DD66",
+    "#009933",
+    "#88EEAA"
+   ],
+   "variants": [
+    "Bars Right Dual",
+    "Chase Right-Left Subtle",
+    "Fan 3-Blade",
+    "Pinwheel 4-Arm Twist",
+    "Shockwave Full Fast",
+    "Shockwave Medium Fast",
+    "Spirals 3D Blend Fast Spin",
+    "Spirals 3D Sharp"
+   ]
+  },
+  {
+   "name": "White Heat",
+   "mood": "aggressive",
+   "intent": "White-first pro look \u2014 blinding white energy over a hot magenta wash, the accent color flashing through on peaks",
+   "palette": [
+    "#FF00FF",
+    "#B000B0",
+    "#FFFFFF",
+    "#4B004B"
+   ],
+   "accent": [
+    "#FFFFFF",
+    "#FF00FF"
+   ],
+   "variants": [
+    "Chase Fast Multi",
+    "Color Wash Smooth",
+    "Plasma Classic Fast",
+    "Shockwave Medium Thin"
+   ]
+  },
+  {
+   "name": "Ice Crystal",
+   "mood": "ethereal",
+   "intent": "White-first pro look \u2014 cool white sparkle over deep blue and glacier-blue washes, like moonlight on ice",
+   "palette": [
+    "#0000FF",
+    "#007DFB",
+    "#FFFFFF",
+    "#001A66"
+   ],
+   "accent": [
+    "#FFFFFF",
+    "#00FFFF"
+   ],
+   "variants": [
+    "Color Wash Vertical Fade",
+    "Plasma Ethereal",
+    "Twinkle Gentle",
+    "Wave Dual Slow"
+   ]
+  },
+  {
+   "name": "Violet Night",
+   "mood": "dark",
+   "intent": "White-first pro look \u2014 slow white movement over a deep violet field, regal and shadowed",
+   "palette": [
+    "#8000FF",
+    "#4B0082",
+    "#2A004B",
+    "#FFFFFF"
+   ],
+   "accent": [
+    "#FFFFFF",
+    "#8000FF"
+   ],
+   "variants": [
+    "Color Wash Flat",
+    "Plasma Dense Slow",
+    "Spirals 3D Slow Spin",
+    "Wave Triple Slow"
+   ]
+  },
+  {
+   "name": "Scarlet Ribbon",
+   "mood": "structural",
+   "intent": "White-first pro look \u2014 crisp white chases wrapped in classic deep red, a ribbon around the house",
+   "palette": [
+    "#FF0000",
+    "#B00000",
+    "#FFFFFF",
+    "#4B0000"
+   ],
+   "accent": [
+    "#FFFFFF",
+    "#FF0000"
+   ],
+   "variants": [
+    "Chase Left-Right Medium",
+    "Chase To Middle Full",
+    "Color Wash Smooth",
+    "Marquee Thick Slow"
+   ]
+  },
+  {
+   "name": "Solar Gold",
+   "mood": "aggressive",
+   "intent": "White-first pro look \u2014 hot white bursts over saturated gold, with the whole house glowing like stage lighting",
+   "palette": [
+    "#FFFF00",
+    "#FFB400",
+    "#FFFFFF",
+    "#7A5A00"
+   ],
+   "accent": [
+    "#FFFFFF",
+    "#FFFF00"
+   ],
+   "variants": [
+    "Butterfly Geometric",
+    "Color Wash Circular",
+    "Fan 6-Blade Medium",
+    "Pinwheel 6-Arm Medium"
+   ]
+  },
+  {
+   "name": "Ember White",
+   "mood": "structural",
+   "intent": "White-first pro look \u2014 warm white shimmer over amber and candle-orange, cozy but precise",
+   "palette": [
+    "#D76B00",
+    "#FF6600",
+    "#FFF3E8",
+    "#5A2D00"
+   ],
+   "accent": [
+    "#FFFFFF",
+    "#FF6600"
+   ],
+   "variants": [
+    "Color Wash Horizontal Fade",
+    "Fire Ember",
+    "Shimmer Subtle",
+    "Twinkle Medium"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,4570 @@
+{
+"source": "derwin12/xlights-autosequencer (MIT)",
+"variants": [
+{
+"name": "Bars Single 3D Half-Cycle",
+"effect": "Bars",
+"settings": {
+"E_CHECKBOX_Bars_3D": 1,
+"E_CHECKBOX_Bars_Gradient": 0,
+"E_CHECKBOX_Bars_Highlight": 0,
+"E_SLIDER_Bars_BarCount": 1,
+"E_SLIDER_Bars_Cycles": 0.5
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Bars_Direction",
+"values": [
+"expand",
+"compress"
+],
+"mode": "alternate"
+},
+"description": "Single thick bar with 3D depth that completes a half-cycle expansion. Subtle movement suitable for background layers."
+},
+{
+"name": "Bars Single 3D Radial",
+"effect": "Bars",
+"settings": {
+"E_CHECKBOX_Bars_3D": 1,
+"E_CHECKBOX_Bars_Gradient": 0,
+"E_CHECKBOX_Bars_Highlight": 0,
+"E_SLIDER_Bars_BarCount": 1,
+"E_SLIDER_Bars_Cycles": 1.0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Bars_Direction",
+"values": [
+"expand",
+"compress"
+],
+"mode": "alternate"
+},
+"description": "Single bar with 3D depth effect that expands and compresses. Good for matrices and custom props."
+},
+{
+"name": "Bars Quad 3D Vertical",
+"effect": "Bars",
+"settings": {
+"E_CHECKBOX_Bars_3D": 1,
+"E_CHECKBOX_Bars_Gradient": 0,
+"E_CHECKBOX_Bars_Highlight": 0,
+"E_SLIDER_Bars_BarCount": 4,
+"E_SLIDER_Bars_Cycles": 2
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Bars_Direction",
+"values": [
+"up",
+"down"
+],
+"mode": "alternate"
+},
+"description": "Four bars with 3D depth sweeping vertically. Creates a striped movement pattern on trees and matrices."
+},
+{
+"name": "Bars Single Flat Vertical",
+"effect": "Bars",
+"settings": {
+"E_CHECKBOX_Bars_3D": 0,
+"E_CHECKBOX_Bars_Gradient": 0,
+"E_CHECKBOX_Bars_Highlight": 0,
+"E_SLIDER_Bars_BarCount": 1,
+"E_SLIDER_Bars_Cycles": 1.0
+},
+"energy": "low",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Bars_Direction",
+"values": [
+"up",
+"down"
+],
+"mode": "alternate"
+},
+"description": "Single flat bar sweeping vertically without 3D depth. Clean simple fill for arches and single-line props."
+},
+{
+"name": "Bars Single 3D Vertical",
+"effect": "Bars",
+"settings": {
+"E_CHECKBOX_Bars_3D": 1,
+"E_CHECKBOX_Bars_Gradient": 0,
+"E_CHECKBOX_Bars_Highlight": 0,
+"E_SLIDER_Bars_BarCount": 1,
+"E_SLIDER_Bars_Cycles": 1.0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Bars_Direction",
+"values": [
+"up",
+"down"
+],
+"mode": "alternate"
+},
+"description": "Single bar with 3D depth sweeping vertically. Adds dimension to custom and linear props."
+},
+{
+"name": "Bars Up Quad",
+"effect": "Bars",
+"settings": {
+"E_CHOICE_Bars_Direction": "up",
+"E_SLIDER_Bars_BarCount": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four bars sweeping upward. Multi-bar upward sweep for medium-energy sections."
+},
+{
+"name": "Bars Right Dual",
+"effect": "Bars",
+"settings": {
+"E_CHOICE_Bars_Direction": "right",
+"E_SLIDER_Bars_BarCount": 2
+},
+"energy": "low",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two bars moving right. Simple dual rightward sweep for subtle prop animation."
+},
+{
+"name": "Bars Up Dense",
+"effect": "Bars",
+"settings": {
+"E_CHOICE_Bars_Direction": "up",
+"E_SLIDER_Bars_BarCount": 8
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Eight bars sweeping upward densely. Dense upward bar wash for high-energy glitch sections."
+},
+{
+"name": "Bars Left Single",
+"effect": "Bars",
+"settings": {
+"E_CHOICE_Bars_Direction": "left",
+"E_SLIDER_Bars_BarCount": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Single bar sweeping left. Clean minimal leftward scan for subtle scanning effects."
+},
+{
+"name": "Bars Right Quad",
+"effect": "Bars",
+"settings": {
+"E_CHOICE_Bars_Direction": "right",
+"E_SLIDER_Bars_BarCount": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four bars sweeping right. Active multi-bar rightward sweep for mid-energy sections."
+},
+{
+"name": "Butterfly Classic 2-Chunk",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 2,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 10,
+"E_SLIDER_Butterfly_Style": 1
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Classic bilateral symmetry pattern split into two chunks. Slow organic movement on stars and single-line props."
+},
+{
+"name": "Butterfly Classic",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 1,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 10,
+"E_SLIDER_Butterfly_Style": 1
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Classic bilateral symmetry pattern with slow flowing movement. Works well on matrices and horizontal layouts."
+},
+{
+"name": "Butterfly Pattern",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 1,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 5,
+"E_SLIDER_Butterfly_Style": 2
+},
+"energy": "low",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Alternate butterfly pattern with gentle undulating motion. Calm organic feel for custom props."
+},
+{
+"name": "Butterfly Geometric 10-Chunk",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 10,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 20,
+"E_SLIDER_Butterfly_Style": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Geometric pattern fragmented into 10 repeating chunks. Dense tessellation effect best on trees."
+},
+{
+"name": "Butterfly Geometric 2-Chunk",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 2,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 20,
+"E_SLIDER_Butterfly_Style": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Geometric pattern split into two mirrored sections. Clean angular movement for matrices."
+},
+{
+"name": "Butterfly Geometric",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 1,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 30,
+"E_SLIDER_Butterfly_Style": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Bold geometric pattern with moderate speed. Striking angular shapes on arches and matrices."
+},
+{
+"name": "Butterfly Medium Fast",
+"effect": "Butterfly",
+"settings": {
+"E_SLIDER_Butterfly_Chunks": 3,
+"E_SLIDER_Butterfly_Speed": 15
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three-chunk butterfly at fast speed. Active butterfly animation for energetic sections."
+},
+{
+"name": "Butterfly Sparse Slow",
+"effect": "Butterfly",
+"settings": {
+"E_SLIDER_Butterfly_Chunks": 2,
+"E_SLIDER_Butterfly_Speed": 5
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two-chunk butterfly at very slow speed. Gentle drifting butterfly for calm ambient sections."
+},
+{
+"name": "Butterfly Dense Medium",
+"effect": "Butterfly",
+"settings": {
+"E_SLIDER_Butterfly_Chunks": 4,
+"E_SLIDER_Butterfly_Speed": 8
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four-chunk butterfly at medium speed. Dense butterfly pattern for mid-energy sections."
+},
+{
+"name": "Butterfly Sparse Medium",
+"effect": "Butterfly",
+"settings": {
+"E_SLIDER_Butterfly_Chunks": 2,
+"E_SLIDER_Butterfly_Speed": 6
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two-chunk butterfly at medium-slow speed. Subtle sparse butterfly for quiet verses."
+},
+{
+"name": "Butterfly Lines",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 1,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 8,
+"E_SLIDER_Butterfly_Style": 3
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Linear-streak pattern (style 3) \u2014 diagonal lines of color flowing across the canvas. Works well as an ambient background on bounding-box groups."
+},
+{
+"name": "Butterfly Moebius",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Normal",
+"E_SLIDER_Butterfly_Chunks": 1,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 8,
+"E_SLIDER_Butterfly_Style": 5
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Moebius-twist pattern (style 5) \u2014 continuous looping band with organic color flow. Atmospheric background effect."
+},
+{
+"name": "Butterfly Classic Reverse",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Reverse",
+"E_SLIDER_Butterfly_Chunks": 1,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 10,
+"E_SLIDER_Butterfly_Style": 1
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Classic bilateral symmetry pattern flowing in reverse \u2014 pairs with Butterfly Classic for alternating-section variety."
+},
+{
+"name": "Butterfly Geometric Reverse",
+"effect": "Butterfly",
+"settings": {
+"E_CHOICE_Butterfly_Colors": "Palette",
+"E_CHOICE_Butterfly_Direction": "Reverse",
+"E_SLIDER_Butterfly_Chunks": 1,
+"E_SLIDER_Butterfly_Skip": 2,
+"E_SLIDER_Butterfly_Speed": 15,
+"E_SLIDER_Butterfly_Style": 4
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Geometric pillar pattern (style 4) flowing in reverse. Pair with Butterfly Geometric for directional variety."
+},
+{
+"name": "Circles Single Radial",
+"effect": "Circles",
+"settings": {
+"E_CHECKBOX_Circles_Bounce": 0,
+"E_CHECKBOX_Circles_Plasma": 0,
+"E_CHECKBOX_Circles_Radial": 1,
+"E_SLIDER_Circles_Count": 1,
+"E_SLIDER_Circles_Size": 5,
+"E_SLIDER_Circles_Speed": 5
+},
+"energy": "low",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "One slow radial circle expanding outward. Gentle pulsing effect ideal for star props."
+},
+{
+"name": "Circles Multi",
+"effect": "Circles",
+"settings": {
+"E_CHECKBOX_Circles_Bounce": 0,
+"E_CHECKBOX_Circles_Plasma": 0,
+"E_CHECKBOX_Circles_Radial": 0,
+"E_SLIDER_Circles_Count": 5,
+"E_SLIDER_Circles_Size": 5,
+"E_SLIDER_Circles_Speed": 10
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Five circles drifting across the display. Ambient floating motion for single-line props."
+},
+{
+"name": "Color Wash Circular",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_CircularPalette": 1,
+"E_CHECKBOX_ColorWash_HFade": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Smooth circular palette rotation across all pixels, with a horizontal fade for depth. Even color cycling for background ambiance."
+},
+{
+"name": "Color Wash Flat",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_HFade": 0,
+"E_CHECKBOX_ColorWash_VFade": 0
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Solid color wash with no fading in any direction. Uniform fill that lights every pixel equally."
+},
+{
+"name": "Color Wash Full Fade",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_HFade": 1,
+"E_CHECKBOX_ColorWash_VFade": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Color wash fading in both horizontal and vertical directions. Creates a soft vignette effect from center."
+},
+{
+"name": "Color Wash Horizontal Fade",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_HFade": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Color wash fading from left to right edges. Adds directional depth to single-line and star props."
+},
+{
+"name": "Color Wash Vertical Fade",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_VFade": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Color wash fading from top to bottom. Natural gravity-like gradient on trees and vertical layouts."
+},
+{
+"name": "Color Wash Shimmer Cycles",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_Shimmer": 1,
+"E_TEXTCTRL_ColorWash_Cycles": 2.0,
+"E_CHECKBOX_ColorWash_VFade": 1
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two-cycle color wash with shimmer sparkle and a vertical fade. Active ambient glow for prominent sections."
+},
+{
+"name": "Color Wash Smooth",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_Shimmer": 0,
+"E_TEXTCTRL_ColorWash_Cycles": 1.0,
+"E_CHECKBOX_ColorWash_HFade": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Single-cycle smooth color wash with no shimmer, with a horizontal fade for depth. Clean even wash for quiet backgrounds."
+},
+{
+"name": "Color Wash Shimmer",
+"effect": "Color Wash",
+"settings": {
+"E_CHECKBOX_ColorWash_Shimmer": 1,
+"E_TEXTCTRL_ColorWash_Cycles": 1.0,
+"E_CHECKBOX_ColorWash_VFade": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Single-cycle color wash with shimmer and a vertical fade. Gentle sparkle for warm background moments."
+},
+{
+"name": "Curtain Center Close",
+"effect": "Curtain",
+"settings": {
+"E_CHECKBOX_Curtain_Repeat": 0,
+"E_CHOICE_Curtain_Edge": "center",
+"E_CHOICE_Curtain_Effect": "close",
+"E_SLIDER_Curtain_Swag": 0,
+"E_SLIDER_Curtain_Speed": 1.0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Curtain closing from edges toward center. Clean reveal-in-reverse for endings and transitions."
+},
+{
+"name": "Curtain Center Open Repeat",
+"effect": "Curtain",
+"settings": {
+"E_CHECKBOX_Curtain_Repeat": 1,
+"E_CHOICE_Curtain_Edge": "center",
+"E_CHOICE_Curtain_Effect": "open",
+"E_SLIDER_Curtain_Swag": 0,
+"E_SLIDER_Curtain_Speed": 8.0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Curtain opening from center outward on repeat. Continuous pulsing reveal effect for matrices and trees."
+},
+{
+"name": "Curtain Center Open",
+"effect": "Curtain",
+"settings": {
+"E_CHECKBOX_Curtain_Repeat": 0,
+"E_CHOICE_Curtain_Edge": "center",
+"E_CHOICE_Curtain_Effect": "open",
+"E_SLIDER_Curtain_Swag": 0,
+"E_SLIDER_Curtain_Speed": 1.0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"intro",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Curtain opening from center outward once. Dramatic single reveal for intros and section starts."
+},
+{
+"name": "Curtain Middle Pulse",
+"effect": "Curtain",
+"settings": {
+"E_CHECKBOX_Curtain_Repeat": 0,
+"E_CHOICE_Curtain_Edge": "middle",
+"E_CHOICE_Curtain_Effect": "open then close",
+"E_SLIDER_Curtain_Swag": 0,
+"E_SLIDER_Curtain_Speed": 0.2
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Middle-edge curtain that opens then closes in one motion. Quick breath-like pulse on matrices."
+},
+{
+"name": "Curtain Middle Pulse Slow",
+"effect": "Curtain",
+"settings": {
+"E_CHECKBOX_Curtain_Repeat": 0,
+"E_CHOICE_Curtain_Edge": "middle",
+"E_CHOICE_Curtain_Effect": "open then close",
+"E_SLIDER_Curtain_Swag": 0,
+"E_SLIDER_Curtain_Speed": 1.0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Middle-edge curtain opening and closing slowly. Gentle breathing motion for verses and bridges."
+},
+{
+"name": "Curtain Top Close Swag",
+"effect": "Curtain",
+"settings": {
+"E_CHECKBOX_Curtain_Repeat": 0,
+"E_CHOICE_Curtain_Edge": "top",
+"E_CHOICE_Curtain_Effect": "close",
+"E_SLIDER_Curtain_Swag": 3,
+"E_SLIDER_Curtain_Speed": 1.0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"outro",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Curtain closing from top edge with decorative swag curve. Elegant draping motion for trees."
+},
+{
+"name": "Fan 2-Blade",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Accel": 0,
+"E_SLIDER_Fan_Blade_Angle": 90,
+"E_SLIDER_Fan_Blade_Width": 100,
+"E_SLIDER_Fan_CenterX": 50,
+"E_SLIDER_Fan_CenterY": 50,
+"E_SLIDER_Fan_Duration": 100,
+"E_SLIDER_Fan_Element_Width": 100,
+"E_SLIDER_Fan_Num_Blades": 2,
+"E_SLIDER_Fan_Num_Elements": 1,
+"E_SLIDER_Fan_Start_Angle": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two-blade fan sweeping a full rotation. Wide coverage pattern for custom props."
+},
+{
+"name": "Fan 3-Blade",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Accel": 0,
+"E_SLIDER_Fan_Blade_Angle": 90,
+"E_SLIDER_Fan_Blade_Width": 100,
+"E_SLIDER_Fan_CenterX": 50,
+"E_SLIDER_Fan_CenterY": 50,
+"E_SLIDER_Fan_Duration": 100,
+"E_SLIDER_Fan_Element_Width": 100,
+"E_SLIDER_Fan_Num_Blades": 3,
+"E_SLIDER_Fan_Num_Elements": 1,
+"E_SLIDER_Fan_Start_Angle": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three-blade fan with full rotation sweep. Balanced radial motion on matrices and single-line props."
+},
+{
+"name": "Fan 3-Blade Short",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Accel": 0,
+"E_SLIDER_Fan_Blade_Angle": 90,
+"E_SLIDER_Fan_Blade_Width": 100,
+"E_SLIDER_Fan_CenterX": 50,
+"E_SLIDER_Fan_CenterY": 50,
+"E_SLIDER_Fan_Duration": 76,
+"E_SLIDER_Fan_Element_Width": 100,
+"E_SLIDER_Fan_Num_Blades": 3,
+"E_SLIDER_Fan_Num_Elements": 1,
+"E_SLIDER_Fan_Start_Angle": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three-blade fan with shortened sweep duration. Quicker partial rotation for accent moments."
+},
+{
+"name": "Fan 3-Blade Off-Center",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Accel": 0,
+"E_SLIDER_Fan_Blade_Angle": 90,
+"E_SLIDER_Fan_Blade_Width": 100,
+"E_SLIDER_Fan_CenterY": 50,
+"E_SLIDER_Fan_Duration": 100,
+"E_SLIDER_Fan_Element_Width": 100,
+"E_SLIDER_Fan_Num_Blades": 3,
+"E_SLIDER_Fan_Num_Elements": 1,
+"E_SLIDER_Fan_Start_Angle": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three-blade fan with off-center pivot point. Asymmetric rotation for trees and single-line props."
+},
+{
+"name": "Fan 6-Blade Medium",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Duration": 50,
+"E_SLIDER_Fan_Num_Blades": 6
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Six-blade fan with medium duration cycle. Active multi-blade fan for energetic sections."
+},
+{
+"name": "Fan 4-Blade Slow",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Duration": 80,
+"E_SLIDER_Fan_Num_Blades": 4
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four-blade fan with long duration cycle. Slow deliberate fan sweep for calm ambient sections."
+},
+{
+"name": "Fan 8-Blade",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Duration": 60,
+"E_SLIDER_Fan_Num_Blades": 8
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Eight-blade fan with medium-long cycle. Dense blade pattern for rich fan effects."
+},
+{
+"name": "Fan 6-Blade Slow",
+"effect": "Fan",
+"settings": {
+"E_SLIDER_Fan_Duration": 80,
+"E_SLIDER_Fan_Num_Blades": 6
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Six-blade fan with long duration cycle. Full slow fan sweep for dramatic extended sections."
+},
+{
+"name": "Fill Wrap Horizontal",
+"effect": "Fill",
+"settings": {
+"E_CHECKBOX_Fill_Color_Time": 0,
+"E_CHECKBOX_Fill_Wrap": 1,
+"E_SLIDER_Fill_Band_Size": 0,
+"E_SLIDER_Fill_Offset": 0,
+"E_SLIDER_Fill_Skip_Size": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Fill_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Wrapping color fill sweeping left and right. Clean wipe transition for icicles and single-line props."
+},
+{
+"name": "Fill Wrap Vertical",
+"effect": "Fill",
+"settings": {
+"E_CHECKBOX_Fill_Color_Time": 0,
+"E_CHECKBOX_Fill_Wrap": 1,
+"E_SLIDER_Fill_Band_Size": 0,
+"E_SLIDER_Fill_Offset": 0,
+"E_SLIDER_Fill_Skip_Size": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Fill_Direction",
+"values": [
+"Up",
+"Down"
+],
+"mode": "alternate"
+},
+"description": "Wrapping color fill sweeping up and down. Smooth vertical wipe for arches and custom props."
+},
+{
+"name": "Fill Center Band",
+"effect": "Fill",
+"settings": {
+"E_SLIDER_Fill_Band_Size": 15,
+"E_SLIDER_Fill_Position": 50
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fill effect with medium band centered at 50%. Midpoint fill sweep for linear prop scanning effects."
+},
+{
+"name": "Fire Medium",
+"effect": "Fire",
+"settings": {
+"E_CHECKBOX_Fire_GrowWithMusic": 0,
+"E_CHOICE_Fire_Location": "Bottom",
+"E_SLIDER_Fire_Height": 50,
+"E_SLIDER_Fire_HueShift": 79
+},
+"energy": "low",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-height flames with hue-shifted color from the bottom. Warm ambient glow for arches and props."
+},
+{
+"name": "Fire Music-Reactive",
+"effect": "Fire",
+"settings": {
+"E_CHECKBOX_Fire_GrowWithMusic": 1,
+"E_CHOICE_Fire_Location": "Bottom",
+"E_SLIDER_Fire_HueShift": 10
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"chorus",
+"build",
+"drop"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Flames that grow taller with music intensity. Dynamic fire that responds to audio energy."
+},
+{
+"name": "Fire Tall",
+"effect": "Fire",
+"settings": {
+"E_CHOICE_Fire_Location": "Bottom",
+"E_SLIDER_Fire_Height": 80
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Very tall flames filling most of the prop. Maximum fire presence for intense sections."
+},
+{
+"name": "Fire High",
+"effect": "Fire",
+"settings": {
+"E_CHOICE_Fire_Location": "Bottom",
+"E_SLIDER_Fire_Height": 60
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "High flames reaching the upper portion of the prop. Strong fire effect for energetic moments."
+},
+{
+"name": "Fire Low",
+"effect": "Fire",
+"settings": {
+"E_CHOICE_Fire_Location": "Bottom",
+"E_SLIDER_Fire_Height": 30
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Low flames at the base of the prop. Subtle warm glow for ambient sections."
+},
+{
+"name": "Fire Ember",
+"effect": "Fire",
+"settings": {
+"E_CHOICE_Fire_Location": "Bottom",
+"E_SLIDER_Fire_Height": 25
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Minimal ember-like flames hugging the bottom. Barely-there fire for very quiet passages."
+},
+{
+"name": "Fire Intense",
+"effect": "Fire",
+"settings": {
+"E_CHOICE_Fire_Location": "Bottom",
+"E_SLIDER_Fire_Height": 70
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Intense tall flames covering most of the prop height. High-energy fire for peak moments."
+},
+{
+"name": "Fireworks Burst",
+"effect": "Fireworks",
+"settings": {
+"E_CHECKBOX_FIRETIMING": 0,
+"E_CHECKBOX_Fireworks_UseMusic": 0,
+"E_SLIDER_Fireworks_Count": 50,
+"E_SLIDER_Fireworks_Fade": 50,
+"E_SLIDER_Fireworks_Velocity": 2,
+"E_SLIDER_Fireworks_XLocation": -1,
+"E_SLIDER_Fireworks_XVelocity": 0,
+"E_SLIDER_Fireworks_YLocation": -1,
+"E_SLIDER_Fireworks_YVelocity": 0
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Dense burst of 50 fireworks with medium fade. High-impact explosion effect for dramatic moments."
+},
+{
+"name": "Fireworks Default",
+"effect": "Fireworks",
+"settings": {},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Default fireworks burst with no parameter overrides. Standard fireworks display for festive celebration moments."
+},
+{
+"name": "Kaleidoscope Square",
+"effect": "Kaleidoscope",
+"settings": {
+"E_CHOICE_Kaleidoscope_Type": "Square",
+"E_SLIDER_Kaleidoscope_Rotation": 0,
+"E_SLIDER_Kaleidoscope_Size": 47,
+"E_SLIDER_Kaleidoscope_X": 50,
+"E_SLIDER_Kaleidoscope_Y": 50
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Square-pattern kaleidoscope mirroring from center. Symmetrical reflections on matrices and trees."
+},
+{
+"name": "Kaleidoscope Triangle",
+"effect": "Kaleidoscope",
+"settings": {
+"E_CHOICE_Kaleidoscope_Type": "Triangle",
+"E_SLIDER_Kaleidoscope_Rotation": 0,
+"E_SLIDER_Kaleidoscope_Size": 25,
+"E_SLIDER_Kaleidoscope_X": 50,
+"E_SLIDER_Kaleidoscope_Y": 50
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Triangle-pattern kaleidoscope with smaller mirrored segments. Intricate reflections on matrices."
+},
+{
+"name": "Liquid Elastic",
+"effect": "Liquid",
+"settings": {
+"E_CHECKBOX_BottomBarrier": 1,
+"E_CHECKBOX_Enabled2": 1,
+"E_CHECKBOX_Enabled3": 0,
+"E_CHECKBOX_Enabled4": 1,
+"E_CHECKBOX_FlowMusic1": 0,
+"E_CHECKBOX_HoldColor": 1,
+"E_CHECKBOX_LeftBarrier": 0,
+"E_CHECKBOX_MixColors": 0,
+"E_CHECKBOX_RightBarrier": 0,
+"E_CHECKBOX_TopBarrier": 0,
+"E_CHOICE_ParticleType": "Elastic",
+"E_SLIDER_Size": 415
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Elastic particle simulation with bottom barrier and held colors. Bouncy organic motion on single-line props."
+},
+{
+"name": "Liquid Water",
+"effect": "Liquid",
+"settings": {
+"E_CHECKBOX_BottomBarrier": 0,
+"E_CHECKBOX_Enabled2": 0,
+"E_CHECKBOX_Enabled3": 0,
+"E_CHECKBOX_Enabled4": 0,
+"E_CHECKBOX_FlowMusic1": 0,
+"E_CHECKBOX_HoldColor": 1,
+"E_CHECKBOX_LeftBarrier": 0,
+"E_CHECKBOX_MixColors": 0,
+"E_CHECKBOX_RightBarrier": 0,
+"E_CHECKBOX_TopBarrier": 0,
+"E_CHOICE_ParticleType": "Water",
+"E_SLIDER_Size": 699
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Water particle simulation flowing freely. Smooth fluid motion ideal for horizontal matrices."
+},
+{
+"name": "Liquid Flow",
+"effect": "Liquid",
+"settings": {},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Moderate liquid flow. Balanced fluid motion for general use."
+},
+{
+"name": "Liquid Surge",
+"effect": "Liquid",
+"settings": {
+"E_TEXTCTRL_Velocity1": 200
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast surging liquid. High-energy fluid rush for intense sections."
+},
+{
+"name": "Liquid Current",
+"effect": "Liquid",
+"settings": {
+"E_TEXTCTRL_Velocity1": 120
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-fast liquid current. Active flowing energy for mid-high sections."
+},
+{
+"name": "Liquid Drift",
+"effect": "Liquid",
+"settings": {
+"E_TEXTCTRL_Velocity1": 70
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Slow drifting liquid. Gentle motion for calm ambient sections."
+},
+{
+"name": "Liquid Creep",
+"effect": "Liquid",
+"settings": {
+"E_TEXTCTRL_Velocity1": 50
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Very slow creeping liquid. Minimal motion for the quietest passages."
+},
+{
+"name": "Marquee Thin Reverse",
+"effect": "Marquee",
+"settings": {
+"E_CHECKBOX_Marquee_Reverse": 1,
+"E_SLIDER_MarqueeXC": 0,
+"E_SLIDER_MarqueeYC": 0,
+"E_SLIDER_Marquee_Band_Size": 3,
+"E_SLIDER_Marquee_ScaleX": 100,
+"E_SLIDER_Marquee_ScaleY": 100,
+"E_SLIDER_Marquee_Skip_Size": 0,
+"E_SLIDER_Marquee_Speed": 1,
+"E_SLIDER_Marquee_Stagger": 0,
+"E_SLIDER_Marquee_Start": 0,
+"E_SLIDER_Marquee_Thickness": 1
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thin single-pixel marquee scrolling in reverse. Subtle chasing light on arches and single-line props."
+},
+{
+"name": "Marquee Thin",
+"effect": "Marquee",
+"settings": {
+"E_CHECKBOX_Marquee_Reverse": 0,
+"E_SLIDER_MarqueeXC": 0,
+"E_SLIDER_MarqueeYC": 0,
+"E_SLIDER_Marquee_Band_Size": 3,
+"E_SLIDER_Marquee_ScaleX": 100,
+"E_SLIDER_Marquee_ScaleY": 100,
+"E_SLIDER_Marquee_Skip_Size": 0,
+"E_SLIDER_Marquee_Speed": 1,
+"E_SLIDER_Marquee_Stagger": 0,
+"E_SLIDER_Marquee_Start": 0,
+"E_SLIDER_Marquee_Thickness": 1
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thin single-pixel marquee scrolling forward. Classic chasing light effect on arches and matrices."
+},
+{
+"name": "Marquee Thick",
+"effect": "Marquee",
+"settings": {
+"E_CHECKBOX_Marquee_Reverse": 0,
+"E_SLIDER_MarqueeXC": 0,
+"E_SLIDER_MarqueeYC": 0,
+"E_SLIDER_Marquee_Band_Size": 3,
+"E_SLIDER_Marquee_ScaleX": 100,
+"E_SLIDER_Marquee_ScaleY": 100,
+"E_SLIDER_Marquee_Speed": 3,
+"E_SLIDER_Marquee_Stagger": 0,
+"E_SLIDER_Marquee_Start": 0,
+"E_SLIDER_Marquee_Thickness": 10
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thick 10-pixel marquee band scrolling at moderate speed. Bold moving stripe on matrices and trees."
+},
+{
+"name": "Marquee Medium",
+"effect": "Marquee",
+"settings": {
+"E_CHECKBOX_Marquee_Reverse": 0,
+"E_SLIDER_MarqueeXC": 0,
+"E_SLIDER_MarqueeYC": 0,
+"E_SLIDER_Marquee_Band_Size": 3,
+"E_SLIDER_Marquee_ScaleX": 100,
+"E_SLIDER_Marquee_ScaleY": 100,
+"E_SLIDER_Marquee_Speed": 3,
+"E_SLIDER_Marquee_Stagger": 0,
+"E_SLIDER_Marquee_Start": 0,
+"E_SLIDER_Marquee_Thickness": 3
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium 3-pixel marquee band at moderate speed. Balanced chasing light for horizontal matrices."
+},
+{
+"name": "Marquee Wide Stagger",
+"effect": "Marquee",
+"settings": {
+"E_CHECKBOX_Marquee_Reverse": 0,
+"E_SLIDER_MarqueeXC": 0,
+"E_SLIDER_MarqueeYC": 0,
+"E_SLIDER_Marquee_Band_Size": 5,
+"E_SLIDER_Marquee_ScaleX": 100,
+"E_SLIDER_Marquee_ScaleY": 100,
+"E_SLIDER_Marquee_Skip_Size": 16,
+"E_SLIDER_Marquee_Speed": 3,
+"E_SLIDER_Marquee_Stagger": 29,
+"E_SLIDER_Marquee_Start": 0,
+"E_SLIDER_Marquee_Thickness": 9
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Wide 5-band marquee with staggered offset and skip gaps. Complex layered chase pattern on trees."
+},
+{
+"name": "Marquee Thin Fast",
+"effect": "Marquee",
+"settings": {
+"E_SLIDER_Marquee_Band_Size": 3,
+"E_SLIDER_Marquee_Speed": 30,
+"E_SLIDER_Marquee_Stagger": 5
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thin marquee bands at fast speed with stagger offset. Rapid multi-band chase for glitch and cyberpunk themes."
+},
+{
+"name": "Marquee Thick Slow",
+"effect": "Marquee",
+"settings": {
+"E_SLIDER_Marquee_Band_Size": 6,
+"E_SLIDER_Marquee_Speed": 15,
+"E_SLIDER_Marquee_Stagger": 0
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thick marquee bands at slow speed with no stagger. Wide slow marquee sweep for candy cane and linear props."
+},
+{
+"name": "Meteors Sparse Explode",
+"effect": "Meteors",
+"settings": {
+"E_CHECKBOX_FadeWithDistance": 0,
+"E_CHECKBOX_Meteors_UseMusic": 0,
+"E_CHOICE_Meteors_Effect": "Explode",
+"E_CHOICE_Meteors_Type": "Palette",
+"E_SLIDER_Meteors_Count": 10,
+"E_SLIDER_Meteors_Length": 25,
+"E_SLIDER_Meteors_Speed": 10,
+"E_SLIDER_Meteors_Swirl_Intensity": 0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "foreground",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Ten meteors exploding outward slowly. Light scattering burst on horizontal matrices."
+},
+{
+"name": "Meteors Sparse Rise",
+"effect": "Meteors",
+"settings": {
+"E_CHECKBOX_Meteors_UseMusic": 1,
+"E_CHOICE_Meteors_Effect": "Up",
+"E_CHOICE_Meteors_Type": "Palette",
+"E_SLIDER_Meteors_Count": 10,
+"E_SLIDER_Meteors_Speed": 10,
+"E_SLIDER_Meteors_Swirl_Intensity": 0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "foreground",
+"sections": [
+"build",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Ten music-reactive meteors rising upward. Ascending sparks on matrices and trees."
+},
+{
+"name": "Meteors Medium Rain",
+"effect": "Meteors",
+"settings": {
+"E_CHECKBOX_Meteors_UseMusic": 0,
+"E_CHOICE_Meteors_Effect": "Down",
+"E_CHOICE_Meteors_Type": "Range",
+"E_SLIDER_Meteors_Count": 15,
+"E_SLIDER_Meteors_Length": 25,
+"E_SLIDER_Meteors_Speed": 10,
+"E_SLIDER_Meteors_Swirl_Intensity": 0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "foreground",
+"sections": [
+"verse",
+"bridge",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fifteen meteors falling downward like rain. Gentle cascade effect on trees."
+},
+{
+"name": "Meteors Dense Explode",
+"effect": "Meteors",
+"settings": {
+"E_CHECKBOX_FadeWithDistance": 0,
+"E_CHECKBOX_Meteors_UseMusic": 0,
+"E_CHOICE_Meteors_Effect": "Explode",
+"E_CHOICE_Meteors_Type": "Palette",
+"E_SLIDER_Meteors_Count": 28,
+"E_SLIDER_Meteors_Length": 22,
+"E_SLIDER_Meteors_Speed": 10,
+"E_SLIDER_Meteors_Swirl_Intensity": 20
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Twenty-eight meteors exploding with swirl intensity. Thick particle burst on horizontal matrices."
+},
+{
+"name": "Meteors Intense Explode",
+"effect": "Meteors",
+"settings": {
+"E_CHECKBOX_FadeWithDistance": 0,
+"E_CHECKBOX_Meteors_UseMusic": 0,
+"E_CHOICE_Meteors_Effect": "Explode",
+"E_CHOICE_Meteors_Type": "Palette",
+"E_SLIDER_Meteors_Count": 79,
+"E_SLIDER_Meteors_Length": 25,
+"E_SLIDER_Meteors_Speed": 50,
+"E_SLIDER_Meteors_Swirl_Intensity": 0
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"drop",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Seventy-nine fast meteors in a dense explosion. Maximum impact burst for high-energy moments."
+},
+{
+"name": "Meteors Fast Dense",
+"effect": "Meteors",
+"settings": {
+"E_SLIDER_Meteors_Count": 10,
+"E_SLIDER_Meteors_Length": 12,
+"E_SLIDER_Meteors_Speed": 45
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast dense meteors with medium trails. Many meteors streaking at high speed."
+},
+{
+"name": "Meteors Long Trail",
+"effect": "Meteors",
+"settings": {
+"E_SLIDER_Meteors_Count": 8,
+"E_SLIDER_Meteors_Length": 15,
+"E_SLIDER_Meteors_Speed": 40
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Meteors with long trailing tails at medium-fast speed. Elegant streaking motion for mid-high sections."
+},
+{
+"name": "Meteors Fast Flash",
+"effect": "Meteors",
+"settings": {
+"E_SLIDER_Meteors_Count": 10,
+"E_SLIDER_Meteors_Length": 10,
+"E_SLIDER_Meteors_Speed": 50
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Maximum speed meteors with short trails. Rapid flashing meteor burst for peak moments."
+},
+{
+"name": "Meteors Long Slow",
+"effect": "Meteors",
+"settings": {
+"E_SLIDER_Meteors_Count": 8,
+"E_SLIDER_Meteors_Length": 15,
+"E_SLIDER_Meteors_Speed": 35
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Long-tailed meteors at medium speed. Graceful slow streaks for active verses."
+},
+{
+"name": "Morph Quick",
+"effect": "Morph",
+"settings": {
+"E_SLIDER_MorphAccel": 0,
+"E_SLIDER_MorphDuration": 20,
+"E_SLIDER_MorphEndLength": 1,
+"E_SLIDER_MorphStartLength": 1,
+"E_SLIDER_Morph_End_X2": 100,
+"E_SLIDER_Morph_End_Y2": 100,
+"E_SLIDER_Morph_Repeat_Count": 0,
+"E_SLIDER_Morph_Repeat_Skip": 1,
+"E_SLIDER_Morph_Stagger": 0,
+"E_SLIDER_Morph_Start_X2": 100,
+"E_SLIDER_Morph_Start_Y2": 0
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast narrow morph transition completing in 20% duration. Quick color wipe for beat-synced accents."
+},
+{
+"name": "Morph Wide",
+"effect": "Morph",
+"settings": {
+"E_SLIDER_MorphAccel": 0,
+"E_SLIDER_MorphDuration": 50,
+"E_SLIDER_MorphEndLength": 41,
+"E_SLIDER_MorphStartLength": 41,
+"E_SLIDER_Morph_End_X2": 100,
+"E_SLIDER_Morph_End_Y2": 100,
+"E_SLIDER_Morph_Repeat_Count": 0,
+"E_SLIDER_Morph_Repeat_Skip": 1,
+"E_SLIDER_Morph_Stagger": 0,
+"E_SLIDER_Morph_Start_X2": 100,
+"E_SLIDER_Morph_Start_Y2": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Wide morph band sweeping across the display. Thick color transition that fills more of the prop."
+},
+{
+"name": "Morph Medium",
+"effect": "Morph",
+"settings": {
+"E_SLIDER_MorphAccel": 0,
+"E_SLIDER_MorphDuration": 50,
+"E_SLIDER_MorphEndLength": 1,
+"E_SLIDER_MorphStartLength": 1,
+"E_SLIDER_Morph_End_X2": 100,
+"E_SLIDER_Morph_End_Y2": 100,
+"E_SLIDER_Morph_Repeat_Count": 0,
+"E_SLIDER_Morph_Repeat_Skip": 1,
+"E_SLIDER_Morph_Stagger": 0,
+"E_SLIDER_Morph_Start_X2": 100,
+"E_SLIDER_Morph_Start_Y2": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-speed thin morph transition at 50% duration. Balanced color wipe for general use."
+},
+{
+"name": "Morph Fast",
+"effect": "Morph",
+"settings": {
+"E_SLIDER_MorphAccel": 0,
+"E_SLIDER_MorphDuration": 30,
+"E_SLIDER_MorphEndLength": 1,
+"E_SLIDER_MorphStartLength": 1,
+"E_SLIDER_Morph_End_X2": 100,
+"E_SLIDER_Morph_End_Y2": 100,
+"E_SLIDER_Morph_Repeat_Count": 0,
+"E_SLIDER_Morph_Repeat_Skip": 1,
+"E_SLIDER_Morph_Stagger": 0,
+"E_SLIDER_Morph_Start_X2": 100,
+"E_SLIDER_Morph_Start_Y2": 0
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Snappy morph completing in 30% duration. Quick reveal transition for energetic sections."
+},
+{
+"name": "Morph Slow",
+"effect": "Morph",
+"settings": {
+"E_SLIDER_MorphAccel": 0,
+"E_SLIDER_MorphDuration": 60,
+"E_SLIDER_MorphEndLength": 1,
+"E_SLIDER_MorphStartLength": 1,
+"E_SLIDER_Morph_End_X2": 100,
+"E_SLIDER_Morph_End_Y2": 100,
+"E_SLIDER_Morph_Repeat_Count": 0,
+"E_SLIDER_Morph_Repeat_Skip": 1,
+"E_SLIDER_Morph_Stagger": 0,
+"E_SLIDER_Morph_Start_X2": 100,
+"E_SLIDER_Morph_Start_Y2": 0
+},
+"energy": "low",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Gradual morph taking 60% of the duration. Leisurely color sweep for calm passages."
+},
+{
+"name": "Morph Standard",
+"effect": "Morph",
+"settings": {
+"E_SLIDER_MorphAccel": 0,
+"E_SLIDER_MorphDuration": 40,
+"E_SLIDER_MorphEndLength": 1,
+"E_SLIDER_MorphStartLength": 1,
+"E_SLIDER_Morph_End_X2": 100,
+"E_SLIDER_Morph_End_Y2": 100,
+"E_SLIDER_Morph_Repeat_Count": 0,
+"E_SLIDER_Morph_Repeat_Skip": 1,
+"E_SLIDER_Morph_Stagger": 0,
+"E_SLIDER_Morph_Start_X2": 100,
+"E_SLIDER_Morph_Start_Y2": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Standard morph at 40% duration. Versatile color transition at a comfortable pace."
+},
+{
+"name": "On Bold",
+"effect": "On",
+"settings": {
+"E_TEXTCTRL_Eff_On_Transparency": 0,
+"E_TEXTCTRL_Eff_On_Cycles": 1.0,
+"E_CHECKBOX_On_Shimmer": false
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Solid full-intensity color block. The simplest and most punchy effect \u2014 all pixels on, no motion. Best for impact moments and beat-synchronized flashes."
+},
+{
+"name": "On Shimmer",
+"effect": "On",
+"settings": {
+"E_TEXTCTRL_Eff_On_Transparency": 0,
+"E_TEXTCTRL_Eff_On_Cycles": 1.0,
+"E_CHECKBOX_On_Shimmer": true
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"chorus",
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Solid color with shimmer enabled \u2014 subtle pixel-level twinkling over a held color. Good for sustained chorus sections where motion would distract."
+},
+{
+"name": "On Cycle Fast",
+"effect": "On",
+"settings": {
+"E_TEXTCTRL_Eff_On_Transparency": 0,
+"E_TEXTCTRL_Eff_On_Cycles": 4.0,
+"E_CHECKBOX_On_Shimmer": false
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Rapid palette cycling \u2014 steps through palette colors at 4 cycles per section. Creates a quick color-changing strobe-like effect without the harshness of Strobe."
+},
+{
+"name": "On Cycle Slow",
+"effect": "On",
+"settings": {
+"E_TEXTCTRL_Eff_On_Transparency": 0,
+"E_TEXTCTRL_Eff_On_Cycles": 2.0,
+"E_CHECKBOX_On_Shimmer": false
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Slow palette cycle \u2014 drifts through palette colors at 2 cycles per section. Warm ambient fill for verses and bridges."
+},
+{
+"name": "On Dim",
+"effect": "On",
+"settings": {
+"E_TEXTCTRL_Eff_On_Transparency": 30,
+"E_TEXTCTRL_Eff_On_Cycles": 1.0,
+"E_CHECKBOX_On_Shimmer": false
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"intro",
+"outro",
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "30% transparency solid color. Subtle fill light for quiet passages \u2014 props stay visually present without competing with active effects on other tiers."
+},
+{
+"name": "Pinwheel 3-Arm Flat",
+"effect": "Pinwheel",
+"settings": {
+"E_CHOICE_Pinwheel_3D": "None",
+"E_SLIDER_PinwheelXC": 0,
+"E_SLIDER_PinwheelYC": 0,
+"E_SLIDER_Pinwheel_ArmSize": 100,
+"E_SLIDER_Pinwheel_Arms": 3,
+"E_SLIDER_Pinwheel_Offset": 0,
+"E_SLIDER_Pinwheel_Speed": 10,
+"E_SLIDER_Pinwheel_Thickness": 46,
+"E_SLIDER_Pinwheel_Twist": 0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three-arm pinwheel without 3D depth, spinning slowly. Clean flat rotation on star props."
+},
+{
+"name": "Pinwheel 3-Arm 3D Thick",
+"effect": "Pinwheel",
+"settings": {
+"E_CHOICE_Pinwheel_3D": "3D",
+"E_SLIDER_PinwheelXC": 0,
+"E_SLIDER_PinwheelYC": 0,
+"E_SLIDER_Pinwheel_ArmSize": 100,
+"E_SLIDER_Pinwheel_Arms": 3,
+"E_SLIDER_Pinwheel_Offset": 7,
+"E_SLIDER_Pinwheel_Speed": 20,
+"E_SLIDER_Pinwheel_Thickness": 70,
+"E_SLIDER_Pinwheel_Twist": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three thick arms with 3D depth effect. Bold rotating blades with dimensional shading on custom props."
+},
+{
+"name": "Pinwheel 4-Arm Sweep Slow",
+"effect": "Pinwheel",
+"settings": {
+"E_CHOICE_Pinwheel_3D": "Sweep",
+"E_SLIDER_PinwheelXC": 100,
+"E_SLIDER_PinwheelYC": 0,
+"E_SLIDER_Pinwheel_ArmSize": 100,
+"E_SLIDER_Pinwheel_Arms": 4,
+"E_SLIDER_Pinwheel_Offset": 0,
+"E_SLIDER_Pinwheel_Speed": 4,
+"E_SLIDER_Pinwheel_Thickness": 30,
+"E_SLIDER_Pinwheel_Twist": 30
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four twisted arms with sweep depth effect. Slow spiraling motion from corner on matrices."
+},
+{
+"name": "Pinwheel 4-Arm Sweep Crawl",
+"effect": "Pinwheel",
+"settings": {
+"E_CHOICE_Pinwheel_3D": "Sweep",
+"E_SLIDER_PinwheelXC": 100,
+"E_SLIDER_PinwheelYC": 0,
+"E_SLIDER_Pinwheel_ArmSize": 100,
+"E_SLIDER_Pinwheel_Arms": 4,
+"E_SLIDER_Pinwheel_Offset": 0,
+"E_SLIDER_Pinwheel_Speed": 1,
+"E_SLIDER_Pinwheel_Thickness": 30,
+"E_SLIDER_Pinwheel_Twist": 30
+},
+"energy": "low",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four twisted arms sweeping at crawl speed. Very slow hypnotic rotation from corner."
+},
+{
+"name": "Pinwheel 4-Arm Sweep Gentle",
+"effect": "Pinwheel",
+"settings": {
+"E_CHOICE_Pinwheel_3D": "Sweep",
+"E_SLIDER_PinwheelXC": 100,
+"E_SLIDER_PinwheelYC": 0,
+"E_SLIDER_Pinwheel_ArmSize": 100,
+"E_SLIDER_Pinwheel_Arms": 4,
+"E_SLIDER_Pinwheel_Offset": 0,
+"E_SLIDER_Pinwheel_Speed": 2,
+"E_SLIDER_Pinwheel_Thickness": 30,
+"E_SLIDER_Pinwheel_Twist": 30
+},
+"energy": "low",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four twisted arms sweeping at gentle pace. Calm spiraling motion on matrices."
+},
+{
+"name": "Pinwheel 5-Arm 3D Thick",
+"effect": "Pinwheel",
+"settings": {
+"E_CHOICE_Pinwheel_3D": "3D",
+"E_SLIDER_PinwheelXC": 0,
+"E_SLIDER_PinwheelYC": 0,
+"E_SLIDER_Pinwheel_ArmSize": 105,
+"E_SLIDER_Pinwheel_Arms": 5,
+"E_SLIDER_Pinwheel_Offset": 94,
+"E_SLIDER_Pinwheel_Speed": 10,
+"E_SLIDER_Pinwheel_Thickness": 62,
+"E_SLIDER_Pinwheel_Twist": 0
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Five thick arms with 3D depth and high offset. Dense rotating star pattern on custom props."
+},
+{
+"name": "Pinwheel 4-Arm Twist",
+"effect": "Pinwheel",
+"settings": {
+"E_SLIDER_Pinwheel_Arms": 4,
+"E_SLIDER_Pinwheel_Speed": 15,
+"E_SLIDER_Pinwheel_Twist": 20
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four-arm pinwheel with medium twist at moderate speed. Balanced spinning pattern for mid-energy sections."
+},
+{
+"name": "Pinwheel 6-Arm Medium",
+"effect": "Pinwheel",
+"settings": {
+"E_SLIDER_Pinwheel_Arms": 6,
+"E_SLIDER_Pinwheel_Speed": 15,
+"E_SLIDER_Pinwheel_Twist": 25
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Six-arm pinwheel with medium twist. Rich multi-arm rotation for active background sections."
+},
+{
+"name": "Pinwheel 6-Arm Twist",
+"effect": "Pinwheel",
+"settings": {
+"E_SLIDER_Pinwheel_Arms": 6,
+"E_SLIDER_Pinwheel_Speed": 15,
+"E_SLIDER_Pinwheel_Twist": 30
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Six-arm pinwheel with strong twist. Dynamic high-twist rotation for energetic fill."
+},
+{
+"name": "Pinwheel 8-Arm Slow",
+"effect": "Pinwheel",
+"settings": {
+"E_SLIDER_Pinwheel_Arms": 8,
+"E_SLIDER_Pinwheel_Speed": 10,
+"E_SLIDER_Pinwheel_Twist": 20
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Eight-arm pinwheel at slow speed with medium twist. Dense slow-spinning pattern for ambient backgrounds."
+},
+{
+"name": "Plasma Classic Fast",
+"effect": "Plasma",
+"settings": {
+"E_CHOICE_Plasma_Color": "Normal",
+"E_SLIDER_Plasma_Line_Density": 1,
+"E_SLIDER_Plasma_Speed": 87,
+"E_SLIDER_Plasma_Style": 1
+},
+"energy": "high",
+"speed": "fast",
+"tier": "background",
+"sections": [
+"chorus",
+"build",
+"drop"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Classic plasma pattern at high speed. Vivid swirling color gradients on custom props and trees."
+},
+{
+"name": "Plasma Pattern6 Fast",
+"effect": "Plasma",
+"settings": {
+"E_CHOICE_Plasma_Color": "Normal",
+"E_SLIDER_Plasma_Line_Density": 1,
+"E_SLIDER_Plasma_Speed": 91,
+"E_SLIDER_Plasma_Style": 6
+},
+"energy": "high",
+"speed": "fast",
+"tier": "background",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Alternate plasma pattern with fast organic movement. Dynamic shifting colors on cubes and trees."
+},
+{
+"name": "Plasma Pattern7 Fast",
+"effect": "Plasma",
+"settings": {
+"E_CHOICE_Plasma_Color": "Normal",
+"E_SLIDER_Plasma_Line_Density": 1,
+"E_SLIDER_Plasma_Speed": 85,
+"E_SLIDER_Plasma_Style": 7
+},
+"energy": "high",
+"speed": "fast",
+"tier": "background",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Third plasma pattern variant at high speed. Unique organic color flow on trees."
+},
+{
+"name": "Plasma Drift",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 10,
+"E_SLIDER_Plasma_Line_Density": 3
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Steady plasma drift at medium speed and density. Versatile background for verses and bridges."
+},
+{
+"name": "Plasma Pulse",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 15,
+"E_SLIDER_Plasma_Line_Density": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Pulsing plasma with moderate density and pace. Energetic fill for builds and choruses."
+},
+{
+"name": "Plasma Storm",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 40,
+"E_SLIDER_Plasma_Line_Density": 6
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "High-speed dense plasma storm. Intense visual chaos for peak energy moments."
+},
+{
+"name": "Plasma Gentle",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 8,
+"E_SLIDER_Plasma_Line_Density": 2
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Slow sparse plasma drift. Calm ambient background for quiet sections."
+},
+{
+"name": "Plasma Dense Slow",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 8,
+"E_SLIDER_Plasma_Line_Density": 5
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Dense plasma lines moving slowly. Rich texture at low energy."
+},
+{
+"name": "Plasma Grid",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 12,
+"E_SLIDER_Plasma_Line_Density": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Grid-like plasma at medium-fast speed. Structured visual texture for mid-energy sections."
+},
+{
+"name": "Plasma Weave",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 12,
+"E_SLIDER_Plasma_Line_Density": 3
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Weaving plasma at medium speed with moderate line count. Smooth transition fill."
+},
+{
+"name": "Plasma Ethereal",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 5,
+"E_SLIDER_Plasma_Line_Density": 2
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Very slow sparse plasma flow. Dreamy ethereal atmosphere for intros and outros."
+},
+{
+"name": "Plasma Surge",
+"effect": "Plasma",
+"settings": {
+"E_SLIDER_Plasma_Speed": 30,
+"E_SLIDER_Plasma_Line_Density": 5
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast surging plasma with high density. Dynamic energy for drop and chorus moments."
+},
+{
+"name": "Ripple Circle",
+"effect": "Ripple",
+"settings": {
+"E_CHECKBOX_Ripple3D": 0,
+"E_CHOICE_Ripple_Movement": "Explode",
+"E_CHOICE_Ripple_Object_To_Draw": "Circle",
+"E_SLIDER_Ripple_Thickness": 3,
+"E_SLIDER_Ripple_XC": 0,
+"E_SLIDER_Ripple_YC": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Standard circle ripple expanding outward from center. Clean concentric rings on stars and trees."
+},
+{
+"name": "Ripple Circle 3D Offset",
+"effect": "Ripple",
+"settings": {
+"E_CHECKBOX_Ripple3D": 1,
+"E_CHOICE_Ripple_Movement": "Explode",
+"E_CHOICE_Ripple_Object_To_Draw": "Circle",
+"E_SLIDER_Ripple_Thickness": 3,
+"E_SLIDER_Ripple_XC": 26,
+"E_SLIDER_Ripple_YC": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "3D circle ripple expanding from an off-center point. Asymmetric depth rings on custom props."
+},
+{
+"name": "Ripple Circle Thick",
+"effect": "Ripple",
+"settings": {
+"E_CHECKBOX_Ripple3D": 0,
+"E_CHOICE_Ripple_Movement": "Explode",
+"E_CHOICE_Ripple_Object_To_Draw": "Circle",
+"E_SLIDER_Ripple_Thickness": 6,
+"E_SLIDER_Ripple_XC": 0,
+"E_SLIDER_Ripple_YC": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thick circle ripple with wider bands expanding outward. Bold concentric rings filling more space."
+},
+{
+"name": "Ripple Circle 3D",
+"effect": "Ripple",
+"settings": {
+"E_CHECKBOX_Ripple3D": 1,
+"E_CHOICE_Ripple_Movement": "Explode",
+"E_CHOICE_Ripple_Object_To_Draw": "Circle",
+"E_SLIDER_Ripple_Thickness": 3,
+"E_SLIDER_Ripple_XC": 0,
+"E_SLIDER_Ripple_YC": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "3D circle ripple expanding from center with depth shading. Dimensional ring pulse on matrices and trees."
+},
+{
+"name": "Ripple Circle Implode",
+"effect": "Ripple",
+"settings": {
+"E_CHECKBOX_Ripple3D": 0,
+"E_CHOICE_Ripple_Movement": "Implode",
+"E_CHOICE_Ripple_Object_To_Draw": "Circle",
+"E_SLIDER_Ripple_Thickness": 6,
+"E_SLIDER_Ripple_XC": 0,
+"E_SLIDER_Ripple_YC": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thick circle ripple collapsing inward toward center. Reverse pulse that draws focus to the center point."
+},
+{
+"name": "Ripple Star",
+"effect": "Ripple",
+"settings": {
+"E_CHECKBOX_Ripple3D": 0,
+"E_CHOICE_Ripple_Movement": "Explode",
+"E_CHOICE_Ripple_Object_To_Draw": "Star",
+"E_SLIDER_RIPPLE_POINTS": 5,
+"E_SLIDER_Ripple_Rotation": 0,
+"E_SLIDER_Ripple_Thickness": 100,
+"E_SLIDER_Ripple_XC": 0,
+"E_SLIDER_Ripple_YC": 0
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Star-shaped ripple expanding outward with full thickness. Eye-catching burst shape on matrices."
+},
+{
+"name": "Ripple Fast Medium",
+"effect": "Ripple",
+"settings": {
+"E_SLIDER_Ripple_Thickness": 4,
+"E_TEXTCTRL_Ripple_Cycles": 0.3
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast ripple with medium thickness. Dynamic ripple expansion for energetic sections."
+},
+{
+"name": "Ripple Medium Thick",
+"effect": "Ripple",
+"settings": {
+"E_SLIDER_Ripple_Thickness": 5,
+"E_TEXTCTRL_Ripple_Cycles": 0.2
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-speed ripple with thick rings. Bold visible ripple for mid-energy sections."
+},
+{
+"name": "Ripple Medium Thin",
+"effect": "Ripple",
+"settings": {
+"E_SLIDER_Ripple_Thickness": 3,
+"E_TEXTCTRL_Ripple_Cycles": 0.2
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-speed ripple with thin rings. Subtle ripple motion for background fill."
+},
+{
+"name": "Ripple Slow Medium",
+"effect": "Ripple",
+"settings": {
+"E_SLIDER_Ripple_Thickness": 4
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Slow ripple with medium thickness. Calm expanding rings for ambient sections."
+},
+{
+"name": "Ripple Slow Thin",
+"effect": "Ripple",
+"settings": {
+"E_SLIDER_Ripple_Thickness": 3
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Slow ripple with thin rings. Very subtle minimal ripple for quiet passages."
+},
+{
+"name": "Shape Star Slow Spin",
+"effect": "Shape",
+"settings": {
+"E_CHECKBOX_Shape_UseMusic": 0,
+"E_CHOICE_Shape_ObjectToDraw": "Star",
+"E_SLIDER_Shape_Growth": 100,
+"E_SLIDER_Shape_Lifetime": 100,
+"E_SLIDER_Shape_Rotation": 212,
+"E_SLIDER_Shape_StartSize": 100,
+"E_SLIDER_Shape_Thickness": 100
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Large star rotating slowly at 212 degrees. Dramatic spinning star impact on trees."
+},
+{
+"name": "Shape Star Medium Spin",
+"effect": "Shape",
+"settings": {
+"E_CHECKBOX_Shape_UseMusic": 0,
+"E_CHOICE_Shape_ObjectToDraw": "Star",
+"E_SLIDER_Shape_Growth": 100,
+"E_SLIDER_Shape_Lifetime": 100,
+"E_SLIDER_Shape_Rotation": 138,
+"E_SLIDER_Shape_StartSize": 100,
+"E_SLIDER_Shape_Thickness": 100
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Large star rotating at medium speed. Bold spinning accent for trees."
+},
+{
+"name": "Shape Star Full Spin Large",
+"effect": "Shape",
+"settings": {
+"E_CHECKBOX_Shape_UseMusic": 0,
+"E_CHOICE_Shape_ObjectToDraw": "Star",
+"E_SLIDER_Shape_CentreX": 0,
+"E_SLIDER_Shape_CentreY": 46,
+"E_SLIDER_Shape_Growth": 100,
+"E_SLIDER_Shape_Lifetime": 100,
+"E_SLIDER_Shape_Rotation": 360,
+"E_SLIDER_Shape_StartSize": 63,
+"E_SLIDER_Shape_Thickness": 100
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Large star making a full 360-degree rotation. Complete spinning star reveal on trees."
+},
+{
+"name": "Shape Star Full Spin Small",
+"effect": "Shape",
+"settings": {
+"E_CHECKBOX_Shape_UseMusic": 0,
+"E_CHOICE_Shape_ObjectToDraw": "Star",
+"E_SLIDER_Shape_CentreX": 0,
+"E_SLIDER_Shape_CentreY": 46,
+"E_SLIDER_Shape_Growth": 100,
+"E_SLIDER_Shape_Lifetime": 100,
+"E_SLIDER_Shape_Rotation": 360,
+"E_SLIDER_Shape_StartSize": 10,
+"E_SLIDER_Shape_Thickness": 30
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Small thin star making a full rotation. Compact spinning accent on matrices."
+},
+{
+"name": "Shape Star Full Spin Medium",
+"effect": "Shape",
+"settings": {
+"E_CHECKBOX_Shape_UseMusic": 0,
+"E_CHOICE_Shape_ObjectToDraw": "Star",
+"E_SLIDER_Shape_CentreX": 0,
+"E_SLIDER_Shape_CentreY": 46,
+"E_SLIDER_Shape_Growth": 100,
+"E_SLIDER_Shape_Lifetime": 100,
+"E_SLIDER_Shape_Rotation": 360,
+"E_SLIDER_Shape_StartSize": 30,
+"E_SLIDER_Shape_Thickness": 100
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium star making a full rotation with thick outline. Versatile spinning star on trees."
+},
+{
+"name": "Shape Star Static",
+"effect": "Shape",
+"settings": {
+"E_CHECKBOX_Shape_UseMusic": 0,
+"E_CHOICE_Shape_ObjectToDraw": "Star",
+"E_SLIDER_Shape_CentreX": 0,
+"E_SLIDER_Shape_CentreY": 46,
+"E_SLIDER_Shape_Growth": 100,
+"E_SLIDER_Shape_Lifetime": 100,
+"E_SLIDER_Shape_Rotation": 0,
+"E_SLIDER_Shape_StartSize": 63,
+"E_SLIDER_Shape_Thickness": 100
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "hero",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Static star with no rotation. Steady star overlay that holds position on trees."
+},
+{
+"name": "Shimmer Subtle",
+"effect": "Shimmer",
+"settings": {
+"E_CHECKBOX_Shimmer_Use_All_Colors": 1,
+"E_SLIDER_Shimmer_Duty_Factor": 21,
+"E_TEXTCTRL_Shimmer_Cycles": 1.0
+},
+"energy": "high",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Gentle shimmer with low duty factor and slow cycling. Soft sparkle background for stars and custom props."
+},
+{
+"name": "Shimmer Bold",
+"effect": "Shimmer",
+"settings": {
+"E_CHECKBOX_Shimmer_Use_All_Colors": 1,
+"E_SLIDER_Shimmer_Duty_Factor": 50,
+"E_TEXTCTRL_Shimmer_Cycles": 0.4
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Strong shimmer with half duty factor and slow cycling. Pronounced flicker accent on icicles and single-line props."
+},
+{
+"name": "Shockwave Center",
+"effect": "Shockwave",
+"settings": {
+"E_CHECKBOX_Shockwave_Blend_Edges": 1,
+"E_SLIDER_Shockwave_Accel": 0,
+"E_SLIDER_Shockwave_CenterX": 50,
+"E_SLIDER_Shockwave_CenterY": 50,
+"E_SLIDER_Shockwave_End_Radius": 70,
+"E_SLIDER_Shockwave_End_Width": 70,
+"E_SLIDER_Shockwave_Start_Radius": 1,
+"E_SLIDER_Shockwave_Start_Width": 15
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Standard shockwave expanding from center with blended edges. Classic impact burst on matrices and single-line props."
+},
+{
+"name": "Shockwave Off-Center",
+"effect": "Shockwave",
+"settings": {
+"E_CHECKBOX_Shockwave_Blend_Edges": 1,
+"E_SLIDER_Shockwave_Accel": 0,
+"E_SLIDER_Shockwave_CenterX": 63,
+"E_SLIDER_Shockwave_CenterY": 50,
+"E_SLIDER_Shockwave_End_Radius": 31,
+"E_SLIDER_Shockwave_End_Width": 24,
+"E_SLIDER_Shockwave_Start_Radius": 5,
+"E_SLIDER_Shockwave_Start_Width": 5
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Shockwave expanding from an off-center point. Asymmetric impact burst on custom props."
+},
+{
+"name": "Shockwave Bottom Wide",
+"effect": "Shockwave",
+"settings": {
+"E_CHECKBOX_Shockwave_Blend_Edges": 1,
+"E_SLIDER_Shockwave_Accel": 0,
+"E_SLIDER_Shockwave_CenterX": 50,
+"E_SLIDER_Shockwave_CenterY": 0,
+"E_SLIDER_Shockwave_End_Radius": 225,
+"E_SLIDER_Shockwave_End_Width": 200,
+"E_SLIDER_Shockwave_Start_Radius": 0,
+"E_SLIDER_Shockwave_Start_Width": 75
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Wide shockwave expanding from bottom edge. Dramatic upward blast effect on single-line props."
+},
+{
+"name": "Shockwave Center Thin",
+"effect": "Shockwave",
+"settings": {
+"E_CHECKBOX_Shockwave_Blend_Edges": 1,
+"E_SLIDER_Shockwave_Accel": 0,
+"E_SLIDER_Shockwave_CenterX": 50,
+"E_SLIDER_Shockwave_CenterY": 50,
+"E_SLIDER_Shockwave_End_Radius": 10,
+"E_SLIDER_Shockwave_End_Width": 10,
+"E_SLIDER_Shockwave_Start_Radius": 1,
+"E_SLIDER_Shockwave_Start_Width": 5
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Tight thin shockwave pulse from center. Subtle ring flash for accent hits on trees."
+},
+{
+"name": "Shockwave Decel",
+"effect": "Shockwave",
+"settings": {
+"E_CHECKBOX_Shockwave_Blend_Edges": 1,
+"E_SLIDER_Shockwave_Accel": -7,
+"E_SLIDER_Shockwave_CenterX": 50,
+"E_SLIDER_Shockwave_CenterY": 50,
+"E_SLIDER_Shockwave_End_Width": 50,
+"E_SLIDER_Shockwave_Start_Radius": 0,
+"E_SLIDER_Shockwave_Start_Width": 0
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "hero",
+"sections": [
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Decelerating shockwave that slows as it expands. Dramatic impact that lingers on icicles and single-line props."
+},
+{
+"name": "Shockwave Medium Thin",
+"effect": "Shockwave",
+"settings": {
+"E_SLIDER_Shockwave_End_Radius": 80,
+"E_SLIDER_Shockwave_End_Width": 50,
+"E_SLIDER_Shockwave_Start_Width": 5
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-radius shockwave with thin ring. Clean expanding ring for moderate impact moments."
+},
+{
+"name": "Shockwave Full Fast",
+"effect": "Shockwave",
+"settings": {
+"E_SLIDER_Shockwave_Accel": 5,
+"E_SLIDER_Shockwave_End_Radius": 100,
+"E_SLIDER_Shockwave_End_Width": 50,
+"E_SLIDER_Shockwave_Start_Width": 8
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Full-radius fast shockwave with thick ring. Maximum impact shockwave for peak drop moments."
+},
+{
+"name": "Shockwave Small Thin",
+"effect": "Shockwave",
+"settings": {
+"E_SLIDER_Shockwave_End_Radius": 60,
+"E_SLIDER_Shockwave_End_Width": 50,
+"E_SLIDER_Shockwave_Start_Width": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Small-radius shockwave with thin ring. Subtle compact pulse for gentler impact accents."
+},
+{
+"name": "Shockwave Medium Fast",
+"effect": "Shockwave",
+"settings": {
+"E_SLIDER_Shockwave_Accel": 3,
+"E_SLIDER_Shockwave_End_Radius": 80,
+"E_SLIDER_Shockwave_End_Width": 50,
+"E_SLIDER_Shockwave_Start_Width": 8
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-radius fast shockwave with thick ring. Bold rapid pulse for festive high-energy moments."
+},
+{
+"name": "Shockwave Large Medium",
+"effect": "Shockwave",
+"settings": {
+"E_SLIDER_Shockwave_End_Radius": 90,
+"E_SLIDER_Shockwave_End_Width": 50,
+"E_SLIDER_Shockwave_Start_Width": 6
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "hero",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Large-radius medium-speed shockwave with medium thickness. Wide sweep for dramatic chorus impacts."
+},
+{
+"name": "Chase Right-Left Subtle",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "Right-Left",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 10,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"verse"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Right-to-left fireworks chase with subtle color mix. Light sparkle trail on matrices and single-line props."
+},
+{
+"name": "Chase Left-Right Subtle",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "Left-Right",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 10,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"verse"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Left-to-right fireworks chase with subtle color mix. Light sparkle trail on arches and matrices."
+},
+{
+"name": "Chase From Middle Full",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "From Middle",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 100,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Fireworks chase expanding from center with full color mix. Bright outward burst on stars and single-line props."
+},
+{
+"name": "Chase To Middle Full",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "To Middle",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 100,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Fireworks chase converging to center with full color mix. Inward pull effect on matrices and stars."
+},
+{
+"name": "Chase Left-Right Medium",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "Left-Right",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 36,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Left-to-right fireworks chase with medium color mix. Balanced sparkle trail on arches and matrices."
+},
+{
+"name": "Chase Right-Left Strong",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "Right-Left",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 55,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Right-to-left fireworks chase with strong color blending. Vivid sparkle sweep on arches and matrices."
+},
+{
+"name": "Chase To Middle Heavy",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "To Middle",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 75,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Fireworks chase converging to center with heavy color mix. Bold inward pull on arches and trees."
+},
+{
+"name": "Chase Bounce Medium",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "Bounce from Left",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 50,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "Bouncing fireworks chase with medium color mix. Playful back-and-forth motion on arches and single-line props."
+},
+{
+"name": "Chase All To Middle Full",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 1,
+"E_CHOICE_Chase_Type1": "To Middle",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 100,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"drop",
+"chorus"
+],
+"scope": "group",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "All-group fireworks chase converging to center with full mix. Synchronized inward pull across all groups."
+},
+{
+"name": "Chase All Left-Right Full",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 1,
+"E_CHOICE_Chase_Type1": "Left-Right",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 100,
+"E_SLIDER_FX_Intensity": 128,
+"E_SLIDER_FX_Speed": 128,
+"E_SLIDER_Number_Chases": 1,
+"E_SLIDER_Skips_Advance": 0,
+"E_SLIDER_Skips_BandSize": 1,
+"E_SLIDER_Skips_SkipSize": 1,
+"E_SLIDER_Skips_StartPos": 1
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"drop",
+"chorus"
+],
+"scope": "group",
+"cycle": {
+"param": "E_CHOICE_Skips_Direction",
+"values": [
+"Left",
+"Right"
+],
+"mode": "alternate"
+},
+"description": "All-group left-to-right fireworks chase with full color mix. Synchronized sweep across all groups."
+},
+{
+"name": "Chase Fast Multi",
+"effect": "Single Strand",
+"settings": {
+"E_TEXTCTRL_Chase_Rotations": 1.8,
+"E_SLIDER_Number_Chases": 5
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast chase with 5 simultaneous strands. High-speed multi-strand chase for peak energy."
+},
+{
+"name": "Chase Multi Dense",
+"effect": "Single Strand",
+"settings": {
+"E_TEXTCTRL_Chase_Rotations": 1.2,
+"E_SLIDER_Number_Chases": 6
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"verse",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-speed chase with 6 dense strands. Rich multi-strand chase for active sections."
+},
+{
+"name": "Chase Medium Quad",
+"effect": "Single Strand",
+"settings": {
+"E_SLIDER_Number_Chases": 4
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-slow chase with 4 strands. Balanced quad-strand pattern for mid-energy sections."
+},
+{
+"name": "Chase Trio Fast",
+"effect": "Single Strand",
+"settings": {
+"E_TEXTCTRL_Chase_Rotations": 1.4,
+"E_SLIDER_Number_Chases": 3
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "background",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast 3-strand chase. Quick triple chase for energetic but focused sections."
+},
+{
+"name": "Chase Slow Quad",
+"effect": "Single Strand",
+"settings": {
+"E_TEXTCTRL_Chase_Rotations": 0.7,
+"E_SLIDER_Number_Chases": 4
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Slow 4-strand chase. Gentle quad chase for calm verses and ambient fills."
+},
+{
+"name": "Radial Bloom",
+"effect": "Single Strand",
+"settings": {
+"E_CHECKBOX_Chase_Group_All": 0,
+"E_CHOICE_Chase_Type1": "From Middle",
+"E_CHOICE_SingleStrand_Colors": "Palette",
+"E_CHOICE_SingleStrand_FX": "Fireworks 1D",
+"E_CHOICE_SingleStrand_FX_Palette": "* Colors Only",
+"E_SLIDER_Color_Mix1": 75,
+"E_SLIDER_FX_Intensity": 160,
+"E_SLIDER_FX_Speed": 160,
+"E_SLIDER_Number_Chases": 1
+},
+"energy": "high",
+"speed": "fast",
+"tier": "foreground",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "group",
+"cycle": null,
+"description": "Center-out fireworks chase across radial subModels (Ring 1 \u2192 Ring 2 \u2192 Ring 3). Best on flakes / snowflakes / gingerbread custom models."
+},
+{
+"name": "Spirals 3D Blend",
+"effect": "Spirals",
+"settings": {
+"E_CHECKBOX_Spirals_3D": 1,
+"E_CHECKBOX_Spirals_Blend": 1,
+"E_CHECKBOX_Spirals_Grow": 0,
+"E_CHECKBOX_Spirals_Shrink": 0,
+"E_SLIDER_Spirals_Count": 1,
+"E_SLIDER_Spirals_Thickness": 50
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "One thick blended spiral with 3D depth. Smooth color transitions on trees and single-line props."
+},
+{
+"name": "Spirals 3D Blend Thin",
+"effect": "Spirals",
+"settings": {
+"E_CHECKBOX_Spirals_3D": 1,
+"E_CHECKBOX_Spirals_Blend": 1,
+"E_CHECKBOX_Spirals_Grow": 0,
+"E_CHECKBOX_Spirals_Shrink": 0,
+"E_SLIDER_Spirals_Count": 1,
+"E_SLIDER_Spirals_Thickness": 32
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "One thin blended spiral with 3D depth. Delicate wrapping line on trees and matrices."
+},
+{
+"name": "Spirals 3D Slow Spin",
+"effect": "Spirals",
+"settings": {
+"E_CHECKBOX_Spirals_3D": 1,
+"E_CHECKBOX_Spirals_Blend": 0,
+"E_CHECKBOX_Spirals_Grow": 0,
+"E_CHECKBOX_Spirals_Shrink": 0,
+"E_SLIDER_Spirals_Count": 1,
+"E_SLIDER_Spirals_Rotation": 5,
+"E_SLIDER_Spirals_Thickness": 50
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Sharp-edged spiral with slow rotation and 3D depth. Gentle twisting motion on custom props."
+},
+{
+"name": "Spirals 3D Sharp",
+"effect": "Spirals",
+"settings": {
+"E_CHECKBOX_Spirals_3D": 1,
+"E_CHECKBOX_Spirals_Blend": 0,
+"E_CHECKBOX_Spirals_Grow": 0,
+"E_CHECKBOX_Spirals_Shrink": 0,
+"E_SLIDER_Spirals_Count": 1,
+"E_SLIDER_Spirals_Thickness": 50
+},
+"energy": "medium",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Sharp-edged spiral with 3D depth and no rotation. Static candy-cane stripe pattern on custom props."
+},
+{
+"name": "Spirals 3D Blend Fast Spin",
+"effect": "Spirals",
+"settings": {
+"E_CHECKBOX_Spirals_3D": 1,
+"E_CHECKBOX_Spirals_Blend": 1,
+"E_CHECKBOX_Spirals_Grow": 0,
+"E_CHECKBOX_Spirals_Shrink": 0,
+"E_SLIDER_Spirals_Count": 1,
+"E_SLIDER_Spirals_Rotation": 20,
+"E_SLIDER_Spirals_Thickness": 50
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"drop"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Blended spiral with fast rotation and 3D depth. Energetic twisting color bands on matrices and trees."
+},
+{
+"name": "Spirals 3D Sharp Fast Spin",
+"effect": "Spirals",
+"settings": {
+"E_CHECKBOX_Spirals_3D": 1,
+"E_CHECKBOX_Spirals_Blend": 0,
+"E_CHECKBOX_Spirals_Grow": 0,
+"E_CHECKBOX_Spirals_Shrink": 0,
+"E_SLIDER_Spirals_Count": 1,
+"E_SLIDER_Spirals_Rotation": 20,
+"E_SLIDER_Spirals_Thickness": 50
+},
+"energy": "high",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"drop"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Sharp-edged spiral with fast rotation and 3D depth. Bold spinning stripes on custom props and trees."
+},
+{
+"name": "Spirals Quad Reverse",
+"effect": "Spirals",
+"settings": {
+"E_CHECKBOX_Spirals_3D": 0,
+"E_CHECKBOX_Spirals_Blend": 0,
+"E_CHECKBOX_Spirals_Grow": 0,
+"E_CHECKBOX_Spirals_Shrink": 0,
+"E_SLIDER_Spirals_Count": 4,
+"E_SLIDER_Spirals_Rotation": -40,
+"E_SLIDER_Spirals_Thickness": 98
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Four thick spirals rotating in reverse. Dense multi-helix pattern wrapping around trees."
+},
+{
+"name": "Spirals Directed Medium",
+"effect": "Spirals",
+"settings": {
+"E_SLIDER_Spirals_Count": 3
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Directional spirals at medium speed with 3 palette repeats. Structured spiral motion for mid-energy sections."
+},
+{
+"name": "Spirals Dense Slow",
+"effect": "Spirals",
+"settings": {
+"E_TEXTCTRL_Spirals_Movement": 8,
+"E_SLIDER_Spirals_Count": 3
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Dense spirals with 3 palette repeats moving slowly. Rich textured background for calm sections."
+},
+{
+"name": "Spirals Medium",
+"effect": "Spirals",
+"settings": {
+"E_TEXTCTRL_Spirals_Movement": 12,
+"E_SLIDER_Spirals_Count": 2
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two-repeat spirals at medium-fast speed. Balanced spiral animation for general use."
+},
+{
+"name": "Spirals Fast Dense",
+"effect": "Spirals",
+"settings": {
+"E_TEXTCTRL_Spirals_Movement": 20,
+"E_SLIDER_Spirals_Count": 5
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Fast directional spirals with high palette density. High-energy spiral rush for peak sections."
+},
+{
+"name": "Spirals Sparse Slow",
+"effect": "Spirals",
+"settings": {
+"E_TEXTCTRL_Spirals_Movement": 6,
+"E_SLIDER_Spirals_Count": 2
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Sparse slow spirals with 2 palette repeats. Minimal gentle spiral for quiet ambient fills."
+},
+{
+"name": "Strobe Triple",
+"effect": "Strobe",
+"settings": {
+"E_SLIDER_Number_Strobes": 3,
+"E_SLIDER_Strobe_Duration": 10
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"build",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three rapid strobe flashes with short duration. High-energy flash accent for drops and impacts."
+},
+{
+"name": "Strobe Triple Fast",
+"effect": "Strobe",
+"settings": {
+"E_SLIDER_Number_Strobes": 3,
+"E_SLIDER_Strobe_Duration": 7
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three strobes at fast flash rate. High-energy triple strobe for intense sections."
+},
+{
+"name": "Strobe Triple Intense",
+"effect": "Strobe",
+"settings": {
+"E_SLIDER_Number_Strobes": 3,
+"E_SLIDER_Strobe_Duration": 5
+},
+"energy": "high",
+"speed": "fast",
+"tier": "hero",
+"sections": [
+"drop",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three strobes at maximum intensity. Extreme strobe burst for peak impact moments."
+},
+{
+"name": "Strobe Dual Medium",
+"effect": "Strobe",
+"settings": {
+"E_SLIDER_Number_Strobes": 2,
+"E_SLIDER_Strobe_Duration": 10
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two strobes at medium flash rate. Balanced dual strobe for active sections."
+},
+{
+"name": "Strobe Dual Fast",
+"effect": "Strobe",
+"settings": {
+"E_SLIDER_Number_Strobes": 2,
+"E_SLIDER_Strobe_Duration": 8
+},
+"energy": "high",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two strobes at fast flash rate. Quick dual strobe for high-energy emphasis."
+},
+{
+"name": "Strobe Single Slow",
+"effect": "Strobe",
+"settings": {
+"E_SLIDER_Number_Strobes": 1,
+"E_SLIDER_Strobe_Duration": 25
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Single strobe at slow flash rate. Subtle single flash for atmospheric accent."
+},
+{
+"name": "Tendril Wander",
+"effect": "Tendril",
+"settings": {
+"E_CHOICE_Tendril_Movement": "Random"
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Organic tendril with random wandering movement. Unpredictable flowing line for ambient interest."
+},
+{
+"name": "Tendril Medium",
+"effect": "Tendril",
+"settings": {
+"E_SLIDER_Tendril_Length": 50,
+"E_SLIDER_Tendril_Speed": 12
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Medium-length tendril at moderate speed. Balanced organic waving motion for ethereal ambient sections."
+},
+{
+"name": "Twinkle Gentle",
+"effect": "Twinkle",
+"settings": {
+"E_CHECKBOX_Twinkle_ReRandom": 0,
+"E_CHECKBOX_Twinkle_Strobe": 0,
+"E_CHOICE_Twinkle_Style": "New Render Method",
+"E_SLIDER_Twinkle_Steps": 30
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Default twinkle with moderate steps and no re-randomization. Soft ambient sparkle for background layers."
+},
+{
+"name": "Twinkle Medium",
+"effect": "Twinkle",
+"settings": {
+"E_CHECKBOX_Twinkle_ReRandom": 0,
+"E_CHECKBOX_Twinkle_Strobe": 0,
+"E_CHOICE_Twinkle_Style": "New Render Method",
+"E_SLIDER_Twinkle_Count": 17,
+"E_SLIDER_Twinkle_Steps": 30
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Seventeen simultaneous twinkles at moderate pace. Balanced ambient sparkle for single-line props."
+},
+{
+"name": "Twinkle Sparse",
+"effect": "Twinkle",
+"settings": {
+"E_CHECKBOX_Twinkle_ReRandom": 0,
+"E_CHECKBOX_Twinkle_Strobe": 0,
+"E_CHOICE_Twinkle_Style": "New Render Method",
+"E_SLIDER_Twinkle_Count": 3,
+"E_SLIDER_Twinkle_Steps": 30
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Only three simultaneous twinkles. Minimal delicate sparkle for quiet moments on custom props."
+},
+{
+"name": "Twinkle Dense",
+"effect": "Twinkle",
+"settings": {
+"E_CHECKBOX_Twinkle_ReRandom": 0,
+"E_CHECKBOX_Twinkle_Strobe": 0,
+"E_CHOICE_Twinkle_Style": "New Render Method",
+"E_SLIDER_Twinkle_Count": 30,
+"E_SLIDER_Twinkle_Steps": 30
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "background",
+"sections": [
+"chorus",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Thirty simultaneous twinkles for busy sparkle. Active shimmer on custom props and icicles."
+},
+{
+"name": "Twinkle Strobe",
+"effect": "Twinkle",
+"settings": {
+"E_CHECKBOX_Twinkle_ReRandom": 0,
+"E_CHECKBOX_Twinkle_Strobe": 1,
+"E_CHOICE_Twinkle_Style": "New Render Method",
+"E_SLIDER_Twinkle_Count": 50,
+"E_SLIDER_Twinkle_Steps": 30
+},
+"energy": "high",
+"speed": "fast",
+"tier": "background",
+"sections": [
+"chorus",
+"drop",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Dense rapid twinkling with strobe flash. High-energy accent for choruses and drops."
+},
+{
+"name": "Warp Banded Swirl",
+"effect": "Warp",
+"settings": {
+"E_CHOICE_Warp_Type": "banded swirl",
+"E_SLIDER_Warp_Frequency": 20,
+"E_SLIDER_Warp_X": 50,
+"E_SLIDER_Warp_Y": 50,
+"E_SLIDER_Warp_Cycle_Count": 1
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Banded swirl distortion with centered focus. Twisted ribbon pattern on trees."
+},
+{
+"name": "Warp Circle Reveal",
+"effect": "Warp",
+"settings": {
+"E_CHOICE_Warp_Type": "circle reveal",
+"E_SLIDER_Warp_X": 50,
+"E_SLIDER_Warp_Y": 50,
+"E_SLIDER_Warp_Cycle_Count": 1
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"intro",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Circular reveal distortion expanding from center. Dramatic iris-open transition on single-line props."
+},
+{
+"name": "Warp Circular Swirl",
+"effect": "Warp",
+"settings": {
+"E_CHOICE_Warp_Type": "circular swirl",
+"E_SLIDER_Warp_Speed": 20,
+"E_SLIDER_Warp_X": 50,
+"E_SLIDER_Warp_Y": 50,
+"E_SLIDER_Warp_Cycle_Count": 1
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Circular swirl distortion at moderate speed. Spinning vortex pattern on horizontal matrices."
+},
+{
+"name": "Warp Copy",
+"effect": "Warp",
+"settings": {
+"E_CHOICE_Warp_Type": "copy",
+"E_SLIDER_Warp_X": 50,
+"E_SLIDER_Warp_Y": 50,
+"E_SLIDER_Warp_Cycle_Count": 1
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Copy distortion duplicating the buffer. Mirrored doubling effect on trees."
+},
+{
+"name": "Warp Mirror Centered",
+"effect": "Warp",
+"settings": {
+"E_CHOICE_Warp_Type": "mirror",
+"E_SLIDER_Warp_X": 50,
+"E_SLIDER_Warp_Y": 50
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Mirror distortion centered on the display. Symmetrical reflection on matrices and trees."
+},
+{
+"name": "Warp Mirror Default",
+"effect": "Warp",
+"settings": {
+"E_CHOICE_Warp_Type": "mirror"
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "foreground",
+"sections": [
+"verse",
+"chorus"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Mirror distortion with default positioning. Simple bilateral symmetry on trees."
+},
+{
+"name": "Wave Sine",
+"effect": "Wave",
+"settings": {
+"E_CHECKBOX_Mirror_Wave": 0,
+"E_CHOICE_Wave_Type": "Sine",
+"E_SLIDER_Wave_YOffset": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Wave_Direction",
+"values": [
+"Left to Right",
+"Right to Left"
+],
+"mode": "alternate"
+},
+"description": "Standard sine wave sweeping horizontally. Smooth undulating motion on cubes and matrices."
+},
+{
+"name": "Wave Sine Mirror",
+"effect": "Wave",
+"settings": {
+"E_CHECKBOX_Mirror_Wave": 1,
+"E_CHOICE_Wave_Type": "Sine",
+"E_SLIDER_Wave_Height": 19,
+"E_SLIDER_Wave_YOffset": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Wave_Direction",
+"values": [
+"Left to Right",
+"Right to Left"
+],
+"mode": "alternate"
+},
+"description": "Mirrored sine wave creating symmetrical ripples. Balanced bilateral motion on horizontal matrices."
+},
+{
+"name": "Wave Sine Tall",
+"effect": "Wave",
+"settings": {
+"E_CHECKBOX_Mirror_Wave": 0,
+"E_CHOICE_Wave_Type": "Sine",
+"E_SLIDER_Wave_Height": 50,
+"E_SLIDER_Wave_YOffset": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Wave_Direction",
+"values": [
+"Left to Right",
+"Right to Left"
+],
+"mode": "alternate"
+},
+"description": "Tall sine wave with increased height for dramatic sweeps. Bold rolling motion on matrices and circles."
+},
+{
+"name": "Wave Square Mirror",
+"effect": "Wave",
+"settings": {
+"E_CHECKBOX_Mirror_Wave": 1,
+"E_CHOICE_Wave_Type": "Square",
+"E_SLIDER_Wave_Height": 50,
+"E_SLIDER_Wave_YOffset": 0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": {
+"param": "E_CHOICE_Wave_Direction",
+"values": [
+"Left to Right",
+"Right to Left"
+],
+"mode": "alternate"
+},
+"description": "Mirrored square wave creating stepped symmetrical pattern. Blocky geometric motion on trees."
+},
+{
+"name": "Wave Dual Medium",
+"effect": "Wave",
+"settings": {
+"E_SLIDER_Number_Waves": 2,
+"E_TEXTCTRL_Wave_Speed": 8.0
+},
+"energy": "medium",
+"speed": "moderate",
+"tier": "mid",
+"sections": [
+"verse",
+"chorus",
+"build"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two waves at medium speed. Balanced wave motion for mid-energy sections."
+},
+{
+"name": "Wave Dual Slow",
+"effect": "Wave",
+"settings": {
+"E_SLIDER_Number_Waves": 2,
+"E_TEXTCTRL_Wave_Speed": 6.0
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"intro",
+"outro",
+"bridge"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Two slow gentle waves. Calm undulating motion for quiet sections."
+},
+{
+"name": "Wave Triple Slow",
+"effect": "Wave",
+"settings": {
+"E_SLIDER_Number_Waves": 3,
+"E_TEXTCTRL_Wave_Speed": 6.0
+},
+"energy": "low",
+"speed": "slow",
+"tier": "background",
+"sections": [
+"verse",
+"bridge",
+"intro"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Three slow waves creating rich layered motion. Dense wave texture for ambient sections."
+},
+{
+"name": "Wave Single Fast",
+"effect": "Wave",
+"settings": {
+"E_SLIDER_Number_Waves": 1,
+"E_TEXTCTRL_Wave_Speed": 15.0
+},
+"energy": "medium",
+"speed": "fast",
+"tier": "mid",
+"sections": [
+"chorus",
+"build",
+"verse"
+],
+"scope": "single-prop",
+"cycle": null,
+"description": "Single fast wave sweep. Clean rapid wave for scanning beam and linear prop effects."
+},
+{
+"name": "Snowflakes Driving Few",
+"effect": "Snowflakes",
+"settings": {
+"E_CHOICE_Falling": "Driving",
+"E_SLIDER_Snowflakes_Count": 15,
+"E_SLIDER_Snowflakes_Speed": 10,
+"E_SLIDER_Snowflakes_Type": 5
+},
+"energy": "low",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"intro",
+"outro"
+],
+"scope": "single-prop",
+"description": "Fifteen wind-driven snowflakes falling diagonally. Gentle winter atmosphere on matrices and trees."
+},
+{
+"name": "Snowflakes Accumulating Many",
+"effect": "Snowflakes",
+"settings": {
+"E_CHOICE_Falling": "Falling & Accumulating",
+"E_SLIDER_Snowflakes_Count": 50,
+"E_SLIDER_Snowflakes_Speed": 10,
+"E_SLIDER_Snowflakes_Type": 1
+},
+"energy": "low",
+"speed": "slow",
+"tier": "mid",
+"sections": [
+"verse",
+"outro"
+],
+"scope": "single-prop",
+"description": "Fifty snowflakes falling and piling up at the bottom. Dense snowfall with buildup on trees."
+}
+]
+}

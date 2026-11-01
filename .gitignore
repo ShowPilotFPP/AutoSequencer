@@ -1,0 +1,8 @@
+node_modules/
+data/
+bin/
+worker/.venv/
+__pycache__/
+*.zip
+.DS_Store
+/setup-github.sh
